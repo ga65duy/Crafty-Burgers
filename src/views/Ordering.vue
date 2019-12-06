@@ -4,7 +4,7 @@
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
     <h1>{{ uiLabels.ingredients }}</h1>
-
+    <div id="ing">
     <Ingredient
       ref="ingredient"
       v-for="item in ingredients"
@@ -13,6 +13,7 @@
       :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
+    </div>
 
     <h1>{{ uiLabels.order }}</h1>
     {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
@@ -102,10 +103,16 @@ export default {
   top:0;
   z-index: -2;
 }
-.ingredient {
+#ing{
+  display: grid;
+  grid-gap: 2em;
+  grid-template-columns: 20em 20em 20em;
+}
+
+/*.ingredient {
   border: 1px solid #ccd;
   padding: 1em;
   background-image: url('~@/assets/exampleImage.jpg');
   color: white;
-}
+}*/
 </style>

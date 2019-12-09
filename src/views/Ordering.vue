@@ -1,7 +1,13 @@
 <template>
   <div id="ordering">
-    <img class="example-panel" src="@/assets/exampleImage.jpg">
+    <!--<img class="example-panel" src="@/assets/exampleImage.jpg">-->
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+
+    <FoodPref
+    ref="preferences"
+    :ui-labels="uiLabels"
+    :lang="lang">    
+    </FoodPref>
 
     <h1>{{ uiLabels.ingredients }}</h1>
 
@@ -30,6 +36,7 @@
         :key="key">
       </OrderItem>
     </div>
+
   </div>
 </template>
 <script>

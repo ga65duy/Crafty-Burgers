@@ -16,5 +16,9 @@
   "ingredients" : "Ingredienser",
   "ready" : "Klart",
   "order" : "Min burgare",
-  "language" : "English"
+  "language" : "English",
+  "noFoodPreferences" : "no food preferences",
+  "vegan" : "vegan",
+  "lactoseFree" : "lactose-free",
+  "glutenFree" : "gluten-free"
 }

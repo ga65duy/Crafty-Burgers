@@ -16,5 +16,10 @@
   "ingredients" : "Ingredients",
   "ready" : "Done",
   "order" : "My burger",
-  "language" : "Svenska"
+  "language" : "Svenska",
+  "noFoodPreferences" : "no food preferences",
+  "vegan" : "vegan",
+  "lactoseFree" : "lactose-free",
+  "glutenFree" : "gluten-free"
+
 }

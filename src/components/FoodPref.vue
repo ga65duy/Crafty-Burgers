@@ -10,9 +10,9 @@
 </template>
 <script>
 export default {
-  name: 'foodPreferences',
+  name: 'FoodPref',
   props: {
-    item: Object,
+    uiLabels: Object,
     lang: String
   },
     data: function () {
@@ -49,7 +49,7 @@ export default {
             prefs[2]=0
           }
       }
-      this.$emit('preference');
+     // this.$emit('preference');
     }
   }
 }

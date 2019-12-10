@@ -3,6 +3,9 @@
     <img class="example-panel" src="@/assets/exampleImage.jpg">
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
+      <NavButtons
+      ref="navigation">
+      </NavButtons>
     <h1>{{ uiLabels.ingredients }}</h1>
     <h2>Patty</h2>
     <div id="ing">
@@ -104,12 +107,14 @@ import OrderItem from '@/components/OrderItem.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
+import NavButtons from "../components/NavButtons";
 
 /* instead of defining a Vue instance, export default allows the only 
 necessary Vue instance (found in main.js) to import your data and methods */
 export default {
   name: 'Ordering',
   components: {
+      NavButtons,
     Ingredient,
     OrderItem
   },

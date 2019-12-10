@@ -4,7 +4,6 @@
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
     <FoodPref
-    ref="preferences"
     :ui-labels="uiLabels"
     :lang="lang">    
     </FoodPref>
@@ -46,6 +45,7 @@
 //components
 import Ingredient from '@/components/Ingredient.vue'
 import OrderItem from '@/components/OrderItem.vue'
+import FoodPref from '@/components/FoodPref.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -56,7 +56,8 @@ export default {
   name: 'Ordering',
   components: {
     Ingredient,
-    OrderItem
+    OrderItem,
+    FoodPref
   },
   mixins: [sharedVueStuff], // include stuff that is used in both 
                             // the ordering system and the kitchen

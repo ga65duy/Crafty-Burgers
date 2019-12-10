@@ -1,12 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Ordering from './views/Ordering.vue'
-import Patty from "./views/Patty.vue";
-import Bun from "./views/Bun.vue";
-import Extras from "./views/Extras.vue";
-import Sides from "./views/Sides.vue";
-import Drinks from "./views/Drinks.vue";
-import Sauces from "./views/Sauces.vue";
 
 Vue.use(Router);
 
@@ -19,54 +13,6 @@ let router = new Router({
       },
       name: 'ordering',
       component: Ordering
-    },
-    {
-      path: '/buns',
-      meta: {
-        title: 'Buns',
-      },
-      name: 'buns',
-      component: Bun
-    },
-    {
-      path: '/patty',
-      meta: {
-        title: 'Patty',
-      },
-      name: 'patties',
-      component: Patty
-    },
-    {
-      path: '/extras',
-      meta: {
-        title: 'Extras',
-      },
-      name: 'extras',
-      component: Extras
-    },
-    {
-      path: '/sauces',
-      meta: {
-        title: 'Sauces',
-      },
-      name: 'sauces',
-      component: Sauces
-    },
-    {
-      path: '/sides',
-      meta: {
-        title: 'Sides',
-      },
-      name: 'sides',
-      component: Sides
-    },
-    {
-      path: '/drinks',
-      meta: {
-        title: 'Drinks',
-      },
-      name: 'drinks',
-      component: Drinks
     },
     {
       path: '/kitchen',

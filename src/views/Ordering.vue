@@ -4,15 +4,76 @@
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
     <h1>{{ uiLabels.ingredients }}</h1>
+    <h2>Patty</h2>
     <div id="ing">
     <Ingredient
       ref="ingredient"
       v-for="item in ingredients"
+      v-if="item.category===1"
       v-on:increment="addToOrder(item)"  
       :item="item" 
       :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
+    <h2>Extra</h2>
+    <Ingredient
+              ref="ingredient"
+              v-for="item in ingredients"
+              v-if="item.category===2"
+              v-on:increment="addToOrder(item)"
+              :item="item"
+              :lang="lang"
+              :key="item.ingredient_id">
+      </Ingredient>
+      <h2>Sauce</h2>
+      <Ingredient
+              ref="ingredient"
+              v-for="item in ingredients"
+              v-if="item.category===3"
+              v-on:increment="addToOrder(item)"
+              :item="item"
+              :lang="lang"
+              :key="item.ingredient_id">
+      </Ingredient>
+      <h2>Bun</h2>
+      <Ingredient
+              ref="ingredient"
+              v-for="item in ingredients"
+              v-if="item.category===4"
+              v-on:increment="addToOrder(item)"
+              :item="item"
+              :lang="lang"
+              :key="item.ingredient_id">
+      </Ingredient>
+      <h2>Sides</h2>
+      <Ingredient
+              ref="ingredient"
+              v-for="item in ingredients"
+              v-if="item.category===1"
+              v-on:increment="addToOrder(item)"
+              :item="item"
+              :lang="lang"
+              :key="item.ingredient_id">
+      </Ingredient>
+      <Ingredient
+              ref="ingredient"
+              v-for="item in ingredients"
+              v-if="item.category===5"
+              v-on:increment="addToOrder(item)"
+              :item="item"
+              :lang="lang"
+              :key="item.ingredient_id">
+      </Ingredient>
+      <h2>Drinks</h2>
+      <Ingredient
+              ref="ingredient"
+              v-for="item in ingredients"
+              v-if="item.category===6"
+              v-on:increment="addToOrder(item)"
+              :item="item"
+              :lang="lang"
+              :key="item.ingredient_id">
+      </Ingredient>
     </div>
 
     <h1>{{ uiLabels.order }}</h1>

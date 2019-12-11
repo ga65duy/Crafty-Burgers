@@ -10,8 +10,11 @@
       v-on:selected="changeStep">
     </NavButtons>
   </section>
-    <!--<h1>{{ uiLabels.ingredients }}</h1>-->
-    <h2>{{steps[currentStep].step}}</h2>
+    <FoodPref
+            v-if="currentStep===0"
+            :ui-labels="uiLabels"
+            :lang="lang">
+    </FoodPref>
     <div id="ing">
       <Ingredient
               ref="ingredient"
@@ -24,22 +27,6 @@
               :key="item.ingredient_id">
       </Ingredient>
     </div>
-
-    <FoodPref
-    :ui-labels="uiLabels"
-    :lang="lang">
-    </FoodPref>
-
-    <h1>{{ uiLabels.ingredients }}</h1>
-
-    <Ingredient
-      ref="ingredient"
-      v-for="item in ingredients"
-      v-on:increment="addToOrder(item)"
-      :item="item"
-      :lang="lang"
-      :key="item.ingredient_id">
-    </Ingredient>
 
     <h1>{{ uiLabels.order }}</h1>
     {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
@@ -154,5 +141,5 @@ export default {
   padding: 1em;
   background-image: url('~@/assets/exampleImage.jpg');
   color: white;
-}
+}*/
 </style>

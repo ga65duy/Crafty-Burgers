@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button v-on:click="selectedButton">{{step.label}}</button>
+        <button id="button" v-on:click="selectedButton">{{step.label}}</button>
     </div>
 </template>
 
@@ -23,5 +23,14 @@
 </script>
 
 <style scoped>
-
+#button {
+    margin: 0.1em;
+    border-style: solid;
+    border-color: black;
+    width: auto;
+    font-size: 3em;
+    text-align: center;
+    font-family:arial;
+    background-color: lightgrey;
+}
 </style>

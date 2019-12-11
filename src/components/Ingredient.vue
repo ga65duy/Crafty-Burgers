@@ -42,11 +42,14 @@ export default {
 </script>
 <style scoped>
   .ingredient {
-    padding: 20px;
-    margin: 20px;
-    width: auto;
-    border-width: 1px;
-    border-style: solid;
-    border-color: black;
+      margin: 0.3em;
+      padding: 20px;
+      width: auto;
+      border-style: solid;
+      border-color: black;
+      font-size: 2em;
+      display: block;
+      text-align: center;
+      font-family:arial;
   }
 </style>

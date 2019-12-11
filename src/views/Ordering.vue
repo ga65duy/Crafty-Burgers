@@ -1,9 +1,8 @@
 <template>
   <div id="ordering">
-    <img class="example-panel" src="@/assets/exampleImage.jpg">
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
-  <section>
-    <NavButtons
+  <section >
+    <NavButtons id="tabbar"
       ref="navigation"
       v-for="s in steps"
       v-bind:step="s"
@@ -78,7 +77,7 @@ export default {
       orderNumber: "",
       steps: [{step: 0, label: "Preferences"},{step: 4, label: "Bun"},{step: 1, label: "Patty"},{step: 2, label: "Extras"},
               {step: 3, label: "Sauce"},{step: 5, label: "Sides"},{step: 6, label: "Drinks"},{step: 7, label: "+Burger"}],
-      currentStep: 0
+      currentStep: 0,
     }
   },
   created: function () {
@@ -96,7 +95,7 @@ export default {
     },
     removeOrder: function (item){
       this.chosenIngredients.pop(item);
-      this.price -= -item.selling_price;
+      this.price -= item.selling_price;
     },
     placeOrder: function () {
       var i,
@@ -119,10 +118,10 @@ export default {
 </script>
 <style scoped>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
-#ordering {
+/*#ordering {
   margin:auto;
   width: 40em;
-}
+}*/
 
 .example-panel {
   position: fixed;
@@ -134,6 +133,10 @@ export default {
   display: grid;
   grid-gap: 2em;
   grid-template-columns: 20em 20em 20em;
+}
+#tabbar{
+  display: inline-block;
+  width: auto;
 }
 
 /*.ingredient {

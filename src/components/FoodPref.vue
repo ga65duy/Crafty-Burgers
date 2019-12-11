@@ -52,7 +52,6 @@ export default {
     margin: 0.3em;
     border-style: solid;
     border-color: black;
-    height:50px;
     width: 400px;
     font-size: 2em;
     display: block;

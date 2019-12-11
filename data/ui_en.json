@@ -20,6 +20,13 @@
   "noFoodPreferences" : "no food preferences",
   "vegan" : "vegan",
   "lactoseFree" : "lactose-free",
-  "glutenFree" : "gluten-free"
-
+  "glutenFree" : "gluten-free",
+  "preferences" : "Preferences",
+  "bun": "Bun",
+  "patty": "Patties",
+  "extras": "Extras",
+  "sauces":"Sauces",
+  "sides": "Sides",
+  "drinks": "Drinks",
+  "+burger": "+Burger"
 }

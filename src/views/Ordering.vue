@@ -2,83 +2,28 @@
   <div id="ordering">
     <img class="example-panel" src="@/assets/exampleImage.jpg">
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
-
-      <NavButtons
-      ref="navigation">
-      </NavButtons>
-    <h1>{{ uiLabels.ingredients }}</h1>
-    <h2>Patty</h2>
+  <section>
+    <NavButtons
+      ref="navigation"
+      v-for="s in steps"
+      v-bind:step="s"
+      v-on:selected="changeStep">
+    </NavButtons>
+  </section>
+    <!--<h1>{{ uiLabels.ingredients }}</h1>-->
+    <h2>{{steps[currentStep].step}}</h2>
     <div id="ing">
-    <Ingredient
-      ref="ingredient"
-      v-for="item in ingredients"
-      v-if="item.category===1"
-      v-on:increment="addToOrder(item)"  
-      :item="item" 
-      :lang="lang"
-      :key="item.ingredient_id">
-    </Ingredient>
-    <h2>Extra</h2>
-    <Ingredient
-              ref="ingredient"
-              v-for="item in ingredients"
-              v-if="item.category===2"
-              v-on:increment="addToOrder(item)"
-              :item="item"
-              :lang="lang"
-              :key="item.ingredient_id">
-      </Ingredient>
-      <h2>Sauce</h2>
       <Ingredient
               ref="ingredient"
               v-for="item in ingredients"
-              v-if="item.category===3"
+              v-if="item.category===currentStep"
               v-on:increment="addToOrder(item)"
-              :item="item"
-              :lang="lang"
-              :key="item.ingredient_id">
-      </Ingredient>
-      <h2>Bun</h2>
-      <Ingredient
-              ref="ingredient"
-              v-for="item in ingredients"
-              v-if="item.category===4"
-              v-on:increment="addToOrder(item)"
-              :item="item"
-              :lang="lang"
-              :key="item.ingredient_id">
-      </Ingredient>
-      <h2>Sides</h2>
-      <Ingredient
-              ref="ingredient"
-              v-for="item in ingredients"
-              v-if="item.category===1"
-              v-on:increment="addToOrder(item)"
-              :item="item"
-              :lang="lang"
-              :key="item.ingredient_id">
-      </Ingredient>
-      <Ingredient
-              ref="ingredient"
-              v-for="item in ingredients"
-              v-if="item.category===5"
-              v-on:increment="addToOrder(item)"
-              :item="item"
-              :lang="lang"
-              :key="item.ingredient_id">
-      </Ingredient>
-      <h2>Drinks</h2>
-      <Ingredient
-              ref="ingredient"
-              v-for="item in ingredients"
-              v-if="item.category===6"
-              v-on:increment="addToOrder(item)"
+              v-on:decrement="removeOrder(item)"
               :item="item"
               :lang="lang"
               :key="item.ingredient_id">
       </Ingredient>
     </div>
-
     <h1>{{ uiLabels.order }}</h1>
     {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
     <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
@@ -114,7 +59,7 @@ necessary Vue instance (found in main.js) to import your data and methods */
 export default {
   name: 'Ordering',
   components: {
-      NavButtons,
+    NavButtons,
     Ingredient,
     OrderItem
   },
@@ -125,6 +70,9 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
+      steps: [{step: 0, label: "Preferences"},{step: 4, label: "Bun"},{step: 1, label: "Patty"},{step: 2, label: "Extras"},
+              {step: 3, label: "Sauce"},{step: 5, label: "Sides"},{step: 6, label: "Drinks"},{step: 7, label: "+Burger"}],
+      currentStep: 0
     }
   },
   created: function () {
@@ -133,9 +81,16 @@ export default {
     }.bind(this));
   },
   methods: {
+    changeStep: function(nextStep){
+      this.currentStep = nextStep;
+    },
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
+    },
+    removeOrder: function (item){
+      this.chosenIngredients.pop(item);
+      this.price -= -item.selling_price;
     },
     placeOrder: function () {
       var i,

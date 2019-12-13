@@ -21,11 +21,12 @@
   "vegan" : "Veganskt",
   "lactoseFree" : "Laktosfritt",
   "glutenFree" : "Glutenfritt",
-  "preferences": "preferenser",
+  "preferences": "Preferenser",
+  "bun": "Bulle",
   "patty": "Patties",
   "extras": "Extras",
   "sauces":"Såser",
   "sides": "Tillbehör",
   "drinks": "Drickor",
-  "+burger": "+Burgare"
+  "addBurger": "+Burgare"
 }

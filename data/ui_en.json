@@ -17,10 +17,10 @@
   "ready" : "Done",
   "order" : "My burger",
   "language" : "Svenska",
-  "noFoodPreferences" : "no food preferences",
-  "vegan" : "vegan",
-  "lactoseFree" : "lactose-free",
-  "glutenFree" : "gluten-free",
+  "noFoodPreferences" : "No food preferences",
+  "vegan" : "Vegan",
+  "lactoseFree" : "Lactose-free",
+  "glutenFree" : "Gluten-free",
   "preferences" : "Preferences",
   "bun": "Bun",
   "patty": "Patties",
@@ -28,5 +28,5 @@
   "sauces":"Sauces",
   "sides": "Sides",
   "drinks": "Drinks",
-  "+burger": "+Burger"
+  "addBurger": "+Burger"
 }

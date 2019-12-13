@@ -75,15 +75,25 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
-      steps: [{step: 0, label: "Preferences"},{step: 4, label: "Bun"},{step: 1, label: "Patty"},{step: 2, label: "Extras"},
-              {step: 3, label: "Sauce"},{step: 5, label: "Sides"},{step: 6, label: "Drinks"},{step: 7, label: "+Burger"}],
+      /*
+      label: uiLabels.preferences
+       */
       currentStep: 0,
     }
+  },
+  computed: {
+    steps: function () {
+      return [{step: 0, label: this.uiLabels.preferences},{step: 4, label: this.uiLabels.bun},{step: 1, label: this.uiLabels.patty},
+        {step: 2, label: this.uiLabels.extras}, {step: 3, label: this.uiLabels.sauces},{step: 5, label: this.uiLabels.sides},
+        {step: 6, label: this.uiLabels.drinks},{step: 7, label: this.uiLabels.addBurger}]
+    },
+
   },
   created: function () {
     this.$store.state.socket.on('orderNumber', function (data) {
       this.orderNumber = data;
     }.bind(this));
+
   },
   methods: {
     changeStep: function(nextStep){

@@ -75,9 +75,6 @@ export default {
       chosenIngredients: [],
       price: 0,
       orderNumber: "",
-      /*
-      label: uiLabels.preferences
-       */
       currentStep: 0,
     }
   },
@@ -87,7 +84,6 @@ export default {
         {step: 2, label: this.uiLabels.extras}, {step: 3, label: this.uiLabels.sauces},{step: 5, label: this.uiLabels.sides},
         {step: 6, label: this.uiLabels.drinks},{step: 7, label: this.uiLabels.addBurger}]
     },
-
   },
   created: function () {
     this.$store.state.socket.on('orderNumber', function (data) {

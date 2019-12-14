@@ -1,7 +1,7 @@
 <template>
   <div class="ingredient" id="box">
-      {{item["ingredient_"+ lang]}}   {{item.selling_price}}kr <br>
-      Picture <br>
+      {{item["ingredient_"+ lang]}} {{item.selling_price}}kr <br>
+      <img :src="getImgUrl(item.image_path)" v-bind:alt="item.image_path" id="image"> <br>
       <input type="button" value="-" class="button-minus" data-field="quantity" v-on:click="decrementCounter()">
       {{counter}}
       <input type="button" value="+" class="button-plus" data-field="quantity" v-on:click="incrementCounter()">
@@ -36,12 +36,18 @@ export default {
     },
     resetCounter: function () {
       this.counter = 0;
+    },
+    getImgUrl: function(ingredient) {
+        return require('../assets/'+ingredient)
     }
   }
 }
 </script>
 <style scoped>
   .ingredient {
+      display: grid;
+      grid-gap: 2em;
+      grid-template-columns: 20em 20em;
       margin: 0.3em;
       padding: 20px;
       width: auto;
@@ -51,5 +57,8 @@ export default {
       display: block;
       text-align: center;
       font-family:arial;
+  }
+  #image {
+      width:250px;
   }
 </style>

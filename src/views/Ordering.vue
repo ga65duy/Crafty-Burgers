@@ -6,13 +6,16 @@
     <h1>{{ uiLabels.ingredients }}</h1>
 
     <Ingredient
-      ref="ingredient"
+	  ref="ingredient"
       v-for="item in ingredients"
       v-on:increment="addToOrder(item)"  
       :item="item" 
       :lang="lang"
       :key="item.ingredient_id">
     </Ingredient>
+<Burgerview
+:ing="chosenIngredients">
+</Burgerview>
 
     <h1>{{ uiLabels.order }}</h1>
     {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr
@@ -39,6 +42,7 @@
 //components
 import Ingredient from '@/components/Ingredient.vue'
 import OrderItem from '@/components/OrderItem.vue'
+import Burgerview from '@/components/Burgerview.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -49,7 +53,8 @@ export default {
   name: 'Ordering',
   components: {
     Ingredient,
-    OrderItem
+    OrderItem,
+	Burgerview
   },
   mixins: [sharedVueStuff], // include stuff that is used in both 
                             // the ordering system and the kitchen
@@ -69,6 +74,11 @@ export default {
     addToOrder: function (item) {
       this.chosenIngredients.push(item);
       this.price += +item.selling_price;
+    },
+	RemoveOrder: function (item) {
+	 var a = this.chosenIngredients.indexOf(item);
+      delete this.chosenIngredients[a]
+      this.price -= +item.selling_price;
     },
     placeOrder: function () {
       var i,

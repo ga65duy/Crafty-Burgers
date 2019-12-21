@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     craftNewBurger: function() {
-        console.log("Hallo");
+        this.$emit('newBurger');
     }
   }
 }

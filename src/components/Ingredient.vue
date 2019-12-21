@@ -3,7 +3,7 @@
       {{item["ingredient_"+ lang]}} {{item.selling_price}}kr <br>
       <img :src="getImgUrl(item.image_path)" v-bind:alt="item.image_path" id="image"> <br>
       <input type="button" value="-" class="button-minus" data-field="quantity" v-on:click="decrementCounter()">
-      {{counter}}
+      {{validatedCounter}}
       <input type="button" value="+" class="button-plus" data-field="quantity" v-on:click="incrementCounter()">
   </div>
 </template>
@@ -12,23 +12,26 @@ export default {
   name: 'Ingredient',
   props: {
     item: Object,
-    lang: String
+    lang: String,
+    counter: Number
   },
-    data: function () {
-    return {
-      counter: 0
-    };
-  },
+    computed: {
+      validatedCounter: function () {
+          return isNaN(this.counter) ? 0 : this.counter;
+      }
+    },
   methods: {
     incrementCounter: function () {
-      this.counter += 1;
+       // console.log(this.counter);
+      //this.counter += 1;
       // sending 'increment' message to parent component or view so that it
       // can catch it with v-on:increment in the component declaration
       this.$emit('increment');
     },
     decrementCounter: function () {
-      if(this.counter!==0){
-        this.counter -= 1;
+        console.log(this.counter)
+      if(this.counter > 0){
+        //this.counter -= 1;
         this.$emit('decrement');
       }
       // sending 'increment' message to parent component or view so that it

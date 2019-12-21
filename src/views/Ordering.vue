@@ -33,6 +33,9 @@
                 :ui-labels="uiLabels"
                 :lang="lang">
         </NewBurger>
+        <Burgerview
+                :ing="chosenIngredients">
+        </Burgerview>
 
         <h1>{{ uiLabels.order }}</h1>
        <!-- {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr -->
@@ -63,6 +66,7 @@
     import OrderItem from '@/components/OrderItem.vue'
     import FoodPref from '@/components/FoodPref.vue'
     import NewBurger from '@/components/NewBurger.vue'
+    import Burgerview from '@/components/Burgerview.vue'
 
     //import methods and data that are shared between ordering and kitchen views
     import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -77,7 +81,8 @@
             Ingredient,
             OrderItem,
             FoodPref,
-            NewBurger
+            NewBurger,
+            Burgerview
         },
         mixins: [sharedVueStuff], // include stuff that is used in both
                                   // the ordering system and the kitchen

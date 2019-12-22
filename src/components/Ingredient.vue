@@ -2,9 +2,9 @@
   <div class="ingredient" id="box">
       {{item["ingredient_"+ lang]}} {{item.selling_price}}kr <br>
       <img :src="getImgUrl(item.image_path)" v-bind:alt="item.image_path" id="image"> <br>
-      <input type="button" value="-" class="button-minus" data-field="quantity" v-on:click="decrementCounter()">
+      <input type="button" :disabled="disabled" value="-" class="button-minus" data-field="quantity" v-on:click="decrementCounter()">
       {{validatedCounter}}
-      <input type="button" value="+" class="button-plus" data-field="quantity" v-on:click="incrementCounter()">
+      <input type="button" :disabled="disabled || plusDisabled" value="+" class="button-plus" data-field="quantity" v-on:click="incrementCounter()">
   </div>
 </template>
 <script>
@@ -13,7 +13,9 @@ export default {
   props: {
     item: Object,
     lang: String,
-    counter: Number
+    counter: Number,
+    disabled: Boolean,
+    plusDisabled: Boolean
   },
     computed: {
       validatedCounter: function () {
@@ -28,7 +30,6 @@ export default {
     },
     decrementCounter: function () {
       if(this.counter > 0){
-        //this.counter -= 1;
         this.$emit('decrement');
       }
       // sending 'increment' message to parent component or view so that it

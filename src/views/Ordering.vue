@@ -26,6 +26,7 @@
                         :allIngredients="ingredients"
                         :addBurgerPage="addBurgerPage">
                 </BurgerView>
+            <!--show a list of all created burgers in step 7-->
                 <div v-if="currentStep===7" v-for="burger in allBurgers">
                     <BurgerView
                         class="burgerView"
@@ -37,18 +38,57 @@
                         :addBurgerPage="addBurgerPage">
                     </BurgerView>
                 </div>
-            <Ingredient
-                    ref="ingredient"
-                    v-for="item in ingredients"
-                    v-if="item.category===currentStep"
-                    v-on:increment="addToOrder(item)"
-                    v-on:decrement="removeOrder(item)"
-                    :item="item"
-                    :lang="lang"
-                    :key="item.ingredient_id"
-                    :counter="currentRelevantIngredientDict[item.ingredient_en]">
-            </Ingredient>
-
+            <!-- Other than step 4 clicking + and - is always enabled -->
+            <div v-if="currentStep !== 4" >
+                <Ingredient
+                        ref="ingredient"
+                        v-for="item in ingredients"
+                        v-if="item.category===currentStep"
+                        v-on:increment="addToOrder(item)"
+                        v-on:decrement="removeOrder(item)"
+                        :item="item"
+                        :lang="lang"
+                        :key="item.ingredient_id"
+                        :disabled="false"
+                        :plusDisabled="false"
+                        :counter="currentRelevantIngredientDict[item.ingredient_en]">
+                </Ingredient>
+            </div>
+            <div v-if="currentStep === 4" >
+                <!--Choosing a bun, allows only one bun otherwise the + and - is disabled -->
+                <!--In first case the bun box which was selected allows only to click -  -->
+                <Ingredient
+                        ref="ingredient"
+                        v-for="item in ingredients"
+                        v-if="item.category===currentStep && item.ingredient_en === burgerBun"
+                        v-on:increment="addToOrder(item)"
+                        v-on:decrement="removeOrder(item)"
+                        :item="item"
+                        :lang="lang"
+                        :key="item.ingredient_id"
+                        :disabled="false"
+                        :plusDisabled="true"
+                        :counter="1">
+                </Ingredient>
+                <!--In second case the bun boxes, which are NOT selected,
+                    1) and no bun is selected at all: then clicking + and - is allowed
+                    2) and a bun is selected: clicking + and - is not allowed
+                -->
+                <Ingredient
+                        ref="ingredient"
+                        v-for="item in ingredients"
+                        v-if="item.category===currentStep && item.ingredient_en !== burgerBun"
+                        v-on:increment="addToOrder(item)"
+                        v-on:decrement="removeOrder(item)"
+                        :item="item"
+                        :lang="lang"
+                        :key="item.ingredient_id"
+                        :disabled=Boolean(burgerBun)
+                        :plusDisabled=Boolean(burgerBun)
+                        :counter="0">
+                </Ingredient>
+            </div>
+            <!-- Create a new burger and add it to the list -->
             <NewBurger
                     v-if="currentStep===7"
                     v-on:newBurger="addNewBurger"
@@ -56,9 +96,8 @@
                     :lang="lang">
             </NewBurger>
         </div>
-
+        <!--TODO: basically not needed: but datastructure can be seen here -->
         <h1>{{ uiLabels.order }}</h1>
-       <!-- {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr -->
         {{this.chosenIngredientsDict }} burgerprice: {{burgerPrice}}
         {{this.order}}
         <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
@@ -151,7 +190,7 @@
                     amount: this.burgerAmount,
                     price: this.burgerPrice,
                     name: this.uiLabels.burger+ " #" + this.currentBurgerNumber,
-                    bun: "",
+                    bun: this.burgerBun,
                     chosenIngredients: this.chosenIngredientsDict
                 };
             },
@@ -177,8 +216,13 @@
             },
             addToOrder: function (item) {
                 //add ingredients to order
-                let newCount = (this.currentRelevantIngredientDict[item.ingredient_en] || 0) + 1;
-                this.$set(this.currentRelevantIngredientDict, item.ingredient_en, newCount);
+                let itemKey = item.ingredient_en;
+                if (this.currentStep === 4) {
+                    this.burgerBun = itemKey;
+                } else {
+                    let newCount = (this.currentRelevantIngredientDict[itemKey] || 0) + 1;
+                    this.$set(this.currentRelevantIngredientDict, itemKey, newCount);
+                }
                 //if ingredients are sides or drinks then the order price has to be increased
                 //otherwise order price and burger price increases
                 if (this.currentStep === 5 || this.currentStep === 6) {
@@ -190,11 +234,16 @@
             },
             removeOrder: function (item) {
                 //remove ingredients from order
-                let newCount = this.currentRelevantIngredientDict[item.ingredient_en]-1;
-                this.$set(this.currentRelevantIngredientDict, item.ingredient_en, newCount);
-                //delete ingredient from dictionary if the value is 0
-                if (newCount === 0) {
-                    delete this.currentRelevantIngredientDict[item.ingredient_en];
+                let itemKey = item.ingredient_en;
+                if (this.currentStep === 4) {
+                    this.burgerBun = "";
+                } else {
+                    let newCount = this.currentRelevantIngredientDict[itemKey] - 1;
+                    this.$set(this.currentRelevantIngredientDict, itemKey, newCount);
+                    //delete ingredient from dictionary if the value is 0
+                    if (newCount === 0) {
+                        delete this.currentRelevantIngredientDict[itemKey];
+                    }
                 }
                 //if ingredients are sides or drinks then the order price has to be decreased
                 //otherwise order price and burger price decreases
@@ -255,17 +304,6 @@
 </script>
 <style scoped>
     /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
-    /*#ordering {
-      margin:auto;
-      width: 40em;
-    }*/
-
-    .example-panel {
-        position: fixed;
-        left: 0;
-        top: 0;
-        z-index: -2;
-    }
 
     #ing {
         display: grid;
@@ -289,11 +327,4 @@
         display: block;
 
     }
-
-    /*.ingredient {
-      border: 1px solid #ccd;
-      padding: 1em;
-      background-image: url('~@/assets/exampleImage.jpg');
-      color: white;
-    }*/
 </style>

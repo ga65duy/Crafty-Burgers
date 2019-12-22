@@ -22,14 +22,11 @@ export default {
     },
   methods: {
     incrementCounter: function () {
-       // console.log(this.counter);
-      //this.counter += 1;
       // sending 'increment' message to parent component or view so that it
       // can catch it with v-on:increment in the component declaration
       this.$emit('increment');
     },
     decrementCounter: function () {
-        console.log(this.counter)
       if(this.counter > 0){
         //this.counter -= 1;
         this.$emit('decrement');

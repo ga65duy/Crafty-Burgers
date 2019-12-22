@@ -15,6 +15,28 @@
                 :lang="lang">
         </FoodPref>
         <div id="ing">
+            <!--do not show the component in foodpreferences, drinks, sides-->
+                <BurgerView
+                        class="burgerView"
+                        v-if="![0,5,6].includes(currentStep)"
+                        v-on:removeIngredient="removeOrder"
+                        v-on:incrementBurger ="addFinishedBurger"
+                        v-on:decrementBurger="removeFinishedBurger"
+                        :burger="burger"
+                        :allIngredients="ingredients"
+                        :addBurgerPage="addBurgerPage">
+                </BurgerView>
+                <div v-if="currentStep===7" v-for="burger in allBurgers">
+                    <BurgerView
+                        class="burgerView"
+                        v-on:removeIngredient="removeOrder"
+                        v-on:incrementBurger ="addFinishedBurger"
+                        v-on:decrementBurger="removeFinishedBurger"
+                        :burger="burger"
+                        :allIngredients="ingredients"
+                        :addBurgerPage="addBurgerPage">
+                    </BurgerView>
+                </div>
             <Ingredient
                     ref="ingredient"
                     v-for="item in ingredients"
@@ -26,16 +48,14 @@
                     :key="item.ingredient_id"
                     :counter="currentRelevantIngredientDict[item.ingredient_en]">
             </Ingredient>
+
+            <NewBurger
+                    v-if="currentStep===7"
+                    v-on:newBurger="addNewBurger"
+                    :ui-labels="uiLabels"
+                    :lang="lang">
+            </NewBurger>
         </div>
-        <NewBurger
-                v-if="currentStep===7"
-                v-on:newBurger="addNewBurger"
-                :ui-labels="uiLabels"
-                :lang="lang">
-        </NewBurger>
-        <Burgerview
-                :ing="chosenIngredients">
-        </Burgerview>
 
         <h1>{{ uiLabels.order }}</h1>
        <!-- {{ chosenIngredients.map(item => item["ingredient_"+lang]).join(', ') }}, {{ price }} kr -->
@@ -66,8 +86,7 @@
     import OrderItem from '@/components/OrderItem.vue'
     import FoodPref from '@/components/FoodPref.vue'
     import NewBurger from '@/components/NewBurger.vue'
-    import Burgerview from '@/components/Burgerview.vue'
-
+    import BurgerView from '@/components/BurgerView.vue'
     //import methods and data that are shared between ordering and kitchen views
     import sharedVueStuff from '@/components/sharedVueStuff.js'
     import NavButtons from "../components/NavButtons";
@@ -82,23 +101,27 @@
             OrderItem,
             FoodPref,
             NewBurger,
-            Burgerview
+            BurgerView
         },
         mixins: [sharedVueStuff], // include stuff that is used in both
                                   // the ordering system and the kitchen
         data: function () { //Not that data is a function!
             return {
-                chosenIngredients: [],
                 chosenIngredientsDict: {},
                 chosenSidesDrinks: {},
                 allBurgers: [],
                 price: 0,
                 burgerPrice:0,
+                burgerAmount: 1,
+                burgerBun: "",
                 orderNumber: "",
                 currentStep: 0,
             }
         },
         computed: {
+            addBurgerPage: function (){
+                return this.currentStep === 7 || this.currentStep === 8;
+            },
             steps: function () {
                 return [
                     {step: 0, label: this.uiLabels.preferences},
@@ -108,7 +131,8 @@
                     {step: 3, label: this.uiLabels.sauces},
                     {step: 7, label: this.uiLabels.addBurger},
                     {step: 5, label: this.uiLabels.sides},
-                    {step: 6, label: this.uiLabels.drinks}
+                    {step: 6, label: this.uiLabels.drinks},
+                    {step: 8, label: String.fromCharCode(10004)}
                     ]
             },
             currentBurgerNumber: function() {
@@ -120,6 +144,18 @@
                         sides: this.chosenSidesDrinks,
                         price: this.price}
             },
+
+            burger: function() {
+                return {
+                    id: this.currentBurgerNumber,
+                    amount: this.burgerAmount,
+                    price: this.burgerPrice,
+                    name: this.uiLabels.burger+ " #" + this.currentBurgerNumber,
+                    bun: "",
+                    chosenIngredients: this.chosenIngredientsDict
+                };
+            },
+
             currentRelevantIngredientDict: function() {
                 // As two different objects for burgers and sides/drinks are used
                 // the objects are switched depending on the steps
@@ -143,7 +179,6 @@
                 //add ingredients to order
                 let newCount = (this.currentRelevantIngredientDict[item.ingredient_en] || 0) + 1;
                 this.$set(this.currentRelevantIngredientDict, item.ingredient_en, newCount);
-
                 //if ingredients are sides or drinks then the order price has to be increased
                 //otherwise order price and burger price increases
                 if (this.currentStep === 5 || this.currentStep === 6) {
@@ -156,11 +191,10 @@
             removeOrder: function (item) {
                 //remove ingredients from order
                 let newCount = this.currentRelevantIngredientDict[item.ingredient_en]-1;
+                this.$set(this.currentRelevantIngredientDict, item.ingredient_en, newCount);
                 //delete ingredient from dictionary if the value is 0
                 if (newCount === 0) {
                     delete this.currentRelevantIngredientDict[item.ingredient_en];
-                } else {
-                    this.$set(this.currentRelevantIngredientDict, item.ingredient_en, newCount);
                 }
                 //if ingredients are sides or drinks then the order price has to be decreased
                 //otherwise order price and burger price decreases
@@ -174,17 +208,31 @@
             },
             addNewBurger: function() {
                 // Wrap current burger ingredients from chosenIngredientsDict in object burger
-                let burger = {
-                    price: this.burgerPrice,
-                    name: this.currentBurgerNumber,
-                    selectedIngredients: this.chosenIngredientsDict
-                };
-                this.allBurgers.push(burger);
+
+                this.allBurgers.push(this.burger);
                 // reset chosen ingredients from previous burger and reset price
                 this.chosenIngredientsDict = {};
                 this.burgerPrice = 0;
+                this.burgerAmount = 1;
                 // go back to the food preferences
                 this.changeStep(0);
+            },
+
+            addFinishedBurger: function (burgerId) {
+                if (burgerId === this.currentBurgerNumber) {
+                    this.burgerAmount += 1;
+                } else {
+                    let incrementedBurger = this.allBurgers.filter(burger => burger.id === burgerId)[0];
+                    incrementedBurger.amount += 1;
+                }
+            },
+            removeFinishedBurger: function (burgerId) {
+                if (burgerId === this.currentBurgerNumber) {
+                    this.burgerAmount -= 1;
+                } else {
+                    let incrementedBurger = this.allBurgers.filter(burger => burger.id === burgerId)[0];
+                    incrementedBurger.amount -= 1;
+                }
             },
             placeOrder: function () {
                 var i,
@@ -228,6 +276,18 @@
     #tabbar {
         display: inline-block;
         width: auto;
+    }
+    .burgerView {
+        display: grid;
+        grid-gap: 2em;
+        grid-template-columns: 20em 20em;
+        margin: 0.3em;
+        padding: 20px;
+        width: auto;
+        border-style: solid;
+        border-color: black;
+        display: block;
+
     }
 
     /*.ingredient {

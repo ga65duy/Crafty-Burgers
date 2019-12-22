@@ -26,18 +26,31 @@
                         :allIngredients="ingredients"
                         :addBurgerPage="addBurgerPage">
                 </BurgerView>
+
             <!--show a list of all created burgers in step 7-->
-                <div v-if="currentStep===7" v-for="burger in allBurgers">
-                    <BurgerView
-                        class="burgerView"
-                        v-on:removeIngredient="removeOrder"
-                        v-on:incrementBurger ="addFinishedBurger"
-                        v-on:decrementBurger="removeFinishedBurger"
-                        :burger="burger"
-                        :allIngredients="ingredients"
-                        :addBurgerPage="addBurgerPage">
-                    </BurgerView>
-                </div>
+                <BurgerView
+                    class="burgerView"
+                    v-if="[7,8].includes(currentStep)"
+                    v-for="burger in allBurgers"
+                    v-on:removeIngredient="removeOrder"
+                    v-on:incrementBurger ="addFinishedBurger"
+                    v-on:decrementBurger="removeFinishedBurger"
+                    :burger="burger"
+                    :allIngredients="ingredients"
+                    :addBurgerPage="addBurgerPage">
+                </BurgerView>
+                <OrderOverviewSidesDrinks
+                     v-if="currentStep===8"
+                     v-on:increment="addToOrder"
+                     v-on:decrement="removeOrder"
+                     :ui-labels="uiLabels"
+                     :lang="lang"
+                     :chosenSidesDrinks="chosenSidesDrinks"
+                     :allIngredients="ingredients"
+                     :orderCheck="true"
+                >
+
+                </OrderOverviewSidesDrinks>
             <!-- Other than step 4 clicking + and - is always enabled -->
             <div v-if="currentStep !== 4" >
                 <Ingredient
@@ -51,7 +64,8 @@
                         :key="item.ingredient_id"
                         :disabled="false"
                         :plusDisabled="false"
-                        :counter="currentRelevantIngredientDict[item.ingredient_en]">
+                        :counter="currentRelevantIngredientDict[item.ingredient_en]"
+                >
                 </Ingredient>
             </div>
             <div v-if="currentStep === 4" >
@@ -60,7 +74,7 @@
                 <Ingredient
                         ref="ingredient"
                         v-for="item in ingredients"
-                        v-if="item.category===currentStep && item.ingredient_en === burgerBun"
+                        v-if="item.category === currentStep && item.ingredient_en === burgerBun"
                         v-on:increment="addToOrder(item)"
                         v-on:decrement="removeOrder(item)"
                         :item="item"
@@ -90,7 +104,7 @@
             </div>
             <!-- Create a new burger and add it to the list -->
             <NewBurger
-                    v-if="currentStep===7"
+                    v-if="currentStep===7 && burgerPrice > 0"
                     v-on:newBurger="addNewBurger"
                     :ui-labels="uiLabels"
                     :lang="lang">
@@ -129,12 +143,14 @@
     //import methods and data that are shared between ordering and kitchen views
     import sharedVueStuff from '@/components/sharedVueStuff.js'
     import NavButtons from "../components/NavButtons";
+    import OrderOverviewSidesDrinks from "../components/OrderOverviewSidesDrinks";
 
     /* instead of defining a Vue instance, export default allows the only
     necessary Vue instance (found in main.js) to import your data and methods */
     export default {
         name: 'Ordering',
         components: {
+            OrderOverviewSidesDrinks,
             NavButtons,
             Ingredient,
             OrderItem,
@@ -198,7 +214,7 @@
             currentRelevantIngredientDict: function() {
                 // As two different objects for burgers and sides/drinks are used
                 // the objects are switched depending on the steps
-                if (this.currentStep === 5 || this.currentStep === 6) {
+                if (this.currentStep === 5 || this.currentStep === 6 || this.currentStep === 8) {
                     return this.chosenSidesDrinks;
                 } else {
                     return this.chosenIngredientsDict;
@@ -214,8 +230,10 @@
             changeStep: function (nextStep) {
                 this.currentStep = nextStep;
             },
+
             addToOrder: function (item) {
                 //add ingredients to order
+
                 let itemKey = item.ingredient_en;
                 if (this.currentStep === 4) {
                     this.burgerBun = itemKey;
@@ -225,7 +243,7 @@
                 }
                 //if ingredients are sides or drinks then the order price has to be increased
                 //otherwise order price and burger price increases
-                if (this.currentStep === 5 || this.currentStep === 6) {
+                if (this.currentStep === 5 || this.currentStep === 6 || this.currentStep === 8) {
                     this.price += item.selling_price;
                 } else {
                     this.price += item.selling_price;
@@ -235,7 +253,7 @@
             removeOrder: function (item) {
                 //remove ingredients from order
                 let itemKey = item.ingredient_en;
-                if (this.currentStep === 4) {
+                if (item.category === 4) {
                     this.burgerBun = "";
                 } else {
                     let newCount = this.currentRelevantIngredientDict[itemKey] - 1;
@@ -247,7 +265,7 @@
                 }
                 //if ingredients are sides or drinks then the order price has to be decreased
                 //otherwise order price and burger price decreases
-                if (this.currentStep === 5 || this.currentStep === 6) {
+                if (this.currentStep === 5 || this.currentStep === 6 || this.currentStep === 8) {
                     this.price -= item.selling_price;
                 } else {
                     this.price -= item.selling_price;
@@ -263,6 +281,7 @@
                 this.chosenIngredientsDict = {};
                 this.burgerPrice = 0;
                 this.burgerAmount = 1;
+                this.burgerBun = "";
                 // go back to the food preferences
                 this.changeStep(0);
             },
@@ -283,6 +302,7 @@
                     incrementedBurger.amount -= 1;
                 }
             },
+
             placeOrder: function () {
                 var i,
                     //Wrap the order in an object

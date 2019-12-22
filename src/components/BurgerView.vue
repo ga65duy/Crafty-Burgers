@@ -15,10 +15,7 @@
 	<div v-if="Boolean(burger.bun)">
 		<img id="bunFlipped" :src="getImgUrl(bunItem.image_path)" v-bind:alt="bunItem.image_path">
 	</div>
-
-	<br>
-	{{burger.name}}
-	Total: {{burger.price * burger.amount}} kr
+	{{burger.name}}:  {{burger.price * burger.amount}} kr <br>
 	<div v-if="addBurgerPage">
 		<input  type="button" value="-" class="button-minus" data-field="quantity" v-on:click="decrementBurger()">
 		{{burger.amount}}

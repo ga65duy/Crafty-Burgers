@@ -1,7 +1,12 @@
 <template>
   <div class="ingredient" id="box">
-      {{item["ingredient_"+ lang]}} {{item.selling_price}}kr <br>
+      <div v-if="!orderCheck">
+          {{item["ingredient_"+ lang]}} {{item.selling_price}}kr <br>
+      </div>
       <img :src="getImgUrl(item.image_path)" v-bind:alt="item.image_path" id="image"> <br>
+      <div v-if="orderCheck">
+          {{item["ingredient_"+ lang]}} {{item.selling_price}}kr <br>
+      </div>
       <input type="button" :disabled="disabled" value="-" class="button-minus" data-field="quantity" v-on:click="decrementCounter()">
       {{validatedCounter}}
       <input type="button" :disabled="disabled || plusDisabled" value="+" class="button-plus" data-field="quantity" v-on:click="incrementCounter()">
@@ -15,7 +20,9 @@ export default {
     lang: String,
     counter: Number,
     disabled: Boolean,
-    plusDisabled: Boolean
+    plusDisabled: Boolean,
+    //show caption of sides and drinks directly above + - not above picture like in sides and drinks pages
+    orderCheck: Boolean
   },
     computed: {
       validatedCounter: function () {

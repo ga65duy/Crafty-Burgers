@@ -3,7 +3,7 @@
 	<!-- Show the top bun -->
 	<div v-if="Boolean(burger.bun)">
 		<button v-if="addBurgerPage===false" v-on:click="removeIngredient(bunItem)">X</button>
-		<img :src="getImgUrl(bunItem.image_path)" v-bind:alt="bunItem.image_path">
+		<img :src="getImgUrl(bunItem.image_path)" title="bunItem.selling_price" v-bind:alt="bunItem.selling_price">
 	</div>
 	<!-- Show the burger ingredients -->
 	<div v-for="item in ingredientItemList">
@@ -15,7 +15,7 @@
 	<div v-if="Boolean(burger.bun)">
 		<img id="bunFlipped" :src="getImgUrl(bunItem.image_path)" v-bind:alt="bunItem.image_path">
 	</div>
-	{{burger.name}}:  {{burger.price * burger.amount}} kr <br>
+	{{name}}:  {{burger.price * burger.amount}} kr <br>
 	<div v-if="addBurgerPage">
 		<input  type="button" value="-" class="button-minus" data-field="quantity" v-on:click="decrementBurger()">
 		{{burger.amount}}
@@ -32,6 +32,8 @@ export default {
 		allIngredients: Array,
 		burger: Object,
 		addBurgerPage: Boolean,
+		uiLabels: Object,
+		lang: String
 	},
 	computed: {
 		//based on english name, return the whole item
@@ -44,6 +46,9 @@ export default {
 		//based on english name (only buns) return the object
 		bunItem: function() {
 				return this.getItemForKey(this.burger.bun)
+		},
+		name: function () {
+			return this.uiLabels.burger+ " #" + this.burger.id;
 		}
 	},
 

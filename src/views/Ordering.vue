@@ -24,7 +24,9 @@
                         v-on:decrementBurger="removeFinishedBurger"
                         :burger="burger"
                         :allIngredients="ingredients"
-                        :addBurgerPage="addBurgerPage">
+                        :addBurgerPage="addBurgerPage"
+                        :ui-labels="uiLabels"
+                        :lang="lang">
                 </BurgerView>
 
             <!--show a list of all created burgers in step 7-->
@@ -37,7 +39,9 @@
                     v-on:decrementBurger="removeFinishedBurger"
                     :burger="burger"
                     :allIngredients="ingredients"
-                    :addBurgerPage="addBurgerPage">
+                    :addBurgerPage="addBurgerPage"
+                    :ui-labels="uiLabels"
+                    :lang="lang">
                 </BurgerView>
                 <OrderOverviewSidesDrinks
                      v-if="currentStep===8"
@@ -109,6 +113,14 @@
                     :ui-labels="uiLabels"
                     :lang="lang">
             </NewBurger>
+            <TotalBill
+                v-if="[5,6,7,8].includes(currentStep)"
+                :order="order"
+                :allIngredients="ingredients"
+                :ui-labels="uiLabels"
+                :lang="lang"
+            >
+            </TotalBill>
         </div>
         <!--TODO: basically not needed: but datastructure can be seen here -->
         <h1>{{ uiLabels.order }}</h1>
@@ -144,12 +156,14 @@
     import sharedVueStuff from '@/components/sharedVueStuff.js'
     import NavButtons from "../components/NavButtons";
     import OrderOverviewSidesDrinks from "../components/OrderOverviewSidesDrinks";
+    import TotalBill from "../components/TotalBill";
 
     /* instead of defining a Vue instance, export default allows the only
     necessary Vue instance (found in main.js) to import your data and methods */
     export default {
         name: 'Ordering',
         components: {
+            TotalBill,
             OrderOverviewSidesDrinks,
             NavButtons,
             Ingredient,
@@ -195,7 +209,8 @@
             },
             order: function() {
                 // Wrap sides and burgers in order object
-                return {burger: this.allBurgers,
+                return {currentBurger: this.burger,
+                        otherBurgers: this.allBurgers,
                         sides: this.chosenSidesDrinks,
                         price: this.price}
             },
@@ -205,7 +220,6 @@
                     id: this.currentBurgerNumber,
                     amount: this.burgerAmount,
                     price: this.burgerPrice,
-                    name: this.uiLabels.burger+ " #" + this.currentBurgerNumber,
                     bun: this.burgerBun,
                     chosenIngredients: this.chosenIngredientsDict
                 };

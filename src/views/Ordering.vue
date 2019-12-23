@@ -43,6 +43,9 @@
         :key="key">
       </OrderItem>
     </div>
+    <PayButton
+      v-if="currentStep===7">
+    </PayButton>
   </div>
 </template>
 <script>
@@ -53,10 +56,11 @@
 import Ingredient from '@/components/Ingredient.vue'
 import OrderItem from '@/components/OrderItem.vue'
 import FoodPref from '@/components/FoodPref.vue'
+import NavButtons from "../components/NavButtons"
+import PayButton from '@/components/Pay.vue'
 
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
-import NavButtons from "../components/NavButtons";
 
 /* instead of defining a Vue instance, export default allows the only 
 necessary Vue instance (found in main.js) to import your data and methods */
@@ -66,7 +70,8 @@ export default {
     NavButtons,
     Ingredient,
     OrderItem,
-    FoodPref
+    FoodPref,
+    PayButton
   },
   mixins: [sharedVueStuff], // include stuff that is used in both 
                             // the ordering system and the kitchen

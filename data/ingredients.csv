@@ -18,7 +18,7 @@ ingredient_id,ingredient_sv,ingredient_en,category,milk_free,gluten_free,vegan,s
 17,koriander,cilantro,2,1,1,1,5,cilantro.png
 18,coleslaw,coleslaw,2,1,1,0,5,coleslaw.png
 19,friterade lökringar,deep-fried onion rings,2,1,0,1,15,fried_onions.png
-20,stekt ägg,fried egg,2,1,1,0,10,fried_eggs.png
+20,stekt ägg,fried egg,2,1,1,0,10,fried_egg.png
 21,chèvre,goat cheese,2,0,1,0,10,goat_cheese.png
 22,jalapeño,jalapeño,2,1,1,1,5,jalapeno.png
 23,kimchi,kimchi,2,1,1,1,10,kimchi.png

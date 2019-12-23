@@ -125,11 +125,15 @@
             >
             </TotalBill>
         </div>
+        <PayButton
+                v-if="currentStep===8"
+                v-on:clickedPay="placeOrder"
+                :orderNum="orderNumber"
+        >
+        </PayButton>
         <!--TODO: basically not needed: but datastructure can be seen here -->
         <h1>{{ uiLabels.order }}</h1>
         {{this.order}}
-        <button v-on:click="placeOrder()">{{ uiLabels.placeOrder }}</button>
-
         <h1>{{ uiLabels.ordersInQueue }}</h1>
         <div>
             <OrderItem
@@ -142,6 +146,7 @@
                     :key="key">
             </OrderItem>
         </div>
+        <!-- End TODO -->
     </div>
 </template>
 <script>
@@ -159,6 +164,7 @@
     import NavButtons from "../components/NavButtons";
     import OrderOverviewSidesDrinks from "../components/OrderOverviewSidesDrinks";
     import TotalBill from "../components/TotalBill";
+    import PayButton from '@/components/Pay.vue';
 
     /* instead of defining a Vue instance, export default allows the only
     necessary Vue instance (found in main.js) to import your data and methods */
@@ -172,7 +178,8 @@
             OrderItem,
             FoodPref,
             NewBurger,
-            BurgerView
+            BurgerView,
+            PayButton
         },
         mixins: [sharedVueStuff], // include stuff that is used in both
                                   // the ordering system and the kitchen
@@ -238,6 +245,7 @@
         created: function () {
             this.$store.state.socket.on('orderNumber', function (data) {
                 this.orderNumber = data;
+                console.log("Ordernum"+ this.orderNumber)
             }.bind(this));
         },
         methods: {

@@ -8,7 +8,8 @@
           {{item["ingredient_"+ lang]}} {{item.selling_price}}kr <br>
       </div>
       <input type="button" :disabled="disabled" value="-" class="button-minus" data-field="quantity" v-on:click="decrementCounter()">
-      {{validatedCounter}}
+<!--  stock is just there for testing TODO: remove before hand in-->
+      {{validatedCounter}} (stock:{{item.stock}})
       <input type="button" :disabled="disabled || plusDisabled" value="+" class="button-plus" data-field="quantity" v-on:click="incrementCounter()">
   </div>
 </template>

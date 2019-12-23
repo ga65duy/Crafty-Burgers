@@ -13,7 +13,7 @@ let router = new Router({
       meta: {
         title: 'Welcome to Crafty Burgers',
       },
-      name: 'thanks',
+      name: 'welcome',
       component: Welcome
     },
     {

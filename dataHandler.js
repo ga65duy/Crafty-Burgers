@@ -76,7 +76,7 @@ Data.prototype.addOrder = function (order) {
   var transactions = this.data[transactionsDataName],
       //find out the currently highest transaction id
       transId =  transactions[transactions.length - 1].transaction_id;
-      let orderIngredients = calculateTotalIngredientUse(order.order.allBurgers);
+      let orderIngredients = calculateTotalIngredientUse(order.order);
   console.log(order.order);
   for(const [key,amount] of Object.entries(orderIngredients)){
     transId += 1;
@@ -87,7 +87,8 @@ Data.prototype.addOrder = function (order) {
   return orderId;
 };
 
-function calculateTotalIngredientUse (allBurgers) {
+function calculateTotalIngredientUse (order) {
+  let allBurgers = order.allBurgers;
   // Multiply buns with burger amount and aggregate buns of all burgers
   let bunCount = allBurgers.reduce((accu, burger) => {
     if(burger.bun) {
@@ -112,8 +113,9 @@ function calculateTotalIngredientUse (allBurgers) {
     }
     return accu;
   }, {});
-// Combine buns and ingredients
-  return {...bunCount, ...ingredientCount}
+// Combine buns, ingredients and sides and drinks
+  console.log({...bunCount, ...ingredientCount, ...order.sidesAndDrinks});
+  return {...bunCount, ...ingredientCount, ...order.sidesAndDrinks}
 }
 
 //used to refill the stock in kitchen

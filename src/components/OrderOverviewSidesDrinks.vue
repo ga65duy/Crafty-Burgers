@@ -33,7 +33,7 @@
 
         methods: {
             getItemForKey: function (key) {
-                return this.allIngredients.filter(item => item.ingredient_en === key)[0];
+                return this.allIngredients.filter(item => item.ingredient_id === Number(key))[0];
             },
 
             incrementCounter: function (key) {

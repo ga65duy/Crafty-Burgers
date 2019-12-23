@@ -42,9 +42,6 @@ export default {
       // sending 'increment' message to parent component or view so that it
       // can catch it with v-on:increment in the component declaration
     },
-    resetCounter: function () {
-      this.counter = 0;
-    },
     getImgUrl: function(ingredient) {
         return require('../assets/'+ingredient)
     }

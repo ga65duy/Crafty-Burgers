@@ -7,7 +7,7 @@
                 <th>Amount</th>
                 <th>Sum</th>
             </tr>
-            <tr>
+            <tr v-if="order.currentBurger.price > 0">
                 <td>{{name(order.currentBurger.id)}}</td>
                 <td>{{order.currentBurger.price}}</td>
                 <td>x{{order.currentBurger.amount}}</td>
@@ -48,7 +48,7 @@ export default {
 
     methods: {
         getItemForKey: function (key) {
-            return this.allIngredients.filter(item => item.ingredient_en === key)[0];
+            return this.allIngredients.filter(item => item.ingredient_id === Number(key))[0];
         },
         name: function (id) {
             return this.uiLabels.burger + " #" + id;

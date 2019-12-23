@@ -2,12 +2,12 @@
 <div class="burgerpre">
 	<!-- Show the top bun -->
 	<div v-if="Boolean(burger.bun)">
-		<button v-if="addBurgerPage===false" v-on:click="removeIngredient(bunItem)">X</button>
+		<button v-if="addBurgerOrCheckPage===false" v-on:click="removeIngredient(bunItem)">X</button>
 		<img :src="getImgUrl(bunItem.image_path)" title="bunItem.selling_price" v-bind:alt="bunItem.selling_price">
 	</div>
 	<!-- Show the burger ingredients -->
 	<div v-for="item in ingredientItemList">
-		<button v-if="addBurgerPage===false" v-on:click="removeIngredient(item)">X</button>
+		<button v-if="addBurgerOrCheckPage===false" v-on:click="removeIngredient(item)">X</button>
 		<img :src="getImgUrl(item.image_path)" v-bind:alt="item.image_path" id="image"> <br>
 	</div>
 
@@ -16,7 +16,7 @@
 		<img id="bunFlipped" :src="getImgUrl(bunItem.image_path)" v-bind:alt="bunItem.image_path">
 	</div>
 	{{name}}:  {{burger.price * burger.amount}} kr <br>
-	<div v-if="addBurgerPage">
+	<div v-if="addBurgerOrCheckPage">
 		<input  type="button" value="-" class="button-minus" data-field="quantity" v-on:click="decrementBurger()">
 		{{burger.amount}}
 		<input  type="button" value="+" class="button-plus" data-field="quantity" v-on:click="incrementBurger()">
@@ -31,7 +31,7 @@ export default {
 	props: {
 		allIngredients: Array,
 		burger: Object,
-		addBurgerPage: Boolean,
+		addBurgerOrCheckPage: Boolean,
 		uiLabels: Object,
 		lang: String
 	},
@@ -58,7 +58,7 @@ export default {
 			return require('../assets/' + ingredient)
 		},
 		getItemForKey: function (key) {
-			return this.allIngredients.filter(item => item.ingredient_en === key)[0];
+			return this.allIngredients.filter(item => item.ingredient_id === Number(key))[0];
 		},
 		//make out of dictionary e.g. {brioche: 3,salad:1} a list -> [brioche,brioche,brioche,salad]
 		getChosenIngredientsAsList: function (chosenIngredientsDict) {

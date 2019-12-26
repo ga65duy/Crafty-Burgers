@@ -3,7 +3,7 @@
 	<!-- Show the top bun -->
 	<div v-if="Boolean(burger.bun)">
 		<button v-if="addBurgerOrCheckPage===false" v-on:click="removeIngredient(bunItem)">X</button>
-		<img :src="getImgUrl(bunItem.image_path)" title="bunItem.selling_price" v-bind:alt="bunItem.selling_price">
+		<img :src="getImgUrl(bunItem.image_path)">
 	</div>
 	<!-- Show the burger ingredients -->
 	<div v-for="item in ingredientItemList">

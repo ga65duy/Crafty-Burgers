@@ -132,21 +132,7 @@
         >
         </PayButton>
         <!--TODO: basically not needed: but datastructure can be seen here -->
-        <h1>{{ uiLabels.order }}</h1>
         {{this.order}}
-        <h1>{{ uiLabels.ordersInQueue }}</h1>
-        <div>
-            <OrderItem
-                    v-for="(order, key) in orders"
-                    v-if="order.status !== 'done'"
-                    :order-id="key"
-                    :order="order"
-                    :ui-labels="uiLabels"
-                    :lang="lang"
-                    :key="key">
-            </OrderItem>
-        </div>
-        <!-- End TODO -->
     </div>
 </template>
 <script>
@@ -161,9 +147,9 @@
     import BurgerView from '@/components/BurgerView.vue'
     //import methods and data that are shared between ordering and kitchen views
     import sharedVueStuff from '@/components/sharedVueStuff.js'
-    import NavButtons from "../components/NavButtons";
-    import OrderOverviewSidesDrinks from "../components/OrderOverviewSidesDrinks";
-    import TotalBill from "../components/TotalBill";
+    import NavButtons from "../components/NavButtons.vue";
+    import OrderOverviewSidesDrinks from "../components/OrderOverviewSidesDrinks.vue";
+    import TotalBill from "../components/TotalBill.vue";
     import PayButton from '@/components/Pay.vue';
 
     /* instead of defining a Vue instance, export default allows the only

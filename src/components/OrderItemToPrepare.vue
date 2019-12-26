@@ -1,3 +1,4 @@
+<!--TODO: remove component-->
 <template>
   <!-- Note in this component that it is using another component -->
 <div>

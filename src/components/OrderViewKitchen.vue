@@ -9,7 +9,7 @@
     >
     </BurgerViewKitchen>
     <SidesDrinksKitchen
-            v-if="!Object.keys(order.sidesAndDrinks).length === 0"
+            v-if="!(Object.keys(order.sidesAndDrinks).length === 0)"
             :sidesDrinks="order.sidesAndDrinks"
             :orderId="order.orderId"
             :allIngredients="allIngredients"
@@ -28,7 +28,6 @@
         components: {SidesDrinksKitchen, BurgerViewKitchen},
         props:{
             order: Object,
-            sidesAndDrinks: Object,
             allIngredients: Array,
             uiLabels: Object,
             lang: String

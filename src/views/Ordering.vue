@@ -7,7 +7,9 @@
                         ref="navigation"
                         v-for="s in steps"
                         v-bind:step="s"
-                        v-on:selected="changeStep">
+                        v-on:selected="changeStep"
+                        :key="s.step"
+            >
             </NavButtons>
         </section>
         <!--shows possible preferences how the food shall be filtered-->
@@ -43,7 +45,9 @@
                     :allIngredients="ingredients"
                     :addBurgerOrCheckPage="addBurgerOrCheckPage"
                     :ui-labels="uiLabels"
-                    :lang="lang">
+                    :lang="lang"
+                    :key="burger.id"
+                >
                 </BurgerView>
             <!--show selected sides and drinks in order overview-->
                 <OrderOverviewSidesDrinks
@@ -231,7 +235,6 @@
         created: function () {
             this.$store.state.socket.on('orderNumber', function (data) {
                 this.orderNumber = data;
-                console.log("Ordernum"+ this.orderNumber)
             }.bind(this));
         },
         methods: {

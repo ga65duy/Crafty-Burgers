@@ -1,12 +1,14 @@
 <template>
   <div class="newBurger">
     <label>
-      <button id="newBurgerButton" v-on:click="craftNewBurger">
+      <button id="newBurgerButton"
+      v-on:click="craftNewBurger">
 <!-- Insert new Burger picture here       <img id="newBurgerImage" src="@/assets/NewBurger.jpg" width=80%>-->
        <p id="newBurgerText">{{uiLabels.newBurger}}</p>
      </button>
     </label>
   </div>
+  
 </template>
 <script>
 export default {

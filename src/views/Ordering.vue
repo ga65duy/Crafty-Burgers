@@ -4,10 +4,6 @@
     <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
 
     <h1>{{ uiLabels.ingredients }}</h1>
-    
-    <div class="popup" onclick="myFunction">Click me!
-    <span class="popuptext" id="myPopup">Popup text...</span>
-  </div>
   
     <NewBurger
     :ui-labels="uiLabels"

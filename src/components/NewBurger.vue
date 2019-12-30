@@ -1,6 +1,6 @@
 <template>
   <div class="newBurger">
-  
+
 <!--warning message -->
     <transition name="modal">
     <div class="modal">
@@ -21,9 +21,9 @@
       </header>
       <section class="modal-body">
         <slot name="body">
-          <p class = "text"> 
+          <p class = "text">
           <span class="bold"> {{uiLabels.warningBodyBold1}} </span>
-          {{uiLabels.warningBody}} 
+          {{uiLabels.warningBody}}
           <span class="bold"> {{uiLabels.warningBodyBold2}} </span>
           </p>
         </slot>
@@ -36,7 +36,7 @@
               id="btn-yes"
               @click="isOpen = false;">
               <!-- v-on:click="addNewBurger()"
-              v-on:click="changeStep(1) --> 
+              v-on:click="changeStep(1) -->
               {{uiLabels.yes}}
           </button>
 
@@ -54,7 +54,7 @@
       </div>
       </div>
     </transition>
-    
+
 <!--button -->
     <label>
       <button id="newBurgerButton"
@@ -64,18 +64,18 @@
      </button>
     </label>
   </div>
-  
 </template>
-
 <script>
 export default {
   name: 'NewBurger',
-  components: {
-  },
   props: {
   uiLabels: Object,
   lang: String
   },
+  methods: {
+    craftNewBurger: function() {
+        this.$emit('newBurger');
+    }
   data: function() {
     return {
       isOpen: false
@@ -129,7 +129,7 @@ export default {
   }
 
   .modal-header {
-    padding-left: 30px; 
+    padding-left: 30px;
     border-bottom: 1px solid #eeeeee;
     font-size: 32px;
   }
@@ -142,7 +142,7 @@ export default {
     position: relative;
     padding: 20px 10px;
   }
-  
+
 .text {
     font-family: 'Comfortaa', cursive;
     color: darkslategrey;
@@ -201,7 +201,7 @@ export default {
     cursor: pointer;
     width: 100px;
   }
-  
+
   #btn-yes {
     background: #8FBC8F;
   }

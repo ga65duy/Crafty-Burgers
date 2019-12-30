@@ -17,5 +17,11 @@
   "ready" : "Done",
   "order" : "My burger",
   "language" : "Svenska",
-  "newBurger" : "Craft A New Burger"
+  "newBurger" : "Craft A New Burger",
+  "yes" : "YES",
+  "no" : "NO",
+  "warningHeader": "Do you want to craft a new burger?",
+  "warningBodyBold1" : "Changes",
+  "warningBody": "in your current burger are ",
+  "warningBodyBold2" : "no more possible."
 }

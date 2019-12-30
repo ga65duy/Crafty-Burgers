@@ -9,19 +9,23 @@
           <div class="modal">
             <header class="modal-header">
         <slot name="header">
-          <p class = "text"> Do you want to craft a new burger? </p>
+          <p class = "text"> {{uiLabels.warningHeader}} </p>
 
           <button
             type="button"
             class="btn-close"
             @click = "isOpen = false;">
-            <p class = "text"> x </p>
+            <span class = "text"> x </span>
           </button>
         </slot>
       </header>
       <section class="modal-body">
         <slot name="body">
-          <p class = "text"> <span class="bold">Changes</span> in your current burger are <span class="bold"> no more possible</span>.</p>
+          <p class = "text"> 
+          <span class="bold"> {{uiLabels.warningBodyBold1}} </span>
+          {{uiLabels.warningBody}} 
+          <span class="bold"> {{uiLabels.warningBodyBold2}} </span>
+          </p>
         </slot>
        </section>
        <footer class="modal-footer">
@@ -30,10 +34,10 @@
               type="button"
               class="btn-choice"
               id="btn-yes"
-              @click="isOpen = false;"
-              <!--v-on:click="addNewBurger"
-              v-on:click="changeStep(1) --> >
-              YES
+              @click="isOpen = false;">
+              <!-- v-on:click="addNewBurger()"
+              v-on:click="changeStep(1) --> 
+              {{uiLabels.yes}}
           </button>
 
             <button
@@ -41,7 +45,7 @@
               class="btn-choice"
               id="btn-no"
               @click="isOpen = false;">
-              NO
+              {{uiLabels.no}}
           </button>
         </slot>
       </footer>
@@ -67,7 +71,6 @@
 export default {
   name: 'NewBurger',
   components: {
-    NavButtons
   },
   props: {
   uiLabels: Object,
@@ -126,6 +129,7 @@ export default {
   }
 
   .modal-header {
+    padding-left: 30px; 
     border-bottom: 1px solid #eeeeee;
     font-size: 32px;
   }
@@ -176,12 +180,15 @@ export default {
 }
 
 .btn-close {
-    margin-left: 30px;
+    margin-left: 20px;
     border: none;
+    width: 20px;
+    height: 20px;
     font-size: 16px;
     cursor: pointer;
     font-weight: bold;
     background: transparent;
+    text-align: center;
   }
 
   .btn-choice {

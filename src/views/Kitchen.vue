@@ -1,19 +1,6 @@
 <template>
 <div id="orders">
-<!--  TODO: remove following line: only for understanding-->
-  {{orders}}
-  <OrderViewKitchen
-          v-for="order in orders"
-          :order="order"
-          :allIngredients="ingredients"
-          :lang="lang"
-          :key="order.orderId"
-  >
-
-  </OrderViewKitchen>
-
-<!--TODO: remove commented code-->
-  <!--<h1>{{ uiLabels.ordersInQueue }}</h1>
+  <h1>{{ uiLabels.ordersInQueue }}</h1>
   <div>
     <OrderItemToPrepare
       v-for="(order, key) in orders"
@@ -37,25 +24,19 @@
       :ui-labels="uiLabels"
       :key="key">
     </OrderItem>
-  </div>-->
+  </div>
 </div>	
 </template>
 <script>
-//import OrderItem from '@/components/OrderingComponents/OrderItem.vue'
-//import OrderItemToPrepare from '@/components/OrderingComponents/OrderItemToPrepare.vue'
-
+import OrderItem from '@/components/OrderItem.vue'
+import OrderItemToPrepare from '@/components/OrderItemToPrepare.vue'
 //import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
-import BurgerViewKitchen from "../components/BurgerViewKitchen";
-import OrderViewKitchen from "../components/OrderViewKitchen";
-
 export default {
-  name: 'Kitchen',
+  name: 'Ordering',
   components: {
-    OrderViewKitchen,
-    BurgerViewKitchen,
-    //OrderItem,
-    //OrderItemToPrepare
+    OrderItem,
+    OrderItemToPrepare
   },
   mixins: [sharedVueStuff], // include stuff that is used in both 
                             //the ordering system and the kitchen
@@ -76,7 +57,6 @@ export default {
 	#orders {
     font-size:24pt;
   }
-
   h1 {
     text-transform: uppercase;
     font-size: 1.4em;

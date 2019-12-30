@@ -17,5 +17,9 @@
   "ready" : "Klart",
   "order" : "Min burgare",
   "language" : "English",
-  "newBurger" : "New Burger Swedish"
+  "newBurger" : "New Burger Swedish",
+  "yes" : "JA",
+  "no" : "NEJ",
+  "warningHeader": "Header svenska",
+  "warningBody": "Body svenska"
 }

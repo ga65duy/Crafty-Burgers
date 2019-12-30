@@ -31,8 +31,8 @@
               class="btn-choice"
               id="btn-yes"
               @click="isOpen = false;"
-              v-on:click="addNewBurger"
-              v-on:click="changeStep(1)>
+              <!--v-on:click="addNewBurger"
+              v-on:click="changeStep(1) --> >
               YES
           </button>
 
@@ -67,8 +67,8 @@
 export default {
   name: 'NewBurger',
   components: {
-    NavButtons;
-  }
+    NavButtons
+  },
   props: {
   uiLabels: Object,
   lang: String

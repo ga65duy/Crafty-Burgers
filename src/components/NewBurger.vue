@@ -34,9 +34,8 @@
               type="button"
               class="btn-choice"
               id="btn-yes"
-              @click="isOpen = false;">
-              <!-- v-on:click="craftNewBurger()"
-              v-on:click="changeStep(1) -->
+              @click="isOpen = false;"
+              v-on:click="craftNewBurger()">
               {{uiLabels.yes}}
           </button>
 

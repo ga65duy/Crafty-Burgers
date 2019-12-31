@@ -2,57 +2,58 @@
   <div class="newBurger">
 
 <!--warning message -->
-    <transition name="modal">
+  <transition name="modal">
     <div class="modal">
       <div v-if="isOpen">
         <div class="overlay" @click.self="isOpen = false;">
           <div class="modal">
-            <header class="modal-header">
-        <slot name="header">
-          <p class = "text"> {{uiLabels.warningHeader}} </p>
-
-          <button
-            type="button"
-            class="btn-close"
-            @click = "isOpen = false;">
-            <span class = "text"> x </span>
-          </button>
-        </slot>
-      </header>
-      <section class="modal-body">
-        <slot name="body">
-          <p class = "text">
-          <span class="bold"> {{uiLabels.warningBodyBold1}} </span>
-          {{uiLabels.warningBody}}
-          <span class="bold"> {{uiLabels.warningBodyBold2}} </span>
-          </p>
-        </slot>
-       </section>
-       <footer class="modal-footer">
-          <slot name="footer">
-          <button
-              type="button"
-              class="btn-choice"
-              id="btn-yes"
-              @click="isOpen = false;"
-              v-on:click="craftNewBurger()">
-              {{uiLabels.yes}}
-          </button>
-
-            <button
-              type="button"
-              class="btn-choice"
-              id="btn-no"
-              @click="isOpen = false;">
-              {{uiLabels.no}}
-          </button>
-        </slot>
-      </footer>
+           
+           <header class="modal-header">
+              <slot name="header">
+                <p class = "text"> {{uiLabels.warningHeader}} </p>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    @click = "isOpen = false;">
+                        <span class = "text"> x </span>
+                  </button>
+              </slot>
+            </header>
+           
+           <section class="modal-body">
+              <slot name="body">
+                <p class = "text">
+                    <span class="bold"> {{uiLabels.warningBodyBold1}} </span>
+                    {{uiLabels.warningBody}}
+                    <span class="bold"> {{uiLabels.warningBodyBold2}} </span>
+                </p>
+              </slot>
+            </section>
+            
+            <footer class="modal-footer">
+              <slot name="footer">
+                <button
+                    type="button"
+                    class="btn-choice"
+                    id="btn-yes"
+                    @click="isOpen = false;"
+                    v-on:click="craftNewBurger()">
+                      {{uiLabels.yes}}
+                </button>
+                <button
+                  type="button"
+                  class="btn-choice"
+                  id="btn-no"
+                  @click="isOpen = false;">
+                      {{uiLabels.no}}
+                </button>
+               </slot>
+             </footer>
           </div>
         </div>
       </div>
-      </div>
-    </transition>
+    </div>
+ </transition>
 
 <!--button -->
     <label>
@@ -64,6 +65,7 @@
     </label>
   </div>
 </template>
+
 <script>
 export default {
   name: 'NewBurger',
@@ -83,6 +85,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
   #newBurgerButton {
     background-color: #e7e7e7;
@@ -92,13 +95,11 @@ export default {
     padding-right: 20px;
     width: 20vw;
 }
-
 #newBurgerButton:hover {
     cursor: pointer;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
     background-color: lightgrey;
 }
-
 #newBurgerText {
     font-family: 'Comfortaa', cursive;
     font-size: 18pt;
@@ -107,41 +108,36 @@ export default {
     padding-top: 30px;
     border-top: 2px solid grey;
 }
-
 #newBurgerImage {
     padding-top: 20px;
 }
 
 
-  .modal {
+.modal {
     background: #e7e7e7;
     box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
     display: flex;
     flex-direction: column;
     text-align: center;
-  }
-
-  .modal-header,
-  .modal-footer {
+}
+.modal-header,
+.modal-footer {
     padding: 15px;
     display: flex;
-  }
-
-  .modal-header {
+}
+.modal-header {
     padding-left: 30px;
     border-bottom: 1px solid #eeeeee;
     font-size: 32px;
-  }
-
-  .modal-footer {
+}
+.modal-footer {
     border-top: 1px solid #eeeeee;
-  }
-
-  .modal-body {
+ }
+ .modal-body {
     position: relative;
     padding: 20px 10px;
-  }
+ }
 
 .text {
     font-family: 'Comfortaa', cursive;
@@ -154,12 +150,10 @@ export default {
 .fadeIn-enter {
   opacity: 0;
 }
-
 .fadeIn-leave-active {
   opacity: 0;
   transition: all 0.2s step-end;
 }
-
 .fadeIn-enter .modal,
 .fadeIn-leave-active.modal {
   transform: scale(1.1);
@@ -189,9 +183,8 @@ export default {
     font-weight: bold;
     background: transparent;
     text-align: center;
-  }
-
-  .btn-choice {
+}
+.btn-choice {
     padding: 7px;
     margin: auto;
     color: white;
@@ -200,12 +193,11 @@ export default {
     font-size: 1.1rem;
     cursor: pointer;
     width: 100px;
-  }
-
-  #btn-yes {
+}
+#btn-yes {
     background: #8FBC8F;
-  }
-  #btn-no {
+}
+#btn-no {
     background: #F08080;
-  }
+}
 </style>

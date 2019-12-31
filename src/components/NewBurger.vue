@@ -35,7 +35,7 @@
               class="btn-choice"
               id="btn-yes"
               @click="isOpen = false;">
-              <!-- v-on:click="addNewBurger()"
+              <!-- v-on:click="craftNewBurger()"
               v-on:click="changeStep(1) -->
               {{uiLabels.yes}}
           </button>
@@ -73,9 +73,10 @@ export default {
   lang: String
   },
   methods: {
-    craftNewBurger: function() {
-        this.$emit('newBurger');
-    }
+      craftNewBurger: function () {
+          this.$emit('newBurger');
+      }
+  },
   data: function() {
     return {
       isOpen: false

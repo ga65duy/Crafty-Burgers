@@ -38,5 +38,9 @@
   "warningHeader": "Do you want to craft a new burger?",
   "warningBodyBold1" : "Changes",
   "warningBody": "in your current burger are ",
-  "warningBodyBold2" : "no more possible."
+  "warningBodyBold2" : "no more possible.",
+  "item": "Item",
+  "price": "Price",
+  "amount": "Amount",
+  "sum": "Sum"
 }

@@ -105,4 +105,7 @@ export default {
 	img {
 		width:250px;
 	}
+	img, button {
+		vertical-align: middle;
+	}
 </style>

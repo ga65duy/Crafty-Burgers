@@ -1,7 +1,8 @@
 <template>
   <div class="ingredient" id="box">
       <div v-if="!orderCheck">
-          {{item["ingredient_"+ lang]}} {{item.selling_price}}kr <br>
+          <span id="name"> {{item["ingredient_"+ lang]}} </span> <br>
+          <span id="price"> {{item.selling_price}} kr </span> <br>
       </div>
       <img :src="getImgUrl(item.image_path)" v-bind:alt="item.image_path" id="image"> <br>
       <div v-if="orderCheck">
@@ -51,20 +52,25 @@ export default {
 </script>
 <style scoped>
   .ingredient {
-      display: grid;
-      grid-gap: 2em;
-      grid-template-columns: 20em 20em;
       margin: 0.3em;
       padding: 20px;
-      width: auto;
-      border-style: solid;
-      border-color: black;
+      width: 18vw;
+      border: 1.5px solid grey;
+      border-radius: 3px;
       font-size: 2em;
       display: block;
       text-align: center;
-      font-family:arial;
+      font-family:comfortaa, sans-serif;
+      background: #e7e7e7;
   }
   #image {
-      width:250px;
+      width: 90%;
+  }
+  #name {
+    font-size: 0.8em;
+  }
+  #price {
+    font-size: 0.8em;
+    font-weight: bold;
   }
 </style>

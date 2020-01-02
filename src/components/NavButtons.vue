@@ -30,7 +30,6 @@
     width: auto;
     font-size: 3em;
     text-align: center;
-    font-family:arial;
     background-color: lightgrey;
 }
 </style>

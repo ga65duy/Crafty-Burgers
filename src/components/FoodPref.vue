@@ -54,7 +54,7 @@ export default {
     font-size: 2em;
     display: block;
     text-align: center;
-    font-family:arial; 
+    font-family: Comfortaa, sans-serif; 
     background-color: lightgrey;
 }
 

@@ -63,6 +63,7 @@
                 </OrderOverviewSidesDrinks>
             <!-- Other than step 4 clicking + and - is always enabled -->
             <div v-if="currentStep !== 4" >
+              <div class="grid">
                 <Ingredient
                         ref="ingredient"
                         v-for="item in ingredients"
@@ -77,8 +78,10 @@
                         :counter="currentRelevantIngredientDict[item.ingredient_id]"
                 >
                 </Ingredient>
+              </div>
             </div>
             <div v-if="currentStep === 4" >
+              <div class="grid">
                 <!--Choosing a bun, allows only one bun otherwise the + and - is disabled -->
                 <!--In first case the bun box which was selected allows only to click -  -->
                 <Ingredient
@@ -111,7 +114,8 @@
                         :plusDisabled=Boolean(burgerBun)
                         :counter="0">
                 </Ingredient>
-            </div>
+              </div>
+          </div>
             <!-- Create a new burger and add it to the order -->
             <NewBurger
                     v-if="currentStep===7 && burgerPrice > 0"
@@ -133,6 +137,8 @@
                 v-if="currentStep===8"
                 v-on:clickedPay="placeOrder"
                 :orderNum="orderNumber"
+                :ui-labels="uiLabels"
+                :lang="lang"
         >
         </PayButton>
         <!--TODO: basically not needed: but datastructure can be seen here -->
@@ -337,7 +343,7 @@
 </script>
 <style scoped>
     /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
-
+    
     #ing {
         display: grid;
         grid-gap: 2em;
@@ -354,10 +360,15 @@
         grid-template-columns: 20em 20em;
         margin: 0.3em;
         padding: 20px;
-        width: auto;
+        width: 19vw;
         border-style: solid;
         border-color: black;
         display: block;
-
     }
+.grid {
+    display: grid;
+    grid-column-gap: 2em;
+    grid-template-columns: 20vw 20vw 20vw;
+    margin-left: 2em;
+}
 </style>

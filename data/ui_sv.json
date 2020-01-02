@@ -40,5 +40,6 @@
   "item": "Sak",
   "price": "Pris",
   "amount": "Mängd",
-  "sum": "Summa"
+  "sum": "Summa",
+  "pay": "BETALA"
 }

@@ -3,7 +3,7 @@
     <a href="http://localhost:8080/#/thankyou">
       <button type="submit" v-on:click="clickedPay()">
         {{uiLabels.pay}}
-        <img width = 40  src="https://image.flaticon.com/icons/svg/1411/1411444.svg">
+        <img src="https://image.flaticon.com/icons/svg/1411/1411444.svg">
         </button>
     </a>
     </div>
@@ -31,14 +31,14 @@
 <style scoped>
 button {
     font-family: comfortaa, sans-serif;
-    font-size: 1.9em;
+    font-size: 2vw;
     font-weight: bold;
     color: darkslategrey;
     background-color: #e7e7e7;
     border-radius: 10px;
     border: 2px solid grey;
-    padding: 15px 20px 15px 20px;;
-    width: 27vw;
+    padding: 2vh 3vw 2vh 3vw;
+    width: 20vw;
 }
 button:hover {
     cursor: pointer;
@@ -46,6 +46,7 @@ button:hover {
     background-color: lightgreen;
 }
 img {
-    padding-left: 10px;
+    width: 3vw;
+    padding-left: 1vw;
 }
 </style>

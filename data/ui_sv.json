@@ -31,5 +31,8 @@
   "drinks": "Drickor",
   "addBurger": "+Burgare",
   "burger": "Burgare",
-  "welcome": "Välkommen till Crafty Burgers!"
+  "welcomeText": "Vällkommen till Crafty Burgers!",
+  "startButton": "Klicka här att krafta!",
+  "checkoutText": "Det är din beställning nummer: #",
+  "startAgainButton": "Klicka här för en ny beställning"
 }

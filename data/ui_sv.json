@@ -36,5 +36,9 @@
   "drinks": "Drickor",
   "addBurger": "+Burgare",
   "burger": "Burgare",
-  "welcome": "Välkommen till Crafty Burgers!"
+  "welcome": "Välkommen till Crafty Burgers!",
+  "item": "Sak",
+  "price": "Pris",
+  "amount": "Mängd",
+  "sum": "Summa"
 }

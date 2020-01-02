@@ -68,7 +68,8 @@
                 <Ingredient
                         ref="ingredient"
                         v-for="item in ingredients"
-                        v-if="item.category===currentStep /*&& Boolean(item.vegan) === prefs[0]*/"
+                        v-if="item.category===currentStep && Boolean(item.vegan)===prefs[0] && Boolean(item.milk_free)===prefs[1] && Boolean(item.gluten_free)===prefs[2]"
+                        v-if="item.category===currentStep && (prefs[0]===false) ? Boolean(item.vegan)!==prefs[0] : Boolean(item.vegan)===prefs[0]"
                         v-on:increment="addToOrder(item)"
                         v-on:decrement="removeOrder(item)"
                         :item="item"
@@ -139,6 +140,8 @@
         </PayButton>
         <!--TODO: basically not needed: but datastructure can be seen here -->
         {{this.order}}
+        <br>
+        {{this.prefs}}
     </div>
 </template>
 <script>
@@ -186,10 +189,21 @@
                 burgerBun: "",
                 orderNumber: "",
                 currentStep: 0,
-                prefs: [],
+                prefs: [false, false, false],
             }
         },
         computed: {
+            hasFoodPreferences: function (prefs) {
+                if (this.prefs[0] === true) {
+                    return Boolean(this.item.vegan)===this.prefs[0]
+                }
+                if (this.prefs[1] === true) {
+                    return Boolean(this.item.milk_free)===this.prefs[1]
+                }
+                if (this.prefs[2] === true) {
+                    return Boolean(this.item.gluten_free)===this.prefs[2]
+                }
+            },
             addBurgerOrCheckPage: function (){
                 return this.currentStep === 7 || this.currentStep === 8;
             },

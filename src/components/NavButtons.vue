@@ -31,5 +31,6 @@
     font-size: 3em;
     text-align: center;
     background-color: lightgrey;
+    font-family: Comfortaa, sans-serif;
 }
 </style>

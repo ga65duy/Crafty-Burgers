@@ -15,6 +15,8 @@
         <!--shows possible preferences how the food shall be filtered-->
         <FoodPref
                 v-if="currentStep===0"
+                v-on:noPreference="prefs"
+                v-on:yesPreference="prefs"
                 :ui-labels="uiLabels"
                 :lang="lang">
         </FoodPref>
@@ -66,7 +68,7 @@
                 <Ingredient
                         ref="ingredient"
                         v-for="item in ingredients"
-                        v-if="item.category===currentStep"
+                        v-if="item.category===currentStep /*&& Boolean(item.vegan) === prefs[0]*/"
                         v-on:increment="addToOrder(item)"
                         v-on:decrement="removeOrder(item)"
                         :item="item"
@@ -184,6 +186,7 @@
                 burgerBun: "",
                 orderNumber: "",
                 currentStep: 0,
+                prefs: [],
             }
         },
         computed: {

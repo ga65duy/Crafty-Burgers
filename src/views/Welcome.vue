@@ -9,7 +9,6 @@
       <input type="image"
        v-bind:src="uiLabels.flag"
        v-on:click="switchLang()">
-       </button>
     </div>
   </div>
 </template>
@@ -80,6 +79,7 @@ a {
   border: 0px;
   padding: 0px;
   text-align: center;
+  font-style: Comfortaa, sans-serif;
 }
 
 h1 {

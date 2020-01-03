@@ -19,11 +19,13 @@ export default {
     prefs: Array
   },
     computed: {
+      // mark the button no food preferences if the other options are not chosen
       prefsNotSelected: function () {
           return this.prefs.every(elem => elem === false)
       }
     },
   methods: {
+    // changes the states of the buttons
     foodPref: function (event) {
       this.$emit('preferencesChanged', event.target.id);
     }

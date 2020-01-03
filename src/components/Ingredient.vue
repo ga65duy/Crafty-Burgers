@@ -8,10 +8,19 @@
       <div v-if="orderCheck">
           {{item["ingredient_"+ lang]}} {{item.selling_price}}kr <br>
       </div>
-      <input type="button" :disabled="disabled" value="-" class="button-minus" data-field="quantity" v-on:click="decrementCounter()">
+      <input type="button" 
+       :disabled="validatedCounter === 0"
+       value="-" 
+       class="button-minus" 
+       data-field="quantity" 
+       v-on:click="decrementCounter()">
 <!--  stock is just there for testing TODO: remove before hand in-->
       {{validatedCounter}} (stock:{{item.stock}})
-      <input type="button" :disabled="disabled || plusDisabled" value="+" class="button-plus" data-field="quantity" v-on:click="incrementCounter()">
+      <input type="button" 
+       :disabled="disabled || plusDisabled" 
+       value="+" class="button-plus" 
+       data-field="quantity" 
+       v-on:click="incrementCounter()">
   </div>
 </template>
 <script>
@@ -25,6 +34,11 @@ export default {
     plusDisabled: Boolean,
     //show caption of sides and drinks directly above + - not above picture like in sides and drinks pages
     orderCheck: Boolean
+  },
+  data: function () {
+    return {
+        minusDisabled: true
+    };
   },
     computed: {
       validatedCounter: function () {
@@ -65,12 +79,25 @@ export default {
   }
   #image {
       width: 90%;
+      padding: 10px;
   }
   #name {
     font-size: 0.8em;
-  }
-  #price {
-    font-size: 0.8em;
     font-weight: bold;
   }
+  #price {
+    font-size: 0.7em;
+  }
+  input {
+    background: #e7e7e7;
+    border-radius: 50%;
+    border: 1.5px solid grey;
+    font-size: 1em;
+    font-weight: bold;
+    width: 1em;
+    height: 1em;
+    text-align: center;
+    vertical-align: middle;
+    
+    }
 </style>

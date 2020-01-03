@@ -36,10 +36,17 @@ var data = new Data();
 data.initializeData();
 
 io.on('connection', function (socket) {
-  // Send list of orders and text labels when a client connects
-  socket.emit('initialize', { orders: data.getAllOrders(),
-                          uiLabels: data.getUILabels(),
-                          ingredients: data.getIngredients() });
+    let uiLang = "en";
+
+    // Send list of orders and text labels when a client connects
+    // UPDATE: send it when a client has sent a message that it is
+    // ready to receive the data. Note also that getUILabels now
+    // uses the chosen language as an argument
+    socket.on('pageLoaded', function() {
+        socket.emit('initialize', { orders: data.getAllOrders(),
+            uiLabels: data.getUILabels(uiLang),
+            ingredients: data.getIngredients() });
+    });
 
   // When someone orders something
   socket.on('order', function (order) {
@@ -51,6 +58,7 @@ io.on('connection', function (socket) {
   });
   // send UI labels in the chosen language
   socket.on('switchLang', function (lang) {
+    uiLang = lang; // set the scoped language variable
     socket.emit('switchLang', data.getUILabels(lang));
   });
   // when order is marked as done, send updated queue to all connected clients

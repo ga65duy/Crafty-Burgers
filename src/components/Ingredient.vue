@@ -37,11 +37,6 @@ export default {
     //show caption of sides and drinks directly above + - not above picture like in sides and drinks pages
     orderCheck: Boolean
   },
-  data: function () {
-    return {
-        minusDisabled: true
-    };
-  },
     computed: {
       validatedCounter: function () {
           return isNaN(this.counter) ? 0 : this.counter;

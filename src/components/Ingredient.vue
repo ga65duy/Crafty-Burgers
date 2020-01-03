@@ -8,7 +8,8 @@
       <div v-if="orderCheck">
           {{item["ingredient_"+ lang]}} {{item.selling_price}}kr <br>
       </div>
-      <input type="button"
+      <input type="image" 
+       src="https://image.flaticon.com/icons/svg/149/149146.svg" 
        :disabled="validatedCounter === 0"
        value="-" 
        class="button-minus" 
@@ -16,7 +17,7 @@
        v-on:click="decrementCounter()">
 <!--  stock is just there for testing TODO: remove before hand in (stock:{{item.stock}})-->
      <span id="counter"> {{validatedCounter}}  </span>
-      <input type="button"
+      <input type="image"
        src="https://image.flaticon.com/icons/svg/149/149145.svg"
        :disabled="disabled || plusDisabled" 
        value="+" class="button-plus" 
@@ -85,7 +86,7 @@ export default {
     font-size: 0.7em;
   }
   input {
-    background: lightgrey;
+    background:  lightgrey;
     border: none;
     border-radius: 50%;
     width: 2.5vw;
@@ -95,8 +96,11 @@ export default {
     }
   input:hover {
     background-color: #bfbfbf;
-    cursor: pointer;
     }
+  input:disabled {
+    background: #e7e7e7;
+    box-shadow: none;
+  }
   #counter {
     margin-right: 2vw;
     margin-left: 2vw;

@@ -64,8 +64,6 @@
                 >
                 </OrderOverviewSidesDrinks>
             <!-- Other than step 4 clicking + and - is always enabled -->
-<!--            && Boolean(item.vegan)===prefs[0] && Boolean(item.milk_free)===prefs[1] && Boolean(item.gluten_free)===prefs[2]"-->
-
             <div v-if="currentStep !== 4" >
                 <Ingredient
                         ref="ingredient"

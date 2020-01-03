@@ -6,7 +6,10 @@
       <a href="http://localhost:8080/#/ordering">{{ uiLabels.startButton }}</a>
     </div>
     <div id="langButton">
-      <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+      <input type="image"
+       v-bind:src="uiLabels.flag"
+       v-on:click="switchLang()">
+       </button>
     </div>
   </div>
 </template>
@@ -69,9 +72,10 @@ a {
     font-size: 3em;
     }
 #welcome {
+  position: relative;
   background-image: url("../assets/woodImage.jpg");
   width: 100%;
-  height: 100vh;
+  height: 100%;
   margin: 0px;
   border: 0px;
   padding: 0px;
@@ -84,21 +88,21 @@ h1 {
   color: #d9d9d9;
   font-size: 6em;
   margin-top: 150px;
+  margin-bottom: 0vh;
 }
 
-button{
-  position: fixed;
-  bottom: 50px;
-  font-size: 2em;
+input{
+  width: 5vw;
  }
-
-#langButton a{
-  text.align: center;
-  display: inline-block;
-}
-
-#proceedButton{
+ 
+ #proceedButton{
   display: inline-block;
   text-align:center;
+  margin-bottom: 15vh;
+}
+
+#langButton {
+  text.align: center;
+  padding-bottom:  40px;
 }
 </style>

@@ -44,5 +44,6 @@
   "warningBodyBold2" : "no more possible.",
   "item": "Item",
   "price": "Price",
-  "amount": "Amount"
+  "amount": "Amount",
+  "flag": "https://image.flaticon.com/icons/svg/206/206668.svg"
 }

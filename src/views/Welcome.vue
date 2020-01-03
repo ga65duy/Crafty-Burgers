@@ -1,7 +1,8 @@
 <template>
   <div id="welcome">
-    <h1>Welcome to Crafty Burgers!</h1>
-    <a href="http://localhost:8080/#/ordering"> Click here to Craft</a>
+    <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+    <h1>{{ uiLabels.welcomeText }}</h1>
+    <a href="http://localhost:8080/#/ordering">{{ uiLabels.startButton }}</a>
   </div>
 </template>
 <script>

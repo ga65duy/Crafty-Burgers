@@ -1,7 +1,8 @@
 <template>
   <div id="thanks">
-    <h1>This is you Order Number: {{orderNumber}}</h1>
-    <a href="http://localhost:8080/#/"> Click here to start a new order!</a>
+    <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+    <h1>{{uiLabels.checkoutText}} {{orderNumber}}</h1>
+    <a href="http://localhost:8080/#/">{{uiLabels.startAgainButton}}</a>
   </div>
 </template>
 <script>

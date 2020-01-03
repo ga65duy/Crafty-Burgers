@@ -31,5 +31,8 @@
   "drinks": "Drinks",
   "addBurger": "+Burger",
   "burger": "Burger",
-  "welcome": "Welcome to Crafty Burgers!"
+  "welcomeText": "Welcome to Crafty Burgers!",
+  "startButton": "Click here to craft!",
+  "checkoutText": "This is your order number : #",
+  "startAgainButton": "Click here to start a new order!"
 }

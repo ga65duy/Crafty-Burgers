@@ -3,6 +3,9 @@
 This skeleton code contains a back-end for your burger ordering system as well as stubs for building views and maintaining a clean folder structure. Take some time to get acquainted with the different files and how they are connected.
 
 ## Project setup
+
+cd /c/users/lab/documents/studium/5.semester/interfaceprogramming/burger-skeleton
+
 ```
 npm install
 ```

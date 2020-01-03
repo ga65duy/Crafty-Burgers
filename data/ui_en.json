@@ -34,5 +34,15 @@
   "welcomeText": "Welcome to Crafty Burgers!",
   "startButton": "Click here to craft!",
   "checkoutText": "This is your order number : #",
-  "startAgainButton": "Click here to start a new order!"
+  "startAgainButton": "Click here to start a new order!",
+  "welcome": "Welcome to Crafty Burgers!",
+  "yes" : "YES",
+  "no" : "NO",
+  "warningHeader": "Do you want to craft a new burger?",
+  "warningBodyBold1" : "Changes",
+  "warningBody": "in your current burger are ",
+  "warningBodyBold2" : "no more possible.",
+  "item": "Item",
+  "price": "Price",
+  "amount": "Amount"
 }

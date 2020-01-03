@@ -36,7 +36,6 @@ export default {
   #noFP,#veg,#lact,#glut {
     display: none;
 }
-
 .btn {
     margin: 0.3em;
     border-style: solid;
@@ -45,10 +44,9 @@ export default {
     font-size: 2em;
     display: block;
     text-align: center;
-    font-family:arial; 
+    font-family: comfortaa, sans-serif; 
     background-color: lightgrey;
 }
-
 input[type="checkbox"]:checked + label {
     background-color: rgb(64, 165, 0);
 }

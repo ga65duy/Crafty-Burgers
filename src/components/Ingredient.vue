@@ -1,16 +1,28 @@
 <template>
   <div class="ingredient" id="box">
       <div v-if="!orderCheck">
-          {{item["ingredient_"+ lang]}} {{item.selling_price}}kr <br>
+          <span id="name"> {{item["ingredient_"+ lang]}} </span> <br>
+          <span id="price"> {{item.selling_price}} kr </span> <br>
       </div>
       <img :src="getImgUrl(item.image_path)" v-bind:alt="item.image_path" id="image"> <br>
       <div v-if="orderCheck">
           {{item["ingredient_"+ lang]}} {{item.selling_price}}kr <br>
       </div>
-      <input type="button" :disabled="disabled" value="-" class="button-minus" data-field="quantity" v-on:click="decrementCounter()">
-<!--  stock is just there for testing TODO: remove before hand in-->
-      {{validatedCounter}} (stock:{{item.stock}})
-      <input type="button" :disabled="disabled || plusDisabled" value="+" class="button-plus" data-field="quantity" v-on:click="incrementCounter()">
+      <input type="image" 
+       src="https://image.flaticon.com/icons/svg/149/149146.svg" 
+       :disabled="validatedCounter === 0"
+       value="-" 
+       class="button-minus" 
+       data-field="quantity" 
+       v-on:click="decrementCounter()">
+<!--  stock is just there for testing TODO: remove before hand in (stock:{{item.stock}})-->
+     <span id="counter"> {{validatedCounter}}  </span>
+      <input type="image"
+       src="https://image.flaticon.com/icons/svg/149/149145.svg"
+       :disabled="disabled || plusDisabled" 
+       value="+" class="button-plus" 
+       data-field="quantity" 
+       v-on:click="incrementCounter()">
   </div>
 </template>
 <script>
@@ -51,20 +63,47 @@ export default {
 </script>
 <style scoped>
   .ingredient {
-      display: grid;
-      grid-gap: 2em;
-      grid-template-columns: 20em 20em;
       margin: 0.3em;
       padding: 20px;
-      width: auto;
-      border-style: solid;
-      border-color: black;
+      width: 18vw;
+      border: 1.5px solid grey;
+      border-radius: 3px;
       font-size: 2em;
       display: block;
       text-align: center;
-      font-family:arial;
+      font-family:comfortaa, sans-serif;
+      background: #e7e7e7;
   }
   #image {
-      width:250px;
+      width: 90%;
+      padding: 10px;
   }
+  #name {
+    font-size: 0.8em;
+    font-weight: bold;
+  }
+  #price {
+    font-size: 0.7em;
+  }
+  input {
+    background:  lightgrey;
+    border: none;
+    border-radius: 50%;
+    width: 2.5vw;
+    height: 2.5vw;
+    vertical-align: middle;
+    font-weight: bold;
+    }
+  input:hover {
+    background-color: #bfbfbf;
+    }
+  input:disabled {
+    background: #e7e7e7;
+    box-shadow: none;
+  }
+  #counter {
+    margin-right: 2vw;
+    margin-left: 2vw;
+    font-size: 0.8em; 
+    }
 </style>

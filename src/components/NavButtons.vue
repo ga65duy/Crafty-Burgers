@@ -25,12 +25,12 @@
 <style scoped>
 #button {
     margin: 0.1em;
-    border-style: solid;
-    border-color: black;
+    border: 2px solid grey;
+    border-radius: 20px;
     width: auto;
-    font-size: 2.7em;
+    font-size: 2em;
     text-align: center;
-    font-family:arial;
-    background-color: lightgrey;
+    background-color: #e7e7e7;
+    font-family: Comfortaa, sans-serif;
 }
 </style>

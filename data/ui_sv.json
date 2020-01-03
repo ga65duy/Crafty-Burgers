@@ -18,6 +18,10 @@
   "order" : "Min burgare",
   "newBurger" : "New Burger Swedish",
   "language" : "English",
+  "yes" : "JA",
+  "no" : "NEJ",
+  "warningHeader": "Header svenska",
+  "warningBody": "Body svenska",
   "noFoodPreferences" : "Inga matpreferenser",
   "vegan" : "Veganskt",
   "lactoseFree" : "Laktosfritt",
@@ -34,5 +38,9 @@
   "welcomeText": "Vällkommen till Crafty Burgers!",
   "startButton": "Klicka här att krafta!",
   "checkoutText": "Det är din beställning nummer: #",
-  "startAgainButton": "Klicka här för en ny beställning"
+  "startAgainButton": "Klicka här för en ny beställning",
+  "welcome": "Välkommen till Crafty Burgers!",
+  "item": "Sak",
+  "price": "Pris",
+  "amount": "Mängd"
 }

@@ -98,6 +98,10 @@ export default {
     height: 2.5vw;
     vertical-align: middle;
     }
+  input:hover {
+    background-color: lightgrey;
+    cursor: pointer;
+    }
   #counter {
     margin-right: 2vw;
     margin-left: 2vw;

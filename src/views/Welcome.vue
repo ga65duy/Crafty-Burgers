@@ -102,7 +102,7 @@ input{
 }
 
 #langButton {
-  text.align: center;
+  text-align: center;
   padding-bottom:  40px;
 }
 </style>

@@ -28,7 +28,7 @@
     border-style: solid;
     border-color: black;
     width: auto;
-    font-size: 3em;
+    font-size: 2.7em;
     text-align: center;
     font-family:arial;
     background-color: lightgrey;

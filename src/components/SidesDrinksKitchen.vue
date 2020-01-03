@@ -1,7 +1,7 @@
 <template>
     <div id="sidesDrinksBox">
         Sides and Drinks
-        <p v-for="(value,ing) in sidesDrinks">
+        <p v-for="(value,ing) in sidesDrinks" :key="ing">
             {{value}}x {{getItemForKey(ing)["ingredient_"+lang]}}<br>
         </p>
         #{{orderId}}

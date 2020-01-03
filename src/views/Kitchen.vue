@@ -7,6 +7,7 @@
           :order="order"
           :allIngredients="ingredients"
           :lang="lang"
+          :key="order.orderId"
   >
 
   </OrderViewKitchen>

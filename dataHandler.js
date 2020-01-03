@@ -50,7 +50,6 @@ Data.prototype.initializeTable = function (table) {
 };
 
 Data.prototype.initializeData = function() {
-  console.log("Starting to build data tables");
   // Load initial ingredients. If you want to add columns, do it in the CSV file.
   this.initializeTable(ingredientsDataName);
   // Load initial stock. Make alterations in the CSV file.
@@ -77,7 +76,6 @@ Data.prototype.addOrder = function (order) {
       //find out the currently highest transaction id
       transId =  transactions[transactions.length - 1].transaction_id;
       let orderIngredients = calculateTotalIngredientUse(order.order);
-  console.log(order.order);
   for(const [key,amount] of Object.entries(orderIngredients)){
     transId += 1;
     transactions.push({transaction_id: transId,
@@ -114,7 +112,6 @@ function calculateTotalIngredientUse (order) {
     return accu;
   }, {});
 // Combine buns, ingredients and sides and drinks
-  console.log({...bunCount, ...ingredientCount, ...order.sidesAndDrinks});
   return {...bunCount, ...ingredientCount, ...order.sidesAndDrinks}
 }
 

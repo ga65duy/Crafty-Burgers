@@ -6,6 +6,7 @@
             :orderId="order.orderId"
             :allIngredients="allIngredients"
             :lang="lang"
+            :key="burger.id"
     >
     </BurgerViewKitchen>
     <SidesDrinksKitchen

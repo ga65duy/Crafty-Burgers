@@ -13,13 +13,13 @@
                 <td>x{{order.currentBurger.amount}}</td>
                 <td>{{order.currentBurger.price * order.currentBurger.amount}}</td>
             </tr>
-            <tr v-for="burger in order.otherBurgers">
+            <tr v-for="burger in order.otherBurgers" :key="burger.id">
                 <td>{{name(burger.id)}}</td>
                 <td>{{burger.price}}</td>
                 <td>x{{burger.amount}}</td>
                 <td>{{burger.price * burger.amount}}</td>
             </tr>
-            <tr v-for="(count, key) in this.order.sides">
+            <tr v-for="(count, key) in this.order.sides" :key="key">
                 <td>{{getItemForKey(key)["ingredient_"+lang]}}</td>
                 <td>{{getItemForKey(key).selling_price}}</td>
                 <td>x{{count}}</td>

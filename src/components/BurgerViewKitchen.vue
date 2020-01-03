@@ -4,7 +4,7 @@
         <p v-if="burger.bun">
             1x {{getItemForKey(burger.bun)["ingredient_"+lang]}}<br>
         </p>
-        <p v-for="(amount,ing) in burger.chosenIngredients">
+        <p v-for="(amount,ing) in burger.chosenIngredients" :key="ing">
             {{amount}}x {{getItemForKey(ing)["ingredient_"+lang]}}<br>
         </p>
         #{{orderId}}

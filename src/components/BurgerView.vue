@@ -6,7 +6,7 @@
 		<img :src="getImgUrl(bunItem.image_path)">
 	</div>
 	<!-- Show the burger ingredients -->
-	<div v-for="item in ingredientItemList">
+	<div v-for="item in ingredientItemList" :key="item.ingredient_id">
 		<button v-if="addBurgerOrCheckPage===false" v-on:click="removeIngredient(item)">X</button>
 		<img :src="getImgUrl(item.image_path)" v-bind:alt="item.image_path" id="image"> <br>
 	</div>
@@ -39,7 +39,6 @@ export default {
 		//based on english name, return the whole item
 		//e.g salad and return the whole object for this item (swedisch/englisch name, price...)
 		ingredientItemList: function () {
-			console.log(this.burger);
 			let ingredientKeyList = this.getChosenIngredientsAsList(this.burger.chosenIngredients);
 			return ingredientKeyList.map(key => this.getItemForKey(key));
 		},
@@ -105,5 +104,8 @@ export default {
 	}
 	img {
 		width:250px;
+	}
+	img, button {
+		vertical-align: middle;
 	}
 </style>

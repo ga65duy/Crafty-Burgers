@@ -30,14 +30,12 @@ export default {
       document.getElementById("lact").checked = false;
       document.getElementById("glut").checked = false;
       this.prefs=[false,false,false];
-      console.log(this.prefs);
     },
     foodPref: function () {
       document.getElementById("noFP").checked = false;
       this.prefs[0]= document.getElementById("veg").checked;
       this.prefs[1]= document.getElementById("lact").checked;
       this.prefs[2]= document.getElementById("glut").checked;
-      console.log(this.prefs);
     }
   }
   // this.$emit('preference');*/

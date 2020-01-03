@@ -1,8 +1,10 @@
 <template>
   <div id="thanks">
-    <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
     <h1>{{uiLabels.checkoutText}} {{orderNumber}}</h1>
-    <a href="http://localhost:8080/#/">{{uiLabels.startAgainButton}}</a>
+    <div id="againButton">
+        <a href="http://localhost:8080/#/">{{uiLabels.startAgainButton}}</a>
+    </div>
+    <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
   </div>
 </template>
 <script>
@@ -36,10 +38,50 @@ export default {
 </script>
 <style scoped>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
+
 a {
+    display: block;
     text-decoration: none;
     color: black;
     border: solid;
-    padding: 10px
+    margin-top: 175px;
+    padding: 10px;
+    text-align: center;
+    background-color: #52cc10ff;
+    width: 600px;
+    font-size: 3em;
     }
+#thanks {
+  background-image: url("../assets/woodImage.jpg");
+  width: 100%;
+  height: 100vh;
+  margin: 0px;
+  border: 0px;
+  padding: 0px;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  display: inline-block;
+  color: #d9d9d9;
+  font-size: 5em;
+  margin-top: 150px;
+}
+
+button{
+  position: fixed;
+  bottom: 50px;
+  font-size: 2em;
+ }
+
+#langButton a{
+  text.align: center;
+  display: inline-block;
+}
+
+#againButton{
+  display: inline-block;
+  text-align:center;
+}
 </style>

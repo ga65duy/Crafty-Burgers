@@ -2,13 +2,13 @@
 <div class="burgerpre">
 	<!-- Show the top bun -->
 	<div v-if="Boolean(burger.bun)">
-		<button v-if="addBurgerOrCheckPage===false" v-on:click="removeIngredient(bunItem)">X</button>
 		<img :src="getImgUrl(bunItem.image_path)">
+		<button v-if="addBurgerOrCheckPage===false" v-on:click="removeIngredient(bunItem)">X</button>
 	</div>
 	<!-- Show the burger ingredients -->
 	<div v-for="item in ingredientItemList" :key="item.ingredient_id">
-		<button v-if="addBurgerOrCheckPage===false" v-on:click="removeIngredient(item)">X</button>
-		<img :src="getImgUrl(item.image_path)" v-bind:alt="item.image_path" id="image"> <br>
+		<img :src="getImgUrl(item.image_path)" v-bind:alt="item.image_path" id="image">
+		<button v-if="addBurgerOrCheckPage===false" v-on:click="removeIngredient(item)">X</button> <br>
 	</div>
 
 	<!-- Show the bottom bun -->
@@ -21,7 +21,7 @@
 		{{burger.amount}}
 		<input  type="button" value="+" class="button-plus" data-field="quantity" v-on:click="incrementBurger()">
 	</div>
-	</div>
+</div>
 </template>
 
 <script>
@@ -99,13 +99,18 @@ export default {
 		display: block;
 		font-size: 2em;
 		display: block;
-		text-align: center;
 		font-family:arial;
+		height: auto;
 	}
 	img {
-		width:250px;
+		width:230px;
 	}
 	img, button {
 		vertical-align: middle;
+	}
+	
+	div div button{
+		display: inline;
+		border-radius: 10px;
 	}
 </style>

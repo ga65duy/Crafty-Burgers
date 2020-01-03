@@ -15,8 +15,8 @@
         <!--shows possible preferences how the food shall be filtered-->
         <FoodPref
                 v-if="currentStep===0"
-                v-on:noPreference="prefs"
-                v-on:yesPreference="prefs"
+                :prefs="prefs"
+                v-on:preferencesChanged="changePreferences"
                 :ui-labels="uiLabels"
                 :lang="lang">
         </FoodPref>
@@ -69,7 +69,6 @@
                         ref="ingredient"
                         v-for="item in ingredients"
                         v-if="item.category===currentStep && Boolean(item.vegan)===prefs[0] && Boolean(item.milk_free)===prefs[1] && Boolean(item.gluten_free)===prefs[2]"
-                        v-if="item.category===currentStep && (prefs[0]===false) ? Boolean(item.vegan)!==prefs[0] : Boolean(item.vegan)===prefs[0]"
                         v-on:increment="addToOrder(item)"
                         v-on:decrement="removeOrder(item)"
                         :item="item"
@@ -258,6 +257,26 @@
             changeStep: function (nextStep) {
                 this.currentStep = nextStep;
             },
+
+            changePreferences: function(prefId) {
+                switch (prefId) {
+                    case 'veg':
+                        this.$set(this.prefs, 0, !this.prefs[0]);
+                        break;
+                    case 'lact':
+                        this.$set(this.prefs, 1, !this.prefs[1]);
+                        break;
+                    case 'glut':
+                        this.$set(this.prefs, 2, !this.prefs[2]);
+                        break;
+                    case 'noFP':
+                        this.prefs = [false, false, false];
+                        break;
+                    default:
+                        console.log("Wrong preference selected");
+                }
+            },
+
             addToOrder: function (item) {
                 //add ingredients to order
 

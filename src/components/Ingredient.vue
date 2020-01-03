@@ -94,7 +94,7 @@ export default {
     font-weight: bold;
     }
   input:hover {
-    background-color: grey;
+    background-color: #bfbfbf;
     cursor: pointer;
     }
   #counter {

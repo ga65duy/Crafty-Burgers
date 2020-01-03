@@ -99,12 +99,9 @@ export default {
 		transform: scaleY(-1);
 	}
 	.burgerpre {
-		display: grid;
-		grid-template-columns: 1em 2em;
 		display: block;
         font-family: comfortaa, sans-serif;
 		font-size: 2em;
-		text-align: center;
 	}
 	img {
 		width:16vw;

@@ -104,12 +104,6 @@ export default {
   #counter {
     margin-right: 2vw;
     margin-left: 2vw;
-    font-size: 0.8em;
+    font-size: 0.8em; 
     }
-  .button-plus {
-    font-size: 100%;
-  }
-  .button-minus {
-    font-size: 100%;
-  }
 </style>

@@ -361,8 +361,7 @@
         margin: 0.3em;
         padding: 20px;
         width: 19vw;
-        border-style: solid;
-        border-color: black;
+        border: 1.5px solid grey;
         display: block;
     }
 .grid {

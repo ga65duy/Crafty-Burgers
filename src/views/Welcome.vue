@@ -2,8 +2,12 @@
   <div id="welcome">
    
     <h1>{{ uiLabels.welcomeText }}</h1>
-    <a href="http://localhost:8080/#/ordering">{{ uiLabels.startButton }}</a>
-    <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+    <div id="proceedButton">
+      <a href="http://localhost:8080/#/ordering">{{ uiLabels.startButton }}</a>
+    </div>
+    <div id="langButton">
+      <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+    </div>
   </div>
 </template>
 <script>
@@ -57,26 +61,44 @@ a {
     text-decoration: none;
     color: black;
     border: solid;
+    margin-top: 175px;
     padding: 10px;
     text-align: center;
+    background-color: #52cc10ff;
+    width: 600px;
+    font-size: 3em;
     }
 #welcome {
   background-image: url("../assets/woodImage.jpg");
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   margin: 0px;
   border: 0px;
   padding: 0px;
-  text-align:center;
+  text-align: center;
 }
 
 h1 {
   text-align: center;
+  display: inline-block;
   color: #d9d9d9;
-  font-size: 3em;
+  font-size: 6em;
+  margin-top: 150px;
 }
 
 button{
-  margin-top: 50px;
+  position: fixed;
+  bottom: 50px;
+  font-size: 2em;
+ }
+
+#langButton a{
+  text.align: center;
+  display: inline-block;
+}
+
+#proceedButton{
+  display: inline-block;
+  text-align:center;
 }
 </style>

@@ -42,5 +42,6 @@
   "welcome": "Välkommen till Crafty Burgers!",
   "item": "Sak",
   "price": "Pris",
-  "amount": "Mängd"
+  "amount": "Mängd", 
+  "flag": "https://image.flaticon.com/icons/svg/555/555417.svg"
 }

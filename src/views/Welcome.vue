@@ -79,6 +79,7 @@ a {
   border: 0px;
   padding: 0px;
   text-align: center;
+  font-style: Comfortaa, sans-serif;
 }
 
 h1 {

@@ -1,15 +1,13 @@
 <template>
   <div class="preferences">
-    <label>
-        <input type="checkbox" id="noFP" v-on:click="noFoodPref()" checked/>
+        <input type="checkbox" id="noFP" v-on:click="foodPref" :checked="prefsNotSelected"/>
         <label class="btn" for="noFP">{{uiLabels.noFoodPreferences}}</label>
-        <input type="checkbox" id="veg" v-on:click="foodPref()"/>
-        <label class="btn" for="veg">{{uiLabels.vegan}}</label>
-        <input type="checkbox" id="lact" v-on:click="foodPref()"/>
+        <input type="checkbox" id="veg" v-on:click="foodPref" :checked="prefs[0]"/>
+        <label class="btn" for="veg">{{uiLabels.vegan}} </label>
+        <input type="checkbox" id="lact" v-on:click="foodPref" :checked="prefs[1]"/>
         <label class="btn" for="lact">{{uiLabels.lactoseFree}}</label>
-        <input type="checkbox" id="glut" v-on:click="foodPref()"/>
+        <input type="checkbox" id="glut" v-on:click="foodPref" :checked="prefs[2]"/>
         <label class="btn" for="glut">{{uiLabels.glutenFree}}</label>
-    </label>
   </div>
 </template>
 <script>
@@ -17,28 +15,21 @@ export default {
   name: 'FoodPref',
   props: {
     uiLabels: Object,
-    lang: String
+    lang: String,
+    prefs: Array
   },
-    data: function () {
-    return {
-        prefs: [false,false,false]
-    };
-  },
-  methods: {
-    noFoodPref: function () {
-      document.getElementById("veg").checked = false;
-      document.getElementById("lact").checked = false;
-      document.getElementById("glut").checked = false;
-      this.prefs=[false,false,false];
+    computed: {
+      // mark the button no food preferences if the other options are not chosen
+      prefsNotSelected: function () {
+          return this.prefs.every(elem => elem === false)
+      }
     },
-    foodPref: function () {
-      document.getElementById("noFP").checked = false;
-      this.prefs[0]= document.getElementById("veg").checked;
-      this.prefs[1]= document.getElementById("lact").checked;
-      this.prefs[2]= document.getElementById("glut").checked;
+  methods: {
+    // changes the states of the buttons
+    foodPref: function (event) {
+      this.$emit('preferencesChanged', event.target.id);
     }
   }
-  // this.$emit('preference');*/
 }
 </script>
 <style scoped>

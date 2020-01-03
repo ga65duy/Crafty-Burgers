@@ -15,6 +15,8 @@
         <!--shows possible preferences how the food shall be filtered-->
         <FoodPref
                 v-if="currentStep===0"
+                v-on:preferencesChanged="changePreferences"
+                :prefs="prefs"
                 :ui-labels="uiLabels"
                 :lang="lang">
         </FoodPref>
@@ -65,8 +67,7 @@
             <div v-if="currentStep !== 4" >
                 <Ingredient
                         ref="ingredient"
-                        v-for="item in ingredients"
-                        v-if="item.category===currentStep"
+                        v-for="item in relevantIngredients"
                         v-on:increment="addToOrder(item)"
                         v-on:decrement="removeOrder(item)"
                         :item="item"
@@ -83,8 +84,8 @@
                 <!--In first case the bun box which was selected allows only to click -  -->
                 <Ingredient
                         ref="ingredient"
-                        v-for="item in ingredients"
-                        v-if="item.category === currentStep && item.ingredient_id === burgerBun"
+                        v-for="item in relevantIngredients"
+                        v-if="item.ingredient_id === burgerBun"
                         v-on:increment="addToOrder(item)"
                         v-on:decrement="removeOrder(item)"
                         :item="item"
@@ -100,8 +101,8 @@
                 -->
                 <Ingredient
                         ref="ingredient"
-                        v-for="item in ingredients"
-                        v-if="item.category===currentStep && item.ingredient_id !== burgerBun"
+                        v-for="item in relevantIngredients"
+                        v-if="item.ingredient_id !== burgerBun"
                         v-on:increment="addToOrder(item)"
                         v-on:decrement="removeOrder(item)"
                         :item="item"
@@ -137,6 +138,8 @@
         </PayButton>
         <!--TODO: basically not needed: but datastructure can be seen here -->
         {{this.order}}
+        <br>
+        {{this.prefs}}
     </div>
 </template>
 <script>
@@ -184,9 +187,21 @@
                 burgerBun: "",
                 orderNumber: "",
                 currentStep: 0,
+                prefs: [false, false, false],
             }
         },
         computed: {
+            relevantIngredients: function() {
+                // Return the relevant ingredients to show based on the current step and selected preferences
+                return Array.from(this.ingredients).filter( item => {
+                    let filterConditions = [true,true,true,true];
+                    filterConditions[0] = (item.category  === this.currentStep);
+                    filterConditions[1] = this.prefs[0] ? (item.vegan === 1): true;
+                    filterConditions[2] = this.prefs[1] ? (item.milk_free === 1): true;
+                    filterConditions[3] = this.prefs[2] ? (item.gluten_free === 1): true;
+                    return filterConditions.every(condition => condition);
+                })
+            },
             addBurgerOrCheckPage: function (){
                 return this.currentStep === 7 || this.currentStep === 8;
             },
@@ -241,6 +256,26 @@
             changeStep: function (nextStep) {
                 this.currentStep = nextStep;
             },
+
+            changePreferences: function(prefId) {
+                //prefId is the id of the button in the component food preferences
+                switch (prefId) {
+                    case 'veg':
+                        this.$set(this.prefs, 0, !this.prefs[0]);
+                        break;
+                    case 'lact':
+                        this.$set(this.prefs, 1, !this.prefs[1]);
+                        break;
+                    case 'glut':
+                        this.$set(this.prefs, 2, !this.prefs[2]);
+                        break;
+                    case 'noFP':
+                        this.prefs = [false, false, false];
+                        break;
+                    default:
+                }
+            },
+
             addToOrder: function (item) {
                 //add ingredients to order
 

@@ -93,6 +93,7 @@ export default {
     height: 2.5vw;
     vertical-align: middle;
     font-weight: bold;
+    outline: none;
     }
   input:hover {
     background-color: #bfbfbf;

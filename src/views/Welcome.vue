@@ -58,20 +58,7 @@ export default {
 </script>
 <style scoped>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
-a {
-    display: block;
-    text-decoration: none;
-    color: black;
-    border: solid;
-    margin-top: 175px;
-    padding: 10px;
-    text-align: center;
-    background-color: #52cc10ff;
-    width: 600px;
-    font-size: 3em;
-    }
 #welcome {
-  position: relative;
   background-image: url("../assets/woodImage.jpg");
   width: 100%;
   height: 100%;
@@ -81,28 +68,38 @@ a {
   text-align: center;
   font-family: Comfortaa, sans-serif;
 }
-
 h1 {
   text-align: center;
   display: inline-block;
-  color: #d9d9d9;
-  font-size: 6em;
+  color: #e6e6e6;
+  font-size: 5em;
   margin-top: 150px;
   margin-bottom: 0vh;
 }
-
+a {
+    display: block;
+    text-decoration: none;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 16px 0 #52cc10ff;
+    margin-top: 130px;
+    padding: 10px;
+    text-align: center;
+    background-color: #52cc10ff;
+    width: 600px;
+    font-size: 3em;
+}
 input{
   width: 5vw;
- }
- 
- #proceedButton{
+}
+#proceedButton{
   display: inline-block;
   text-align:center;
   margin-bottom: 15vh;
 }
-
 #langButton {
   text-align: center;
-  padding-bottom:  40px;
+  padding-bottom: 20px;
 }
 </style>

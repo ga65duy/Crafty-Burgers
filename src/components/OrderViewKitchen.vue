@@ -1,20 +1,19 @@
 <template>
-    <BurgerViewKitchen
-            v-if="item && item.type === 'burger'"
-            class="orderItem"
-            :burger="item"
-            :allIngredients="allIngredients"
-            :lang="lang"
-    >
-    </BurgerViewKitchen>
-    <SidesDrinksKitchen
-            v-else-if="item && item.type === 'sidesAndDrinks'"
-            class="orderItem"
-            :item="item"
-            :allIngredients="allIngredients"
-            :lang="lang"
-    >
-    </SidesDrinksKitchen>
+    <div v-if="item" class="orderItem">
+        <BurgerViewKitchen
+                v-if="item.type === 'burger'"
+                :burger="item"
+                :allIngredients="allIngredients"
+                :lang="lang"
+        />
+        <SidesDrinksKitchen
+                v-if="item.type === 'sidesAndDrinks'"
+                :item="item"
+                :allIngredients="allIngredients"
+                :lang="lang"
+        />
+        #{{item.orderId}} ({{item.step}}/{{item.totalSteps}})
+    </div>
     <div v-else class="orderItem">
         No order available
     </div>

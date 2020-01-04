@@ -14,8 +14,7 @@ function Data() {
 }
 
 Data.prototype.getUILabels = function (lang) {
-  var ui = require("./data/ui_" + (lang || defaultLanguage) + ".json");
-  return ui;
+  return require("./data/ui_" + (lang || defaultLanguage) + ".json");
 };
 
 /*
@@ -54,7 +53,7 @@ Data.prototype.initializeData = function() {
   this.initializeTable(ingredientsDataName);
   // Load initial stock. Make alterations in the CSV file.
   this.initializeTable(transactionsDataName);
-}
+};
 /*
   Adds an order to to the queue and makes an withdrawal from the
   stock. If you have time, you should think a bit about whether
@@ -72,6 +71,11 @@ Data.prototype.addOrder = function (order) {
   this.orders[orderId] = order.order;
   this.orders[orderId].orderId = orderId;
   this.orders[orderId].status = "not-started";
+
+  // Add a status to every burger and sidesDrink object within a order
+  // Then we can have a status on item level instead of order level
+  // ....
+
   var transactions = this.data[transactionsDataName],
       //find out the currently highest transaction id
       transId =  transactions[transactions.length - 1].transaction_id;
@@ -129,15 +133,26 @@ Data.prototype.getAllOrders = function () {
 };
 
 Data.prototype.markOrderDone = function (orderId) {
+  // Send when all items (i.e. burger or sidesAndDrinks) of an order are done
   this.orders[orderId].status = "done";
 };
 
 Data.prototype.markOrderStarted = function (orderId) {
+  // Send when the first item is in preperation
+
   this.orders[orderId].status = "started";
 };
 
 Data.prototype.markOrderNotStarted = function (orderId) {
   this.orders[orderId].status = "not-started";
+};
+
+Data.prototype.markBurgerFinished = function(orderId, burgerId) {
+  // Set the given burger of an order to status 'done'
+};
+
+Data.prototype.markSidesFinished = function(orderId) {
+  // Set the sidesAndDrinks item of an order to 'done'
 };
 
 module.exports = Data;

@@ -40,10 +40,10 @@ export default {
         document.getElementById('datetime').innerHTML =
         h + ":" + m + ":" + s + 
         "\n" + "<br>Date: " + d + "/" + mo + "/" + y ;
-        var t = setTimeout(this.startTime, 500);
-    },
+        const t = setTimeout(this.startTime, 500);
+   },
     checkTime: function(i) {
-        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        if (i < 10) {i = "0" + i}  // add zero in front of numbers < 10
         return i;
     },
     bpromptFunction: function() {

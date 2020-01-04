@@ -1,5 +1,5 @@
 <template>
-  <div id="stocklist">
+  <div v-if="item.stock <5" id="stocklist" >
     Soon out of stock:
     <ul id="example-1">
     <li>
@@ -7,17 +7,16 @@
     </li>
     </ul> 
   </div>
+
+  <div v-else>
+    Soon out of stock:
+  </div>
 </template>
 <script>
 export default {
   name: 'StockInfo',
   props: {
-    uiLabels: Object,
-    lang: String,
     item: Object,
-  },
-  computed: {},
-  methods: {
   }
 }
 </script>

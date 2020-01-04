@@ -1,7 +1,7 @@
 <template>
     <div class="grid-container">
         <!--  TODO: remove following line: only for understanding-->
-       {{orders}}
+<!--       {{orders}}-->
 
         <!--  <div class="grid-item">
           <OrderViewKitchen
@@ -16,11 +16,11 @@
           <div class="grid-item">-->
         <!--TODO: add stock component here-->
         <StockInfo
-        v-for = "item in ingredients"
-        :item="item"
-        v-if= "item.stock <5"
-        class="grid-item" 
-        id="itemStock">
+          class="grid-item"
+          id="itemStock"
+          v-for = "item in ingredients"
+          :item="item"
+        >
         </StockInfo>
 
         <OrderViewKitchen

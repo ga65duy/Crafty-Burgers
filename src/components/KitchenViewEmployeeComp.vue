@@ -75,6 +75,8 @@ export default {
      height: 40vh;
      border-style: solid;
      padding: 5px;
-     font-size: 0.7em;
+     font-size: 0.8em;
+     font-family: Comfortaa, sans-serif;
+     text-align: center;
  }
 </style>

@@ -15,7 +15,13 @@
           </div>
           <div class="grid-item">-->
         <!--TODO: add stock component here-->
-        <div class="grid-item" id="itemStock">Stock</div>
+        <StockInfo
+        v-for = "item in ingredients"
+        :item="item"
+        v-if= "item.stock <5"
+        class="grid-item" 
+        id="itemStock">
+        </StockInfo>
 
         <OrderViewKitchen
                 class="grid-item"
@@ -56,9 +62,6 @@
         >
         </TimeAndEmp>
 
-        <StockInfo
-        v-for = "item in ingredients">
-        </StockInfo>
     </div>
 
 <!--TODO: remove commented code-->
@@ -252,5 +255,9 @@
         font-family:arial;
 
         border-width: 2px 2px 0 0;
+    }
+
+    .grid-item{
+        overflow: scroll
     }
 </style>

@@ -1,8 +1,9 @@
 <template>
   <div id="stocklist">
+    Soon out of stock:
     <ul id="example-1">
     <li>
-        {{ item }}
+        {{item.ingredient_en}} ({{ item.stock }})
     </li>
     </ul> 
   </div>

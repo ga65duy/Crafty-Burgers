@@ -111,8 +111,8 @@
                         :item="item"
                         :lang="lang"
                         :key="item.ingredient_id"
-                        :disabled=Boolean(burgerBun)
-                        :plusDisabled=Boolean(burgerBun)
+                        :disabled="Boolean(burgerBun)"
+                        :plusDisabled="Boolean(burgerBun)"
                         :counter="0">
                 </Ingredient>
               </div>

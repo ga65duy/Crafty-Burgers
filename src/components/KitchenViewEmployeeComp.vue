@@ -6,12 +6,19 @@
   <button id="bbtn" v-on:click="bpromptFunction(); startTime()">Employee Login</button><br><br>
   <div id="semp">Stock refiller:<br> No Employee logged in</div>
   <button id="sbtn" v-on:click="spromptFunction(); startTime()">Employee Login</button>
-        
+  <br>
+  <NextButtonKitchen
+  >
+  </NextButtonKitchen>
   </div>
 </template>
 <script>
+import NextButtonKitchen from "../components/NextButtonKitchen";
 export default {
   name: 'TimeAndEmp',
+  components: {
+    NextButtonKitchen
+  },
   props: {
     uiLabels: Object,
     lang: String,

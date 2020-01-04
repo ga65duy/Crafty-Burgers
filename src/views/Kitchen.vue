@@ -16,17 +16,7 @@
           <div class="grid-item">-->
         <!--TODO: add stock component here-->
         <div class="grid-item" id="itemStock">Stock</div>
-        <!--TODO: add employee time component here
-            use in employee time component the nextButtonKitchen component
-        -->
-        <div class="grid-item" id="itemEmployeeNext">
-            <NextButtonKitchen
-                    class="grid-item"
-                    id="itemNext"
-                    v-on:ClickedNext="goToNextOrderItem"
-            >
-            </NextButtonKitchen>
-        </div>
+
         <OrderViewKitchen
                 class="grid-item"
                 id="item1"
@@ -59,7 +49,11 @@
                 :lang="lang"
         >
         </OrderViewKitchen>
-        <TimeAndEmp>
+        <TimeAndEmp
+            class="grid-item"
+            id="itemEmployeeNext"
+
+        >
         </TimeAndEmp>
     </div>
 
@@ -126,13 +120,11 @@
     import sharedVueStuff from '@/components/sharedVueStuff.js'
     import BurgerViewKitchen from "../components/BurgerViewKitchen";
     import OrderViewKitchen from "../components/OrderViewKitchen";
-    import NextButtonKitchen from "../components/NextButtonKitchen";
     import TimeAndEmp from "../components/KitchenViewEmployeeComp";
 
     export default {
         name: 'Kitchen',
         components: {
-            NextButtonKitchen,
             OrderViewKitchen,
             BurgerViewKitchen,
             TimeAndEmp
@@ -182,9 +174,6 @@
             markDone: function (orderid) {
                 this.$store.state.socket.emit("orderDone", orderid);
             },
-            goToNextOrderItem: function () {
-                console.log("Next")
-            }
         }
     }
 </script>

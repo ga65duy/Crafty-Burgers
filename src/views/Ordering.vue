@@ -138,7 +138,7 @@
             </TotalBill>
         </div>
         <PayButton
-                v-if="currentStep===8"
+                v-if="currentStep===8 && burgerPrice > 0"
                 v-on:clickedPay="placeOrder"
                 :orderNum="orderNumber"
                 :ui-labels="uiLabels"

@@ -1,5 +1,5 @@
 <template>
-    <div id="sidesDrinksBox">
+    <div>
         Sides and Drinks
         <p v-for="(value,ing) in sidesDrinks" :key="ing">
             {{value}}x {{getItemForKey(ing)["ingredient_"+lang]}}<br>
@@ -26,14 +26,4 @@
 </script>
 
 <style scoped>
-    #sidesDrinksBox {
-        display: block;
-        padding: 20px;
-        width: auto;
-        border-style: solid;
-        border-color: black;
-        font-size: 2em;
-        text-align: center;
-        font-family:arial;
-    }
 </style>

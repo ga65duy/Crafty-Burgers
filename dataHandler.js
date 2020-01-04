@@ -75,7 +75,11 @@ Data.prototype.addOrder = function (order) {
 
   // Add a status to every burger and sidesDrink object within a order
   // Then we can have a status on item level instead of order level
-  // ....
+    this.orders[orderId].allBurgers = this.orders[orderId].allBurgers.map(burger => {
+      return {...burger,  type: "burger", status: "not-started"}
+    });
+    this.orders[orderId].sidesAndDrinks =
+        {sidesAndDrinks: this.orders[orderId].sidesAndDrinks, type: "sidesAndDrinks", status:"not-started"};
 
   var transactions = this.data[transactionsDataName],
       //find out the currently highest transaction id

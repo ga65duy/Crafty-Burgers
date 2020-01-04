@@ -105,9 +105,7 @@
         components: {
             NextButtonKitchen,
             OrderViewKitchen,
-            BurgerViewKitchen,
-            //OrderItem,
-            //OrderItemToPrepare
+            BurgerViewKitchen
         },
         mixins: [sharedVueStuff], // include stuff that is used in both
                                   //the ordering system and the kitchen
@@ -118,30 +116,21 @@
                 for (let order of Object.values(this.orders)) {
                     let singleOrderItemList = [];
                     // 1. Put all burgers of each order in the list
-                    // For every burger we need to know its status, the order it belongs to, how many items are left in the order
-                    // Therefore, we add the status, orderId, and totalOrderItems to every burger object before appending to the itemList
                     for (let burger  of order.allBurgers) {
-                        let burgerExtended = {
-                            ...burger,
-                            orderId: order.orderId,
-                            type: "burger"
-                        };
-                        singleOrderItemList.push(burgerExtended);
+                        // Add if condition burger is in state not started
+                        singleOrderItemList.push(burger);
                     }
                     // 2. Add the sides and drinks to the item list as well
-                    if (Object.entries(order.sidesAndDrinks).length > 0) {
-                        let sidesDrinksItem = {
-                            sidesAndDrinks: order.sidesAndDrinks,
-                            orderId: order.orderId,
-                            type: "sidesAndDrinks"
-                        };
-                        singleOrderItemList.push(sidesDrinksItem);
+                    if (Object.entries(order.sidesAndDrinks.sidesAndDrinks).length > 0) {
+                        // Add if condition sidesAndDrink is in state not started
+                        singleOrderItemList.push(order.sidesAndDrinks);
                     }
 
                     // 3. Now we can calculate the total number of items in one order and give every item a step number
                     for (let [itemId, item] of singleOrderItemList.entries()) {
                         item["step"] = itemId + 1;
-                        item["totalItems"] = singleOrderItemList.length
+                        item["totalItems"] = singleOrderItemList.length;
+                        item["orderId"] = order.orderId;
                     }
                     allOrdersItemList.push(...singleOrderItemList)
                 }
@@ -172,9 +161,7 @@
         display: block;
         padding: 20px;
         width: auto;
-        border-style: solid;
-        border-color: black;
-        border-width: 2px 2px 2px 2px;
+        border: 2px solid black;
         font-size: 2em;
         text-align: center;
         font-family:arial;

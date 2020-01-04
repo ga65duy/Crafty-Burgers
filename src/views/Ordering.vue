@@ -1,6 +1,9 @@
 <template>
     <div id="ordering">
-        <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+        <input id="flag" 
+            type="image"
+            v-bind:src="uiLabels.flag"
+            v-on:click="switchLang()">
         <section>
             <!--shows the buttons to navigate to different food categories-->
             <NavButtons id="tabbar"
@@ -135,7 +138,7 @@
             </TotalBill>
         </div>
         <PayButton
-                v-if="currentStep===8"
+                v-if="currentStep===8 && burgerPrice > 0"
                 v-on:clickedPay="placeOrder"
                 :orderNum="orderNumber"
                 :ui-labels="uiLabels"
@@ -403,5 +406,8 @@
     grid-column-gap: 2em;
     grid-template-columns: 20vw 20vw 20vw;
     margin-left: 2em;
+}
+#flag {
+    width: 3vw;
 }
 </style>

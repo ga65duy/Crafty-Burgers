@@ -80,6 +80,7 @@ a {
   padding: 0px;
   text-align: center;
   font-style: Comfortaa, sans-serif;
+  font-family: Comfortaa, sans-serif;
 }
 
 h1 {

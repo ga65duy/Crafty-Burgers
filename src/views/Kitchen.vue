@@ -1,7 +1,7 @@
 <template>
     <div class="grid-container">
         <!--  TODO: remove following line: only for understanding-->
-       {{orders}}
+<!--       {{orders}}-->
 
         <!--  <div class="grid-item">
           <OrderViewKitchen
@@ -15,7 +15,13 @@
           </div>
           <div class="grid-item">-->
         <!--TODO: add stock component here-->
-        <div class="grid-item" id="itemStock">Stock</div>
+        <StockInfo
+          class="grid-item"
+          id="itemStock"
+          v-for = "item in ingredients"
+          :item="item"
+        >
+        </StockInfo>
 
         <OrderViewKitchen
                 class="grid-item"
@@ -56,35 +62,6 @@
         />
 
     </div>
-
-
-    <!--TODO: remove commented code-->
-    <!--<h1>{{ uiLabels.ordersInQueue }}</h1>
-    <div>
-      <OrderItemToPrepare
-        v-for="(order, key) in orders"
-        v-if="order.status !== 'done'"
-        v-on:done="markDone(key)"
-        :order-id="key"
-        :order="order"
-        :ui-labels="uiLabels"
-        :lang="lang"
-        :key="key">
-      </OrderItemToPrepare>
-    </div>
-    <h1>{{ uiLabels.ordersFinished }}</h1>
-    <div>
-      <OrderItem
-        v-for="(order, key) in orders"
-        v-if="order.status === 'done'"
-        :order-id="key"
-        :order="order"
-        :lang="lang"
-        :ui-labels="uiLabels"
-        :key="key">
-      </OrderItem>
-    </div>
-    </div>-->
 </template>
 <script>
     //import OrderItem from '@/components/OrderingComponents/OrderItem.vue'
@@ -95,13 +72,15 @@
     import BurgerViewKitchen from "../components/BurgerViewKitchen";
     import OrderViewKitchen from "../components/OrderViewKitchen";
     import TimeAndEmp from "../components/KitchenViewEmployeeComp";
+    import StockInfo from "../components/StockInfo"
 
     export default {
         name: 'Kitchen',
         components: {
             OrderViewKitchen,
             BurgerViewKitchen,
-            TimeAndEmp
+            TimeAndEmp,
+            StockInfo
             //OrderItem,
             //OrderItemToPrepare
         },
@@ -225,5 +204,9 @@
         font-family:arial;
 
         border-width: 2px 2px 0 0;
+    }
+
+    .grid-item{
+        overflow: hidden
     }
 </style>

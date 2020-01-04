@@ -2,7 +2,7 @@
     <div id="buttons">
         <button v-bind:ref="step.label" 
         v-bind:id="step.label"
-         v-on:click="selectedButton" autoFocus>{{step.label}}</button>
+         v-on:click="selectedButton">{{step.label}}</button>
     </div>
 </template>
 
@@ -21,6 +21,7 @@
         },
         methods: {
             selectedButton: function () {
+                console.log(this.step);
                 this.$emit('selected',this.step.step);
             },
             focusInput: function() {

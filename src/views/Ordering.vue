@@ -4,7 +4,7 @@
             type="image"
             v-bind:src="uiLabels.flag"
             v-on:click="switchLang()">
-        <section>
+        <section id="NavButtons">
             <!--shows the buttons to navigate to different food categories-->
             <NavButtons id="tabbar"
                         ref="navigation"
@@ -15,6 +15,8 @@
             >
             </NavButtons>
         </section>
+    
+    <section class="content">
         <!--shows possible preferences how the food shall be filtered-->
         <FoodPref
                 v-if="currentStep===0"
@@ -54,6 +56,7 @@
                     :key="burger.id"
                 >
                 </BurgerView>
+                
             <!--show selected sides and drinks in order overview-->
                 <OrderOverviewSidesDrinks
                      v-if="currentStep===8"
@@ -145,10 +148,7 @@
                 :lang="lang"
         >
         </PayButton>
-        <!--TODO: basically not needed: but datastructure can be seen here -->
-        {{this.order}}
-        <br>
-        {{this.prefs}}
+    </section>
     </div>
 </template>
 <script>
@@ -390,22 +390,29 @@
 
     #tabbar {
         display: inline-block;
-        width: auto;
+        width: auto; 
     }
-    .burgerView {
+.burgerView {
         grid-gap: 2em;
         grid-template-columns: 20em 20em;
-        margin: 0.3em;
+        margin-top: 20px;
         padding: 20px;
-        width: 19vw;
+        width: 22vw;
+        height: 68vh;
         border: 1.5px solid grey;
         display: block;
+        overflow: auto;
     }
 .grid {
     display: grid;
     grid-column-gap: 2em;
+    grid-row-gap: 1em;
     grid-template-columns: 20vw 20vw 20vw;
-    margin-left: 2em;
+    margin-left: 30px;
+    margin-top: 20px;
+    height: 80vh;
+    width: 80vw;
+    overflow: auto;
 }
 #flag {
     width: 3vw;

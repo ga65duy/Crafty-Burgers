@@ -258,6 +258,6 @@
     }
 
     .grid-item{
-        overflow: scroll
+        overflow: hidden
     }
 </style>

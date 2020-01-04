@@ -25,8 +25,6 @@
 </template>
 
 <script>
-    let moment = require('moment');
-
     import BurgerViewKitchen from "./BurgerViewKitchen";
     import SidesDrinksKitchen from "./SidesDrinksKitchen";
 

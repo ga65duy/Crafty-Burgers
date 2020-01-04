@@ -2,6 +2,7 @@
     <div class="grid-container">
         <!--  TODO: remove following line: only for understanding-->
        {{orders}}
+
         <!--  <div class="grid-item">
           <OrderViewKitchen
                   v-for="order in orders"
@@ -15,21 +16,11 @@
           <div class="grid-item">-->
         <!--TODO: add stock component here-->
         <div class="grid-item" id="itemStock">Stock</div>
-        <!--TODO: add employee time component here
-            use in employee time component the nextButtonKitchen component
-        -->
-        <div class="grid-item" id="itemEmployeeNext">
-            <NextButtonKitchen
-                    class="grid-item"
-                    id="itemNext"
-                    v-on:ClickedNext="goToNextOrderItem"
-            >
-            </NextButtonKitchen>
-        </div>
+
         <OrderViewKitchen
                 class="grid-item"
                 id="item1"
-                :order="orders[0]"
+                :item="ordersItemList[0]"
                 :allIngredients="ingredients"
                 :lang="lang"
         >
@@ -37,7 +28,7 @@
         <OrderViewKitchen
                 class="grid-item"
                 id="item2"
-                :order="orders[1]"
+                :item="ordersItemList[1]"
                 :allIngredients="ingredients"
                 :lang="lang"
         >
@@ -45,7 +36,7 @@
         <OrderViewKitchen
                 class="grid-item"
                 id="item3"
-                :order="orders[2]"
+                :item="ordersItemList[2]"
                 :allIngredients="ingredients"
                 :lang="lang"
         >
@@ -53,12 +44,46 @@
         <OrderViewKitchen
                 class="grid-item"
                 id="item4"
-                :order="orders[3]"
+                :item="ordersItemList[3]"
                 :allIngredients="ingredients"
                 :lang="lang"
         >
         </OrderViewKitchen>
+        <TimeAndEmp
+            class="grid-item"
+            id="itemEmployeeNext"
+
+        >
+        </TimeAndEmp>
     </div>
+
+<!--TODO: remove commented code-->
+  <!--<h1>{{ uiLabels.ordersInQueue }}</h1>
+  <div>
+    <OrderItemToPrepare
+      v-for="(order, key) in orders"
+      v-if="order.status !== 'done'"
+      v-on:done="markDone(key)"
+      :order-id="key"
+      :order="order" 
+      :ui-labels="uiLabels"
+      :lang="lang"
+      :key="key">
+    </OrderItemToPrepare>
+  </div>
+  <h1>{{ uiLabels.ordersFinished }}</h1>
+  <div>
+    <OrderItem
+      v-for="(order, key) in orders"
+      v-if="order.status === 'done'"
+      :order-id="key"
+      :order="order"
+      :lang="lang"
+      :ui-labels="uiLabels"
+      :key="key">
+    </OrderItem>
+  </div>
+</div>	-->
     <!--TODO: remove commented code-->
     <!--<h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>
@@ -95,29 +120,60 @@
     import sharedVueStuff from '@/components/sharedVueStuff.js'
     import BurgerViewKitchen from "../components/BurgerViewKitchen";
     import OrderViewKitchen from "../components/OrderViewKitchen";
-    import NextButtonKitchen from "../components/NextButtonKitchen";
+    import TimeAndEmp from "../components/KitchenViewEmployeeComp";
 
     export default {
         name: 'Kitchen',
         components: {
-            NextButtonKitchen,
             OrderViewKitchen,
             BurgerViewKitchen,
+            TimeAndEmp
             //OrderItem,
             //OrderItemToPrepare
         },
         mixins: [sharedVueStuff], // include stuff that is used in both
                                   //the ordering system and the kitchen
-        created: function() {
-            console.log(this.orders);
+        computed: {
+            ordersItemList: function () {
+                // Return the items (i.e. burger, sides, drinks) of all ongoing orders as an list.
+                let allOrdersItemList = [];
+                for (let order of Object.values(this.orders)) {
+                    let singleOrderItemList = [];
+                    // 1. Put all burgers of each order in the list
+                    // For every burger we need to know its status, the order it belongs to, how many items are left in the order
+                    // Therefore, we add the status, orderId, and totalOrderItems to every burger object before appending to the itemList
+                    for (let burger  of order.allBurgers) {
+                        let burgerExtended = {
+                            ...burger,
+                            orderId: order.orderId,
+                            type: "burger"
+                        };
+                        singleOrderItemList.push(burgerExtended);
+                    }
+                    // 2. Add the sides and drinks to the item list as well
+                    if (Object.entries(order.sidesAndDrinks).length > 0) {
+                        let sidesDrinksItem = {
+                            sidesAndDrinks: order.sidesAndDrinks,
+                            orderId: order.orderId,
+                            type: "sidesAndDrinks"
+                        };
+                        singleOrderItemList.push(sidesDrinksItem);
+                    }
+
+                    // 3. Now we can calculate the total number of items in one order and give every item a step number
+                    for (let [itemId, item] of singleOrderItemList.entries()) {
+                        item["step"] = itemId + 1;
+                        item["totalItems"] = singleOrderItemList.length
+                    }
+                    allOrdersItemList.push(...singleOrderItemList)
+                }
+                return allOrdersItemList;
+            }
         },
         methods: {
             markDone: function (orderid) {
                 this.$store.state.socket.emit("orderDone", orderid);
             },
-            goToNextOrderItem: function () {
-                console.log("Next")
-            }
         }
     }
 </script>
@@ -172,7 +228,7 @@
         grid-row-start: 2;
         grid-row-end: 3;
 
-        border-width: 2px 2px 2px 0px;
+        border-width: 2px 2px 2px 0;
     }
     #itemEmployeeNext {
         grid-column-start: 3;
@@ -189,6 +245,6 @@
         text-align: center;
         font-family:arial;
 
-        border-width: 2px 2px 0px 0px;
+        border-width: 2px 2px 0 0;
     }
 </style>

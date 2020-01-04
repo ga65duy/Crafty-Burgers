@@ -63,7 +63,6 @@ export default {
 </script>
 <style scoped>
   .ingredient {
-      margin: 0.3em;
       padding: 20px;
       width: 18vw;
       border: 1.5px solid grey;

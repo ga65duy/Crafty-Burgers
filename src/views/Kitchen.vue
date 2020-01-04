@@ -12,6 +12,9 @@
 
   </OrderViewKitchen>
 
+  <TimeAndEmp>
+  </TimeAndEmp>
+
 <!--TODO: remove commented code-->
   <!--<h1>{{ uiLabels.ordersInQueue }}</h1>
   <div>
@@ -48,12 +51,14 @@
 import sharedVueStuff from '@/components/sharedVueStuff.js'
 import BurgerViewKitchen from "../components/BurgerViewKitchen";
 import OrderViewKitchen from "../components/OrderViewKitchen";
+import TimeAndEmp from "../components/KitchenViewEmployeeComp";
 
 export default {
   name: 'Kitchen',
   components: {
     OrderViewKitchen,
     BurgerViewKitchen,
+    TimeAndEmp
     //OrderItem,
     //OrderItemToPrepare
   },

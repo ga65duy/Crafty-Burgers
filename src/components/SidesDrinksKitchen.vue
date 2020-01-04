@@ -1,10 +1,10 @@
 <template>
     <div>
         Sides and Drinks
-        <p v-for="(value,ing) in sidesDrinks" :key="ing">
+        <p v-for="(value,ing) in item.sidesAndDrinks" :key="ing">
             {{value}}x {{getItemForKey(ing)["ingredient_"+lang]}}<br>
         </p>
-        #{{orderId}}
+        #{{item.orderId}} ({{item.step}}/{{item.totalItems}})
     </div>
 </template>
 
@@ -12,7 +12,7 @@
     export default {
         name: "SidesDrinksKitchen",
         props:{
-            sidesDrinks: Object,
+            item: Object,
             allIngredients: Array,
             orderId: Number,
             lang: String

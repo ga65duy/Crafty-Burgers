@@ -2,6 +2,7 @@
     <div class="grid-container">
         <!--  TODO: remove following line: only for understanding-->
        {{orders}}
+
         <!--  <div class="grid-item">
           <OrderViewKitchen
                   v-for="order in orders"
@@ -29,7 +30,7 @@
         <OrderViewKitchen
                 class="grid-item"
                 id="item1"
-                :order="orders[0]"
+                :item="ordersItemList[0]"
                 :allIngredients="ingredients"
                 :lang="lang"
         >
@@ -37,7 +38,7 @@
         <OrderViewKitchen
                 class="grid-item"
                 id="item2"
-                :order="orders[1]"
+                :item="ordersItemList[1]"
                 :allIngredients="ingredients"
                 :lang="lang"
         >
@@ -45,7 +46,7 @@
         <OrderViewKitchen
                 class="grid-item"
                 id="item3"
-                :order="orders[2]"
+                :item="ordersItemList[2]"
                 :allIngredients="ingredients"
                 :lang="lang"
         >
@@ -53,12 +54,14 @@
         <OrderViewKitchen
                 class="grid-item"
                 id="item4"
-                :order="orders[3]"
+                :item="ordersItemList[3]"
                 :allIngredients="ingredients"
                 :lang="lang"
         >
         </OrderViewKitchen>
     </div>
+
+
     <!--TODO: remove commented code-->
     <!--<h1>{{ uiLabels.ordersInQueue }}</h1>
     <div>
@@ -108,8 +111,42 @@
         },
         mixins: [sharedVueStuff], // include stuff that is used in both
                                   //the ordering system and the kitchen
-        created: function() {
-            console.log(this.orders);
+        computed: {
+            ordersItemList: function () {
+                // Return the items (i.e. burger, sides, drinks) of all ongoing orders as an list.
+                let allOrdersItemList = [];
+                for (let order of Object.values(this.orders)) {
+                    let singleOrderItemList = [];
+                    // 1. Put all burgers of each order in the list
+                    // For every burger we need to know its status, the order it belongs to, how many items are left in the order
+                    // Therefore, we add the status, orderId, and totalOrderItems to every burger object before appending to the itemList
+                    for (let burger  of order.allBurgers) {
+                        let burgerExtended = {
+                            ...burger,
+                            orderId: order.orderId,
+                            type: "burger"
+                        };
+                        singleOrderItemList.push(burgerExtended);
+                    }
+                    // 2. Add the sides and drinks to the item list as well
+                    if (Object.entries(order.sidesAndDrinks).length > 0) {
+                        let sidesDrinksItem = {
+                            sidesAndDrinks: order.sidesAndDrinks,
+                            orderId: order.orderId,
+                            type: "sidesAndDrinks"
+                        };
+                        singleOrderItemList.push(sidesDrinksItem);
+                    }
+
+                    // 3. Now we can calculate the total number of items in one order and give every item a step number
+                    for (let [itemId, item] of singleOrderItemList.entries()) {
+                        item["step"] = itemId + 1;
+                        item["totalItems"] = singleOrderItemList.length
+                    }
+                    allOrdersItemList.push(...singleOrderItemList)
+                }
+                return allOrdersItemList;
+            }
         },
         methods: {
             markDone: function (orderid) {

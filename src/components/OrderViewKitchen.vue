@@ -1,25 +1,20 @@
 <template>
-    <div v-if="order">
     <BurgerViewKitchen
+            v-if="item && item.type === 'burger'"
             class="orderItem"
-            v-for="burger in order.allBurgers"
-            :burger="burger"
-            :orderId="order.orderId"
+            :burger="item"
             :allIngredients="allIngredients"
             :lang="lang"
-            :key="burger.id"
     >
     </BurgerViewKitchen>
     <SidesDrinksKitchen
+            v-else-if="item && item.type === 'sidesAndDrinks'"
             class="orderItem"
-            v-if="!(Object.keys(order.sidesAndDrinks).length === 0)"
-            :sidesDrinks="order.sidesAndDrinks"
-            :orderId="order.orderId"
+            :item="item"
             :allIngredients="allIngredients"
             :lang="lang"
     >
     </SidesDrinksKitchen>
-    </div>
     <div v-else class="orderItem">
         No order available
     </div>
@@ -33,7 +28,7 @@
         name: "OrderViewKitchen",
         components: {SidesDrinksKitchen, BurgerViewKitchen},
         props:{
-            order: Object,
+            item: Object,
             allIngredients: Object,
             uiLabels: Object,
             lang: String

@@ -7,7 +7,7 @@
         <p v-for="(amount,ing) in burger.chosenIngredients" :key="ing">
             {{amount}}x {{getItemForKey(ing)["ingredient_"+lang]}}<br>
         </p>
-        #{{orderId}}
+        #{{burger.orderId}} ({{burger.step}}/{{burger.totalItems}})
     </div>
 </template>
 
@@ -16,7 +16,6 @@
         name: "BurgerViewKitchen",
         props: {
             burger: Object,
-            orderId: Number,
             allIngredients: Array,
             uiLabels: Object,
             lang: String

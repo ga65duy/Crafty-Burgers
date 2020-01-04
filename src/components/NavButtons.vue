@@ -23,7 +23,7 @@
             selectedButton: function () {
                 this.$emit('selected',this.step.step);
             },
-            focusInput() {
+            focusInput: function() {
                 this.$refs.Preferences.focus();
             }
         },

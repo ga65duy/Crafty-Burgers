@@ -38,14 +38,15 @@ export default {
 }
 .btn {
     margin: 0.3em;
-    border-style: solid;
-    border-color: black;
-    width: 400px;
-    font-size: 2em;
+    border: 1.5px solid grey;
+    border-radius: 3px;
+    width: 450px;
+    padding: 5px;
     display: block;
     text-align: center;
     font-family: comfortaa, sans-serif; 
-    background-color: lightgrey;
+    font-size: 2em;
+    background-color: #e7e7e7;
 }
 input[type="checkbox"]:checked + label {
     background-color: rgb(64, 165, 0);

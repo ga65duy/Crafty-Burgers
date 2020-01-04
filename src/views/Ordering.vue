@@ -11,6 +11,7 @@
                         v-for="s in steps"
                         v-bind:step="s"
                         v-on:selected="changeStep"
+                        :currentStep="currentStep"
                         :key="s.step"
             >
             </NavButtons>

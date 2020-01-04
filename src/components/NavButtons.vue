@@ -1,8 +1,20 @@
 <template>
-    <div id="buttons">
-        <button v-bind:ref="step.label" 
+    <div>
+        <button
+        class="buttonSelected"
+        v-if="currentStep===step.step"
+        v-bind:ref="step.label"
         v-bind:id="step.label"
-         v-on:click="selectedButton" autoFocus>{{step.label}}</button>
+        v-on:click="selectedButton" autoFocus>
+            {{step.label}}
+        </button>
+        <button
+        v-else
+        v-bind:ref="step.label"
+        v-bind:id="step.label"
+        v-on:click="selectedButton" autoFocus>
+            {{step.label}}
+        </button>
     </div>
 </template>
 
@@ -10,7 +22,8 @@
     export default {
         name: "NavButtons",
         props: {
-            step: Object
+            step: Object,
+            currentStep: Number
         },
         data: function () {
             return {
@@ -25,7 +38,8 @@
             },
             focusInput: function() {
                 this.$refs.Preferences.focus();
-            }
+            },
+
         },
     }
 </script>
@@ -47,6 +61,12 @@ button {
     color: darkslategrey;
 }
 button:focus {
+    background-color: #70db70;
+    box-shadow: 0 0 8px 0 #52cc10ff;
+    border: 1px solid #5cd65c;
+    outline: none;
+}
+ .buttonSelected {
     background-color: #70db70;
     box-shadow: 0 0 8px 0 #52cc10ff;
     border: 1px solid #5cd65c;

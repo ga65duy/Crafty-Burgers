@@ -7,7 +7,7 @@
         <p v-for="(amount,ing) in burger.chosenIngredients" :key="ing">
             {{amount}}x {{getItemForKey(ing)["ingredient_"+lang]}}<br>
         </p>
-        #{{burger.orderId}} ({{burger.step}}/{{burger.totalItems}})
+        #{{burger.orderId}} ({{burger.step}}/{{burger.totalSteps}})
     </div>
 </template>
 

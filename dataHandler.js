@@ -70,12 +70,11 @@ Data.prototype.addOrder = function (order) {
   var orderId = this.getOrderNumber();
   this.orders[orderId] = order.order;
   this.orders[orderId].orderId = orderId;
-  this.orders[orderId].status = "not-started";
 
   // Add a status to every burger and sidesDrink object within a order
   // Then we can have a status on item level instead of order level
     this.orders[orderId].allBurgers = this.orders[orderId].allBurgers.map(burger => {
-      return {...burger,  type: "burger", status: "not-started"}
+      return {...burger,  type: "burger", status: "not-started", }
     });
     this.orders[orderId].sidesAndDrinks =
         {sidesAndDrinks: this.orders[orderId].sidesAndDrinks, type: "sidesAndDrinks", status:"not-started"};
@@ -136,27 +135,16 @@ Data.prototype.getAllOrders = function () {
   return this.orders;
 };
 
-Data.prototype.markOrderDone = function (orderId) {
-  // Send when all items (i.e. burger or sidesAndDrinks) of an order are done
-  this.orders[orderId].status = "done";
+
+Data.prototype.markBurgerDone = function(ids) {
+  // Set the given burger of an order to status 'done' Parameter ids represents order id and burger id --> ids = [orderId, burgerId]
+    let burger = this.orders[ids[0]].allBurgers.filter(burger => burger.id === ids[1])[0];
+    burger.status = "done";
 };
 
-Data.prototype.markOrderStarted = function (orderId) {
-  // Send when the first item is in preperation
-
-  this.orders[orderId].status = "started";
-};
-
-Data.prototype.markOrderNotStarted = function (orderId) {
-  this.orders[orderId].status = "not-started";
-};
-
-Data.prototype.markBurgerFinished = function(orderId, burgerId) {
-  // Set the given burger of an order to status 'done'
-};
-
-Data.prototype.markSidesFinished = function(orderId) {
+Data.prototype.markSidesDone = function(orderId) {
   // Set the sidesAndDrinks item of an order to 'done'
+    this.orders[orderId].sidesAndDrinks.status = "done";
 };
 
 module.exports = Data;

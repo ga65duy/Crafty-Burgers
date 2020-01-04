@@ -61,21 +61,19 @@ io.on('connection', function (socket) {
     uiLang = lang; // set the scoped language variable
     socket.emit('switchLang', data.getUILabels(lang));
   });
-  // when order is marked as done, send updated queue to all connected clients
-  socket.on('orderDone', function (orderId) {
-    data.markOrderDone(orderId);
-    io.emit('currentQueue', {orders: data.getAllOrders() });
-  });
 
-  socket.on('orderStarted', function (orderId) {
-    data.markOrderStarted(orderId);
-    io.emit('currentQueue', {orders: data.getAllOrders() });
-  });
+  // when a burger is marked as done, send update queue to all connected clients
+    socket.on('burgerDone', function (orderId) {
+        data.markBurgerDone(orderId);
+        io.emit('currentQueue', {orders: data.getAllOrders() });
+    });
 
-  socket.on('orderNotStarted', function (orderId) {
-    data.markOrderNotStarted(orderId);
-    io.emit('currentQueue', {orders: data.getAllOrders() });
-  });
+    // when a side is marked as done, send update queue to all connected clients
+    socket.on('sidesDone', function (orderId) {
+        data.markSidesDone(orderId);
+        io.emit('currentQueue', {orders: data.getAllOrders() });
+    });
+
 
   socket.on('updateStock', function (item, saldo) {
     data.changeStock(item, saldo);

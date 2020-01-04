@@ -1,5 +1,5 @@
 <template>
-    <button onclick="next"> Next </button>
+    <button v-on:click="next"> Next </button>
 </template>
 
 <script>
@@ -7,7 +7,7 @@
         name: "NextButtonKitchen",
         methods: {
             next: function () {
-                this.$emit('ClickedNext');
+                this.$emit('next');
             }
         }
     }

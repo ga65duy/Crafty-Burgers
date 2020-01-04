@@ -142,7 +142,7 @@
             </TotalBill>
         </div>
         <PayButton
-                v-if="currentStep===8 && burgerPrice > 0"
+                v-if="currentStep===8 && price > 0"
                 v-on:clickedPay="placeOrder"
                 :orderNum="orderNumber"
                 :ui-labels="uiLabels"
@@ -361,7 +361,11 @@
 
             placeOrder: function () {
                 // Add current burger to burger list because it can not be edited after placing order
-                this.oldBurgers.push(this.burger);
+                if (this.burgerPrice > 0) {
+                    // To exclude if an order contains only sides and drinks
+                    this.oldBurgers.push(this.burger);
+                }
+
                 //Wrap the order in an object
                  let order = {
                         allBurgers: this.oldBurgers,

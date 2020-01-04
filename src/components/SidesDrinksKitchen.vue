@@ -4,7 +4,7 @@
         <p v-for="(value,ing) in item.sidesAndDrinks" :key="ing">
             {{value}}x {{getItemForKey(ing)["ingredient_"+lang]}}<br>
         </p>
-        #{{item.orderId}} ({{item.step}}/{{item.totalItems}})
+        #{{item.orderId}} ({{item.step}}/{{item.totalSteps}})
     </div>
 </template>
 

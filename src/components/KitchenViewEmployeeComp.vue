@@ -7,9 +7,7 @@
   <div id="semp">Stock refiller:<br> No Employee logged in</div>
   <button id="sbtn" v-on:click="spromptFunction(); startTime()">Employee Login</button>
   <br>
-  <NextButtonKitchen
-  >
-  </NextButtonKitchen>
+  <NextButtonKitchen v-on:next="next"/>
   </div>
 </template>
 <script>
@@ -72,7 +70,10 @@ export default {
             document.getElementById("sbtn").innerHTML = "Switch Employee(s)"
         }
         document.getElementById("semp").innerHTML = txt;
-    }
+    },
+      next: function() {
+          this.$emit('next');
+      }
   }
 }
 </script>

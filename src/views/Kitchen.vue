@@ -23,38 +23,38 @@
                 :item="ordersItemList[0]"
                 :allIngredients="ingredients"
                 :lang="lang"
-        >
-        </OrderViewKitchen>
+       />
+
         <OrderViewKitchen
                 class="grid-item"
                 id="item2"
                 :item="ordersItemList[1]"
                 :allIngredients="ingredients"
                 :lang="lang"
-        >
-        </OrderViewKitchen>
+        />
+
         <OrderViewKitchen
                 class="grid-item"
                 id="item3"
                 :item="ordersItemList[2]"
                 :allIngredients="ingredients"
                 :lang="lang"
-        >
-        </OrderViewKitchen>
+        />
+
         <OrderViewKitchen
                 class="grid-item"
                 id="item4"
                 :item="ordersItemList[3]"
                 :allIngredients="ingredients"
                 :lang="lang"
-        >
-        </OrderViewKitchen>
+        />
+
         <TimeAndEmp
+            v-on:next="next"
             class="grid-item"
             id="itemEmployeeNext"
+        />
 
-        >
-        </TimeAndEmp>
     </div>
 
 
@@ -112,32 +112,48 @@
                 // Return the items (i.e. burger, sides, drinks) of all ongoing orders as an list.
                 let allOrdersItemList = [];
                 for (let order of Object.values(this.orders)) {
-                    let singleOrderItemList = [];
-                    // 1. Put all burgers of each order in the list
-                    for (let burger  of order.allBurgers) {
-                        // Add if condition burger is in state not started
-                        singleOrderItemList.push(burger);
-                    }
-                    // 2. Add the sides and drinks to the item list as well
-                    if (Object.entries(order.sidesAndDrinks.sidesAndDrinks).length > 0) {
-                        // Add if condition sidesAndDrink is in state not started
-                        singleOrderItemList.push(order.sidesAndDrinks);
-                    }
+                        let singleOrderItemList = [];
+                        // 1. Put all burgers of each order in the list
+                        for (let burger  of order.allBurgers) {
+                            if (burger.status !== "done") {
+                                singleOrderItemList.push(burger);
+                            }
+                        }
+                        // 2. Add the sides and drinks to the item list as well
+                        if (Object.entries(order.sidesAndDrinks.sidesAndDrinks).length > 0) {
+                            if (order.sidesAndDrinks.status !== "done") {
+                                singleOrderItemList.push(order.sidesAndDrinks);
+                            }
 
-                    // 3. Now we can calculate the total number of items in one order and give every item a step number
-                    for (let [itemId, item] of singleOrderItemList.entries()) {
-                        item["step"] = itemId + 1;
-                        item["totalItems"] = singleOrderItemList.length;
-                        item["orderId"] = order.orderId;
-                    }
-                    allOrdersItemList.push(...singleOrderItemList)
+                        }
+                        // 3. Now we can calculate the total number of items in one order and give every item a step number
+                        for (let item of singleOrderItemList) {
+                            // For a burger the step is its id. For the sides and drinks the step is one more than the number of burgers
+                            item["step"] = item.type === 'burger' ? item.id : order.allBurgers.length + 1;
+
+                            // If a drink or side is selected a further step is necessary to complete the order
+                            let stepSidesAndDrinksNecessary = Object.entries(order.sidesAndDrinks.sidesAndDrinks).length === 0 ? 0 : 1;
+                            item["totalSteps"] = order.allBurgers.length + stepSidesAndDrinksNecessary;
+                            item["orderId"] = order.orderId;
+                        }
+                        allOrdersItemList.push(...singleOrderItemList)
                 }
                 return allOrdersItemList;
             }
         },
         methods: {
-            markDone: function (orderid) {
-                this.$store.state.socket.emit("orderDone", orderid);
+            next: function () {
+                let completedItem = this.ordersItemList[0];
+                if (completedItem && completedItem.type === 'burger' ) {
+                    this.$store.state.socket.emit("burgerDone", [completedItem.orderId, completedItem.id]);
+
+                } else if (completedItem && completedItem.type === 'sidesAndDrinks') {
+                    this.$store.state.socket.emit("sidesDone", completedItem.orderId);
+
+                } else {
+                    console.log("Next clicked without an order");
+                }
+
             },
         }
     }

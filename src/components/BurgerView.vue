@@ -113,12 +113,11 @@ export default {
 	display: block;
     font-family: comfortaa, sans-serif;
 	font-size: 2em;
-    margin: 0.3em;
+    margin-left: 10px;
     padding: 20px;
     border-radius: 3px;
     color: darkslategrey;
     background: #e7e7e7;
-	position: relative
 }
 img {
 	width:16vw;

@@ -16,17 +16,7 @@
           <div class="grid-item">-->
         <!--TODO: add stock component here-->
         <div class="grid-item" id="itemStock">Stock</div>
-        <!--TODO: add employee time component here
-            use in employee time component the nextButtonKitchen component
-        -->
-        <div class="grid-item" id="itemEmployeeNext">
-            <NextButtonKitchen
-                    class="grid-item"
-                    id="itemNext"
-                    v-on:ClickedNext="goToNextOrderItem"
-            >
-            </NextButtonKitchen>
-        </div>
+
         <OrderViewKitchen
                 class="grid-item"
                 id="item1"
@@ -59,6 +49,12 @@
                 :lang="lang"
         >
         </OrderViewKitchen>
+        <TimeAndEmp
+            class="grid-item"
+            id="itemEmployeeNext"
+
+        >
+        </TimeAndEmp>
     </div>
 
 
@@ -98,14 +94,16 @@
     import sharedVueStuff from '@/components/sharedVueStuff.js'
     import BurgerViewKitchen from "../components/BurgerViewKitchen";
     import OrderViewKitchen from "../components/OrderViewKitchen";
-    import NextButtonKitchen from "../components/NextButtonKitchen";
+    import TimeAndEmp from "../components/KitchenViewEmployeeComp";
 
     export default {
         name: 'Kitchen',
         components: {
-            NextButtonKitchen,
             OrderViewKitchen,
-            BurgerViewKitchen
+            BurgerViewKitchen,
+            TimeAndEmp
+            //OrderItem,
+            //OrderItemToPrepare
         },
         mixins: [sharedVueStuff], // include stuff that is used in both
                                   //the ordering system and the kitchen
@@ -141,9 +139,6 @@
             markDone: function (orderid) {
                 this.$store.state.socket.emit("orderDone", orderid);
             },
-            goToNextOrderItem: function () {
-                console.log("Next")
-            }
         }
     }
 </script>
@@ -196,7 +191,7 @@
         grid-row-start: 2;
         grid-row-end: 3;
 
-        border-width: 2px 2px 2px 0px;
+        border-width: 2px 2px 2px 0;
     }
     #itemEmployeeNext {
         grid-column-start: 3;
@@ -213,6 +208,6 @@
         text-align: center;
         font-family:arial;
 
-        border-width: 2px 2px 0px 0px;
+        border-width: 2px 2px 0 0;
     }
 </style>

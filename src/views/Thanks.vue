@@ -47,9 +47,9 @@ export default {
   background-image: url("../assets/woodImage.jpg");
   width: 100%;
   height: 100%;
-  margin: 0px;
-  border: 0px;
-  padding: 0px;
+  margin: 0;
+  border: 0;
+  padding: 0;
   text-align: center;
   font-family: Comfortaa, sans-serif;
 }
@@ -59,7 +59,7 @@ h1 {
   color: #e6e6e6;
   font-size: 5em;
   margin-top: 150px;
-  margin-bottom: 0vh;
+  margin-bottom: 0;
 }
 a {
      display: block;

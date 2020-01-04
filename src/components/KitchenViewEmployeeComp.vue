@@ -1,0 +1,89 @@
+<template>
+  <div class="TimeAndEmployee">
+  
+  <div id="datetime"> Login to see time </div> <br>
+  <div id="bemp">Burger Maker:<br> No Employee logged in</div>
+  <button id="bbtn" v-on:click="bpromptFunction(); startTime()">Employee Login</button><br><br>
+  <div id="semp">Stock refiller:<br> No Employee logged in</div>
+  <button id="sbtn" v-on:click="spromptFunction(); startTime()">Employee Login</button>
+  <br>
+  <NextButtonKitchen
+  >
+  </NextButtonKitchen>
+  </div>
+</template>
+<script>
+import NextButtonKitchen from "../components/NextButtonKitchen";
+export default {
+  name: 'TimeAndEmp',
+  components: {
+    NextButtonKitchen
+  },
+  props: {
+    uiLabels: Object,
+    lang: String,
+  },
+    computed: {
+    },
+  methods: {
+   startTime: function() {
+        var today = new Date();
+        var d = today.getDate();
+        var mo = today.getMonth()+1;
+        var y = today.getFullYear();
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        d = this.checkTime(d);
+        mo = this.checkTime(mo);
+        m = this.checkTime(m);
+        s = this.checkTime(s);
+        document.getElementById('datetime').innerHTML =
+        h + ":" + m + ":" + s + 
+        "\n" + "<br>Date: " + d + "/" + mo + "/" + y ;
+        var t = setTimeout(this.startTime, 500);
+    },
+    checkTime: function(i) {
+        if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+        return i;
+    },
+    bpromptFunction: function() {
+        var txt;
+        var empno = prompt("Burger Maker: Please enter your Employee code:", "XXXXXXX");
+        if (empno == null || empno == "" || empno == "XXXXXXX") {
+            txt = "No Employee logged in";
+            document.getElementById("bbtn").innerHTML = "Employee Login"
+            document.getElementById("datetime").innerHTML = "Login to see time"
+        } else {
+            txt = "Burger Maker:<br> " + empno;
+            document.getElementById("bbtn").innerHTML = "Switch Employee(s)"
+        }
+        document.getElementById("bemp").innerHTML = txt;
+    },
+    spromptFunction: function() {
+        var txt;
+        var empno = prompt("Stock refiller: Please enter your Employee code:", "XXXXXXX");
+        if (empno == null || empno == "" || empno == "XXXXXXX") {
+            txt = "No Employee logged in";
+            document.getElementById("sbtn").innerHTML = "Employee Login"
+            document.getElementById("datetime").innerHTML = "Login to see time"
+        } else {
+            txt = "Stock refiller:<br> " + empno;
+            document.getElementById("sbtn").innerHTML = "Switch Employee(s)"
+        }
+        document.getElementById("semp").innerHTML = txt;
+    }
+  }
+}
+</script>
+<style scoped>
+ .TimeAndEmployee {
+     width: 30vw;
+     height: 40vh;
+     border-style: solid;
+     padding: 5px;
+     font-size: 0.8em;
+     font-family: Comfortaa, sans-serif;
+     text-align: center;
+ }
+</style>

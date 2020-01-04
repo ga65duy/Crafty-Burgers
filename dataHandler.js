@@ -14,8 +14,7 @@ function Data() {
 }
 
 Data.prototype.getUILabels = function (lang) {
-  var ui = require("./data/ui_" + (lang || defaultLanguage) + ".json");
-  return ui;
+  return require("./data/ui_" + (lang || defaultLanguage) + ".json");
 };
 
 /*
@@ -54,7 +53,7 @@ Data.prototype.initializeData = function() {
   this.initializeTable(ingredientsDataName);
   // Load initial stock. Make alterations in the CSV file.
   this.initializeTable(transactionsDataName);
-}
+};
 /*
   Adds an order to to the queue and makes an withdrawal from the
   stock. If you have time, you should think a bit about whether

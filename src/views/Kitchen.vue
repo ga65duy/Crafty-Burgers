@@ -18,8 +18,7 @@
         <StockInfo
           class="grid-item"
           id="itemStock"
-          v-for = "item in ingredients"
-          :item="item"
+          :ingredients="ingredients"
         >
         </StockInfo>
 

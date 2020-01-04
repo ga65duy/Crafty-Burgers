@@ -1,22 +1,18 @@
 <template>
-  <div v-if="item.stock <5" id="stocklist" >
+  <div>
     Soon out of stock:
-    <ul id="example-1">
-    <li>
-        {{item.ingredient_en}} ({{ item.stock }})
-    </li>
-    </ul> 
-  </div>
-
-  <div v-else>
-    Soon out of stock:
+    <ul>
+      <li v-for="item in ingredients" v-if="item.stock < 5">
+        {{item.ingredient_en}} ({{item.stock > 0 ? item.stock : 0}})
+      </li>
+    </ul>
   </div>
 </template>
 <script>
 export default {
   name: 'StockInfo',
   props: {
-    item: Object,
+    ingredients: Array,
   }
 }
 </script>

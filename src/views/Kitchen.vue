@@ -28,6 +28,8 @@
                 :item="ordersItemList[0]"
                 :allIngredients="ingredients"
                 :lang="lang"
+                :showingTime="new Date()"
+                :showTimer="true"
        />
 
         <OrderViewKitchen
@@ -36,6 +38,8 @@
                 :item="ordersItemList[1]"
                 :allIngredients="ingredients"
                 :lang="lang"
+                :showingTime="new Date()"
+                :showTimer="false"
         />
 
         <OrderViewKitchen
@@ -44,6 +48,8 @@
                 :item="ordersItemList[2]"
                 :allIngredients="ingredients"
                 :lang="lang"
+                :showingTime="new Date()"
+                :showTimer="false"
         />
 
         <OrderViewKitchen
@@ -52,6 +58,8 @@
                 :item="ordersItemList[3]"
                 :allIngredients="ingredients"
                 :lang="lang"
+                :showingTime="new Date()"
+                :showTimer="false"
         />
 
         <TimeAndEmp
@@ -121,6 +129,7 @@
         },
         methods: {
             next: function () {
+                console.log("Next triggered");
                 let completedItem = this.ordersItemList[0];
                 if (completedItem && completedItem.type === 'burger' ) {
                     this.$store.state.socket.emit("burgerDone", [completedItem.orderId, completedItem.id]);
@@ -129,7 +138,7 @@
                     this.$store.state.socket.emit("sidesDone", completedItem.orderId);
 
                 } else {
-                    console.log("Next clicked without an order");
+                    //console.log("Next clicked without an order");
                 }
 
             },

@@ -55,6 +55,10 @@
 
         >
         </TimeAndEmp>
+
+        <StockInfo
+        v-for = "item in ingredients">
+        </StockInfo>
     </div>
 
 <!--TODO: remove commented code-->
@@ -121,13 +125,15 @@
     import BurgerViewKitchen from "../components/BurgerViewKitchen";
     import OrderViewKitchen from "../components/OrderViewKitchen";
     import TimeAndEmp from "../components/KitchenViewEmployeeComp";
+    import StockInfo from "../components/StockInfo"
 
     export default {
         name: 'Kitchen',
         components: {
             OrderViewKitchen,
             BurgerViewKitchen,
-            TimeAndEmp
+            TimeAndEmp,
+            StockInfo
             //OrderItem,
             //OrderItemToPrepare
         },

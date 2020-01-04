@@ -7,8 +7,7 @@
   <div id="semp">Stock refiller:<br> No Employee logged in</div>
   <button id="sbtn" v-on:click="spromptFunction(); startTime()">Employee Login</button>
   <br>
-  <NextButtonKitchen
-  >
+  <NextButtonKitchen>
   </NextButtonKitchen>
   </div>
 </template>

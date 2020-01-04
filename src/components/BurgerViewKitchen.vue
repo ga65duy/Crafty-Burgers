@@ -1,5 +1,5 @@
 <template>
-    <div id="ingredientBox" v-if="burger.price>0">
+    <div v-if="burger.price>0">
         Burger ingredients: make {{burger.amount}} <br>
         <p v-if="burger.bun">
             1x {{getItemForKey(burger.bun)["ingredient_"+lang]}}<br>
@@ -30,14 +30,4 @@
 </script>
 
 <style scoped>
-#ingredientBox {
-    display: block;
-    padding: 20px;
-    width: auto;
-    border-style: solid;
-    border-color: black;
-    font-size: 2em;
-    text-align: center;
-    font-family:arial;
-}
 </style>

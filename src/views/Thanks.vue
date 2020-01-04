@@ -4,7 +4,11 @@
     <div id="againButton">
         <a href="http://localhost:8080/#/">{{uiLabels.startAgainButton}}</a>
     </div>
-    <button v-on:click="switchLang()">{{ uiLabels.language }}</button>
+    <div id="langButton">
+    <input type="image"
+       v-bind:src="uiLabels.flag"
+       v-on:click="switchLang()">
+    </div>
   </div>
 </template>
 <script>
@@ -39,49 +43,49 @@ export default {
 <style scoped>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 
-a {
-    display: block;
-    text-decoration: none;
-    color: black;
-    border: solid;
-    margin-top: 175px;
-    padding: 10px;
-    text-align: center;
-    background-color: #52cc10ff;
-    width: 600px;
-    font-size: 3em;
-    }
 #thanks {
   background-image: url("../assets/woodImage.jpg");
   width: 100%;
-  height: 100vh;
+  height: 100%;
   margin: 0px;
   border: 0px;
   padding: 0px;
   text-align: center;
+  font-family: Comfortaa, sans-serif;
 }
-
 h1 {
   text-align: center;
   display: inline-block;
-  color: #d9d9d9;
+  color: #e6e6e6;
   font-size: 5em;
   margin-top: 150px;
+  margin-bottom: 0vh;
 }
-
-button{
-  position: fixed;
-  bottom: 50px;
-  font-size: 2em;
+a {
+     display: block;
+    text-decoration: none;
+    color: black;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0 16px 0 #52cc10ff;
+    margin-top: 130px;
+    padding: 10px;
+    text-align: center;
+    background-color: #52cc10ff;
+    width: 600px;
+    font-size: 2em;
+}
+input {
+  width: 5vw;
  }
-
-#langButton a{
-  text.align: center;
-  display: inline-block;
-}
-
-#againButton{
+ #againButton{
   display: inline-block;
   text-align:center;
+  margin-bottom: 18vh;
 }
+#langButton {
+  text-align: center;
+  padding-bottom:  20px;
+}
+
 </style>

@@ -445,6 +445,7 @@
 #flag {
     width: 3vw;
     margin-left: 10px;
+    outline: none;
 }
 
 @media only screen and (max-width: 850px){

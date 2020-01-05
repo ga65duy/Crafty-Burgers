@@ -47,8 +47,11 @@ export default {
     font-family: comfortaa, sans-serif; 
     font-size: 2em;
     background-color: #e7e7e7;
-    margin: 10px auto 10px auto;
-    
+    margin: 10px auto 10px auto; 
+}
+.btn:hover {
+    cursor: pointer;
+    background: lightgrey;
 }
 input[type="checkbox"]:checked + label {
     background-color: #52cc10ff;

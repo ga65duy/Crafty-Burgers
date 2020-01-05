@@ -85,9 +85,10 @@ export default {
     font-size: 0.7em;
   }
   input {
-    background:  lightgrey;
+    background:  #b3b3b3;
     border: none;
     border-radius: 50%;
+    box-shadow: 0 0 8px 0 #8c8c8c;
     width: 2.5vw;
     height: 2.5vw;
     vertical-align: middle;
@@ -95,7 +96,10 @@ export default {
     outline: none;
     }
   input:hover {
-    background-color: #bfbfbf;
+    background-color: #8c8c8c;
+    }
+    input:active {
+    background-color: #8c8c8c;
     }
   input:disabled {
     background: #e7e7e7;

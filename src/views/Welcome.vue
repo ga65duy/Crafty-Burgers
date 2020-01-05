@@ -92,6 +92,7 @@ a {
 }
 input{
   width: 5vw;
+  outline: none;
 }
 #proceedButton{
   display: inline-block;
@@ -138,6 +139,7 @@ input{
     }
     input{
       width: 5vw;
+      outline: none;
     }
     #proceedButton{
       display: inline-block;

@@ -126,7 +126,7 @@ img, .remove{
     vertical-align: middle;
 }
 .remove {
-    background: lightgrey;
+    background: #b3b3b3;
     border: none;
     border-radius: 50%;
     width: 2vw;
@@ -135,7 +135,7 @@ img, .remove{
     font-weight: bold;
 }
 input {
-    background:  lightgrey;
+    background:  #b3b3b3;
     border: none;
     border-radius: 50%;
     width: 2.5vw;
@@ -143,9 +143,13 @@ input {
     vertical-align: middle;
     font-weight: bold;
     outline: none;
+    box-shadow: 0 0 8px 0 #8c8c8c;
 }
  input:hover {
-    background-color: #bfbfbf;
+    background-color: #8c8c8c;
+}
+ input:active {
+    background-color: #8c8c8c;
 }
  input:disabled {
     background: #e7e7e7;

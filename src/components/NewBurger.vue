@@ -196,6 +196,9 @@ export default {
     cursor: pointer;
     width: 100px;
 }
+.btn-choice:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
+}
 #btn-yes {
     background: #8FBC8F;
 }

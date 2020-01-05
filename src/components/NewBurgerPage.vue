@@ -1,40 +1,43 @@
 <template>
-    <div class="container">
-        <div class="container">
-            <BurgerView
+    <div id="mainContainer">
+        <div id="burgerParent">
+            <div id="burgerContainer">
+                <BurgerView
+                        class="burgerView"
+                        v-on:removeIngredient="removeIngredient"
+                        v-on:incrementBurger ="incrementBurger"
+                        v-on:decrementBurger="decrementBurger"
+                        :burger="currentBurger"
+                        :allIngredients="allIngredients"
+                        :addBurgerOrCheckPage="true"
+                        :ui-labels="uiLabels"
+                        :lang="lang"/>
+
+                <BurgerView
                     class="burgerView"
+                    v-for="burger in oldBurgers"
                     v-on:removeIngredient="removeIngredient"
                     v-on:incrementBurger ="incrementBurger"
                     v-on:decrementBurger="decrementBurger"
-                    :burger="currentBurger"
+                    :burger="burger"
                     :allIngredients="allIngredients"
                     :addBurgerOrCheckPage="true"
                     :ui-labels="uiLabels"
-                    :lang="lang"/>
-
-            <BurgerView
-                class="burgerView"
-                v-for="burger in oldBurgers"
-                v-on:removeIngredient="removeIngredient"
-                v-on:incrementBurger ="incrementBurger"
-                v-on:decrementBurger="decrementBurger"
-                :burger="burger"
-                :allIngredients="allIngredients"
-                :addBurgerOrCheckPage="true"
-                :ui-labels="uiLabels"
-                :lang="lang"
-                :key="burger.id"
-            >
-            </BurgerView>
+                    :lang="lang"
+                    :key="burger.id"
+                >
+                </BurgerView>
+            </div>
         </div>
-        <div class="item">
+        <div id="itemButton">
             <NewBurgerButton
+                    v-if="currentBurger.price > 0"
                     v-on:newBurger="newBurger"
                     :ui-labels="uiLabels"
                     :lang="lang"
             />
         </div>
-        <div class="item">
+        <div id="itemBill">
             <TotalBill
                 :order="order"
                 :allIngredients="allIngredients"
@@ -89,15 +92,24 @@
 </script>
 
 <style scoped>
-    .container {
+    #mainContainer {
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-evenly;
-
+        justify-content: space-between;
     }
 
-    .item {
-        flex-grow: 1;
+    #burgerContainer {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+    }
+
+    #itemButton {
+        align-self: center;
+    }
+
+    #itemBill {
+        align-self: flex-end;
     }
 </style>

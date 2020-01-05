@@ -18,16 +18,16 @@
         </section>
     
     <section class="content">
-      <section id="FoodPref">
-        <!--shows possible preferences how the food shall be filtered-->
-        <FoodPref
+        <section id="FoodPref">
+            <!--shows possible preferences how the food shall be filtered-->
+            <FoodPref
                 v-if="currentStep===0"
                 v-on:preferencesChanged="changePreferences"
                 :prefs="prefs"
                 :ui-labels="uiLabels"
                 :lang="lang">
-        </FoodPref>
-      </section>
+            </FoodPref>
+        </section>
         <div id="ing">
             <!--do not show the component in foodpreferences, drinks, sides-->
                 <BurgerView
@@ -134,23 +134,37 @@
                     :lang="lang">
             </NewBurger>
             <!--show the bill: with the amount of selected burgers, sides and drinks in step 5,6,7,8-->
+        <section id="TotalBill">
+          <div id="TotalBillSides">
             <TotalBill
-                v-if="[5,6,7,8].includes(currentStep)"
+                v-if="[5,6].includes(currentStep)"
                 :order="order"
                 :allIngredients="ingredients"
                 :ui-labels="uiLabels"
                 :lang="lang"
             >
             </TotalBill>
+          </div>
+            <TotalBill
+                v-if="[7,8].includes(currentStep)"
+                :order="order"
+                :allIngredients="ingredients"
+                :ui-labels="uiLabels"
+                :lang="lang"
+            >
+            </TotalBill>
+        </section>
         </div>
-        <PayButton
+        <section id="PayButton">
+            <PayButton
                 v-if="currentStep===8 && price > 0"
                 v-on:clickedPay="placeOrder"
                 :orderNum="orderNumber"
                 :ui-labels="uiLabels"
                 :lang="lang"
-        >
-        </PayButton>
+                >
+                </PayButton>
+      </section>
     </section>
     </div>
 </template>
@@ -432,5 +446,18 @@
     position: absolute;
     left: 33vw;
     top: 200px;
+}
+#TotalBillSides {
+    position: absolute;
+    left: 70vw;
+    bottom: 0px;
+    font-size: 0.7em;
+    overflow: auto;
+    height: 80vh;
+    width: 28vw;   
+}
+#PayButton {
+    margin-left: 180px;
+    margin-bottom: 30px;
 }
 </style>

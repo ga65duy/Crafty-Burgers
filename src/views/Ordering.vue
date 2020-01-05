@@ -1,6 +1,6 @@
 <template>
     <div id="ordering">
-        <input id="flag"
+        <input id="flag" 
             type="image"
             v-bind:src="uiLabels.flag"
             v-on:click="switchLang()">
@@ -27,11 +27,38 @@
                 :lang="lang">
         </FoodPref>
 
+        <!-- Select the patty for a burger -->
+        <BurgerBunPage
+                v-if="currentStep===4"
+                v-on:removeIngredient="removeOrder"
+                v-on:increment="addToOrder"
+                v-on:decrement="removeOrder"
+                :burger="burger"
+                :allIngredients="ingredients"
+                :relevantIngredients="relevantIngredients"
+                :relevantIngredientDict="chosenIngredientsDict"
+                :ui-labels="uiLabels"
+                :lang="lang"
+        />
+
+        <!-- Select patties, extras, and sauces for the current burger -->
+        <BurgerIngredientsPage
+                v-if="[1,2,3].includes(currentStep)"
+                v-on:removeIngredient="removeOrder"
+                v-on:increment="addToOrder"
+                v-on:decrement="removeOrder"
+                :burger="burger"
+                :allIngredients="ingredients"
+                :relevantIngredients="relevantIngredients"
+                :relevantIngredientDict="chosenIngredientsDict"
+                :ui-labels="uiLabels"
+                :lang="lang"
+            />
+
         <!-- Create a new burger and add it to the order -->
         <NewBurgerPage
                 v-if="currentStep===7"
                 v-on:newBurger="addNewBurger"
-                v-on:removeIngredient="removeOrder"
                 v-on:incrementBurger ="addFinishedBurger"
                 v-on:decrementBurger="removeFinishedBurger"
                 :ui-labels="uiLabels"
@@ -55,6 +82,22 @@
                 :ui-labels="uiLabels"
                 :lang="lang"
             />
+
+        <!--show selected burger, sides, and drinks in order overview step 8-->
+        <OrderCheckPage
+                v-if="currentStep===8"
+                v-on:increment="addToOrder"
+                v-on:decrement="removeOrder"
+                v-on:incrementBurger ="addFinishedBurger"
+                v-on:decrementBurger="removeFinishedBurger"
+                :ui-labels="uiLabels"
+                :lang="lang"
+                :chosenSidesDrinks="chosenSidesDrinks"
+                :allIngredients="ingredients"
+                :currentBurger="burger"
+                :order="order"
+                :oldBurgers="oldBurgers"
+        />
     </section>
 
     <section class="footerButtons" >
@@ -66,151 +109,39 @@
                 :price="price"
         />
     </section>
-        <div id="ing">
-            <!--do not show the component in foodpreferences, drinks, sides-->
-                <BurgerView
-                        class="burgerView"
-                        v-if="![0,5,6,7].includes(currentStep)"
-                        v-on:removeIngredient="removeOrder"
-                        v-on:incrementBurger ="addFinishedBurger"
-                        v-on:decrementBurger="removeFinishedBurger"
-                        :burger="burger"
-                        :allIngredients="ingredients"
-                        :addBurgerOrCheckPage="addBurgerOrCheckPage"
-                        :ui-labels="uiLabels"
-                        :lang="lang">
-                </BurgerView>
 
-            <!--show a list of all created burgers in step 7-->
-                <BurgerView
-                    class="burgerView"
-                    v-if="[7].includes(currentStep)"
-                    v-for="burger in oldBurgers"
-                    v-on:removeIngredient="removeOrder"
-                    v-on:incrementBurger ="addFinishedBurger"
-                    v-on:decrementBurger="removeFinishedBurger"
-                    :burger="burger"
-                    :allIngredients="ingredients"
-                    :addBurgerOrCheckPage="addBurgerOrCheckPage"
-                    :ui-labels="uiLabels"
-                    :lang="lang"
-                    :key="burger.id"
-                >
-                </BurgerView>
-
-            <!--show selected sides and drinks in order overview-->
-                <OrderOverviewSidesDrinks
-                     v-if="currentStep===8"
-                     v-on:increment="addToOrder"
-                     v-on:decrement="removeOrder"
-                     :ui-labels="uiLabels"
-                     :lang="lang"
-                     :chosenSidesDrinks="chosenSidesDrinks"
-                     :allIngredients="ingredients"
-                     :orderCheck="true"
-                >
-                </OrderOverviewSidesDrinks>
-            <!-- Other than step 4 clicking + and - is always enabled -->
-            <div v-if="currentStep !== 4" >
-              <div class="grid">
-                <!--<Ingredient-->
-                        <!--ref="ingredient"-->
-                        <!--v-for="item in relevantIngredients"-->
-                        <!--v-on:increment="addToOrder(item)"-->
-                        <!--v-on:decrement="removeOrder(item)"-->
-                        <!--:item="item"-->
-                        <!--:lang="lang"-->
-                        <!--:key="item.ingredient_id"-->
-                        <!--:disabled="false"-->
-                        <!--:plusDisabled="false"-->
-                        <!--:counter="currentRelevantIngredientDict[item.ingredient_id]"-->
-                <!--&gt;-->
-                <!--</Ingredient>-->
-              </div>
-            </div>
-            <div v-if="currentStep === 4" >
-              <div class="grid">
-                <!--Choosing a bun, allows only one bun otherwise the + and - is disabled -->
-                <!--In first case the bun box which was selected allows only to click -  -->
-                <Ingredient
-                        ref="ingredient"
-                        v-for="item in relevantIngredients"
-                        v-if="item.ingredient_id === burgerBun"
-                        v-on:increment="addToOrder(item)"
-                        v-on:decrement="removeOrder(item)"
-                        :item="item"
-                        :lang="lang"
-                        :key="item.ingredient_id"
-                        :disabled="false"
-                        :plusDisabled="true"
-                        :counter="1">
-                </Ingredient>
-                <!--In second case the bun boxes, which are NOT selected,
-                    1) and no bun is selected at all: then clicking + and - is allowed
-                    2) and a bun is selected: clicking + and - is not allowed
-                -->
-                <Ingredient
-                        ref="ingredient"
-                        v-for="item in relevantIngredients"
-                        v-if="item.ingredient_id !== burgerBun"
-                        v-on:increment="addToOrder(item)"
-                        v-on:decrement="removeOrder(item)"
-                        :item="item"
-                        :lang="lang"
-                        :key="item.ingredient_id"
-                        :disabled="Boolean(burgerBun)"
-                        :plusDisabled="Boolean(burgerBun)"
-                        :counter="0">
-                </Ingredient>
-              </div>
-          </div>
-
-            <!--&lt;!&ndash;show the bill: with the amount of selected burgers, sides and drinks in step 5,6,7,8&ndash;&gt;-->
-            <!--<TotalBill-->
-                <!--v-if="[5,6,8].includes(currentStep)"-->
-                <!--:order="order"-->
-                <!--:allIngredients="ingredients"-->
-                <!--:ui-labels="uiLabels"-->
-                <!--:lang="lang"-->
-            <!--&gt;-->
-            <!--</TotalBill>-->
-
-        </div>
     </div>
 </template>
 <script>
 
+    //import methods and data that are shared between ordering and kitchen views
+    import sharedVueStuff from '@/components/sharedVueStuff.js'
+
     //import the components that are used in the template, the name that you
     //use for importing will be used in the template above and also below in
     //components
-    import Ingredient from '@/components/Ingredient.vue'
-    import OrderItem from '@/components/OrderItem.vue'
     import FoodPref from '@/components/FoodPref.vue'
-    import BurgerView from '@/components/BurgerView.vue'
-    //import methods and data that are shared between ordering and kitchen views
-    import sharedVueStuff from '@/components/sharedVueStuff.js'
     import NavButtons from "../components/NavButtons.vue";
-    import OrderOverviewSidesDrinks from "../components/OrderOverviewSidesDrinks.vue";
-    import TotalBill from "../components/TotalBill.vue";
     import NewBurgerPage from "../components/NewBurgerPage";
     import SidesAndDrinksPage from "../components/SidesAndDrinksPage";
     import CancelAndPayButton from "../components/CancelAndPayButton";
+    import OrderCheckPage from "../components/OrderCheckPage";
+    import BurgerIngredientsPage from "../components/BurgerIngredientsPage";
+    import BurgerBunPage from "../components/BurgerBunPage";
 
     /* instead of defining a Vue instance, export default allows the only
     necessary Vue instance (found in main.js) to import your data and methods */
     export default {
         name: 'Ordering',
         components: {
+            BurgerBunPage,
+            BurgerIngredientsPage,
             CancelAndPayButton,
-            TotalBill,
-            OrderOverviewSidesDrinks,
             NavButtons,
-            Ingredient,
-            OrderItem,
             FoodPref,
             NewBurgerPage,
             SidesAndDrinksPage,
-            BurgerView,
+            OrderCheckPage,
         },
         mixins: [sharedVueStuff], // include stuff that is used in both
                                   // the ordering system and the kitchen

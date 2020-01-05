@@ -70,7 +70,7 @@ export default {
 
 <style scoped>
 #priceTable {
-    font-size: 1.5em;
+    font-size: 1.2em;
     display: block;
     text-align: center;
     font-family: comfortaa, sans-serif;
@@ -78,7 +78,6 @@ export default {
 table {
     border-collapse: collapse;
     text-align: center;
-    width: 200%;
 }
 th {
     padding: 10px;

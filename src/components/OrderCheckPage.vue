@@ -132,6 +132,7 @@
     }
 
     #itemBill {
+        flex-grow: 2;
         align-self: flex-end;
     }
 
@@ -146,7 +147,7 @@
         border-color: black;
         font-size: 2em;
         text-align: center;
-        font-family:arial;
+        font-family:arial, sans-serif;;
     }
 
     #image {
@@ -166,7 +167,7 @@
             border-color: grey;
             font-size: 1.4em;
             text-align: center;
-            font-family:arial;
+            font-family:arial, sans-serif;;
         }
         #image {
             width:250px;

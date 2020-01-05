@@ -77,7 +77,7 @@
         height: auto;
         font-size: 2em;
         text-align: center;
-        font-family:arial;
+        font-family:arial, sans-serif;;
         overflow: auto;
     }
 </style>

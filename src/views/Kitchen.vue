@@ -216,7 +216,7 @@
         height: auto;
         font-size: 2em;
         text-align: center;
-        font-family:arial;
+        font-family:arial, sans-serif;;
 
         border-left: 1px solid lightslategrey;
         border-bottom: 1px solid lightslategrey;

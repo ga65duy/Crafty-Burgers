@@ -30,7 +30,7 @@
         </section>
         <div id="ing">
           
-          <div class="overview" v-if="[7,8].includes(currentStep)">
+          <div id="overview">
             <!--show a list of all created burgers in step 7-->
                 <BurgerView
                     class="burgerView"
@@ -139,7 +139,6 @@
             </NewBurger>
             <!--show the bill: with the amount of selected burgers, sides and drinks in step 5,6,7,8-->
         <section id="TotalBill">
-          <div id="TotalBillSides">
             <TotalBill
                 v-if="[5,6,7,8].includes(currentStep)"
                 :order="order"
@@ -148,7 +147,6 @@
                 :lang="lang"
             >
             </TotalBill>
-          </div>
         </section>
         </div>
         <section id="PayButton">
@@ -455,10 +453,9 @@
     margin-left: 180px;
     margin-bottom: 30px;
 }
-.overview  {
+#overview  {
     display: grid;
     grid-template-columns: 25vw 25vw 25vw;
     grid-column-gap: 5px;
-    background: black;
 }
 </style>

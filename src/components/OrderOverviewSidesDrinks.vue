@@ -1,5 +1,5 @@
 <template>
-    <div class="grid">
+    <div>
         <Ingredient
                 v-for="(count, key) in chosenSidesDrinks"
                 v-on:increment="incrementCounter(key)"

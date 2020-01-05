@@ -4,7 +4,6 @@
             <div id="burgerContainer">
                 <BurgerView
                         class="burgerView"
-                        v-on:removeIngredient="removeIngredient"
                         v-on:incrementBurger ="incrementBurger"
                         v-on:decrementBurger="decrementBurger"
                         :burger="currentBurger"
@@ -16,7 +15,6 @@
                 <BurgerView
                     class="burgerView"
                     v-for="burger in oldBurgers"
-                    v-on:removeIngredient="removeIngredient"
                     v-on:incrementBurger ="incrementBurger"
                     v-on:decrementBurger="decrementBurger"
                     :burger="burger"
@@ -25,8 +23,7 @@
                     :ui-labels="uiLabels"
                     :lang="lang"
                     :key="burger.id"
-                >
-                </BurgerView>
+                />
             </div>
         </div>
         <div id="itemButton">
@@ -70,10 +67,6 @@
         methods: {
             // Pass on all messages to the main component
 
-            removeIngredient: function(item) {
-                this.$emit('removeIngredient', item);
-            },
-
             //add burgers by clicking +
             incrementBurger: function (burgerId) {
                 this.$emit('incrementBurger', burgerId);
@@ -87,7 +80,7 @@
             newBurger: function() {
                 this.$emit('newBurger');
             }
-            }
+        }
     }
 </script>
 

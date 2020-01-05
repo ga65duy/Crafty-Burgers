@@ -60,4 +60,7 @@ button {
 #Preferences {
     width: 190px;
 }
+#Preferenser {
+    width: 190px;
+}
 </style>

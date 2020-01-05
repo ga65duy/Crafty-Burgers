@@ -4,6 +4,7 @@
             type="image"
             v-bind:src="uiLabels.flag"
             v-on:click="switchLang()">
+
         <section id="NavButtons">
             <!--shows the buttons to navigate to different food categories-->
             <NavButtons id="tabbar"
@@ -18,6 +19,16 @@
         </section>
     
     <section class="content">
+        <!--shows possible preferences how the food shall be filtered-->
+        <FoodPref
+                v-if="currentStep===0"
+                v-on:preferencesChanged="changePreferences"
+                :prefs="prefs"
+                :ui-labels="uiLabels"
+                :lang="lang">
+        </FoodPref>
+
+        <!-- Create a new burger and add it to the order -->
         <NewBurgerPage
                 v-if="currentStep===7"
                 v-on:newBurger="addNewBurger"
@@ -33,14 +44,20 @@
 
         />
 
-        <!--shows possible preferences how the food shall be filtered-->
-        <FoodPref
-                v-if="currentStep===0"
-                v-on:preferencesChanged="changePreferences"
-                :prefs="prefs"
+        <!-- Add sides and drinks to an order -->
+        <SidesAndDrinksPage
+                v-if="currentStep===5 || currentStep===6"
+                :order="order"
+                :allIngredients="ingredients"
+                :relevantIngredients="relevantIngredients"
+                :relevantIngredientDict="chosenSidesDrinks"
+                v-on:increment="addToOrder"
+                v-on:decrement="removeOrder"
                 :ui-labels="uiLabels"
-                :lang="lang">
-        </FoodPref>
+                :lang="lang"
+            />
+
+
         <div id="ing">
             <!--do not show the component in foodpreferences, drinks, sides-->
                 <BurgerView
@@ -88,19 +105,19 @@
             <!-- Other than step 4 clicking + and - is always enabled -->
             <div v-if="currentStep !== 4" >
               <div class="grid">
-                <Ingredient
-                        ref="ingredient"
-                        v-for="item in relevantIngredients"
-                        v-on:increment="addToOrder(item)"
-                        v-on:decrement="removeOrder(item)"
-                        :item="item"
-                        :lang="lang"
-                        :key="item.ingredient_id"
-                        :disabled="false"
-                        :plusDisabled="false"
-                        :counter="currentRelevantIngredientDict[item.ingredient_id]"
-                >
-                </Ingredient>
+                <!--<Ingredient-->
+                        <!--ref="ingredient"-->
+                        <!--v-for="item in relevantIngredients"-->
+                        <!--v-on:increment="addToOrder(item)"-->
+                        <!--v-on:decrement="removeOrder(item)"-->
+                        <!--:item="item"-->
+                        <!--:lang="lang"-->
+                        <!--:key="item.ingredient_id"-->
+                        <!--:disabled="false"-->
+                        <!--:plusDisabled="false"-->
+                        <!--:counter="currentRelevantIngredientDict[item.ingredient_id]"-->
+                <!--&gt;-->
+                <!--</Ingredient>-->
               </div>
             </div>
             <div v-if="currentStep === 4" >
@@ -140,18 +157,15 @@
               </div>
           </div>
 
-            <!-- Create a new burger and add it to the order -->
-
-
-            <!--show the bill: with the amount of selected burgers, sides and drinks in step 5,6,7,8-->
-            <TotalBill
-                v-if="[5,6,8].includes(currentStep)"
-                :order="order"
-                :allIngredients="ingredients"
-                :ui-labels="uiLabels"
-                :lang="lang"
-            >
-            </TotalBill>
+            <!--&lt;!&ndash;show the bill: with the amount of selected burgers, sides and drinks in step 5,6,7,8&ndash;&gt;-->
+            <!--<TotalBill-->
+                <!--v-if="[5,6,8].includes(currentStep)"-->
+                <!--:order="order"-->
+                <!--:allIngredients="ingredients"-->
+                <!--:ui-labels="uiLabels"-->
+                <!--:lang="lang"-->
+            <!--&gt;-->
+            <!--</TotalBill>-->
             <cancelButton
                 :ui-labels="uiLabels"
                 :lang="lang"
@@ -188,6 +202,7 @@
     import PayButton from '@/components/Pay.vue';
     import CancelButton from '@/components/CancelButton.vue';
     import NewBurgerPage from "../components/NewBurgerPage";
+    import SidesAndDrinksPage from "../components/SidesAndDrinksPage";
 
     /* instead of defining a Vue instance, export default allows the only
     necessary Vue instance (found in main.js) to import your data and methods */
@@ -201,6 +216,7 @@
             OrderItem,
             FoodPref,
             NewBurgerPage,
+            SidesAndDrinksPage,
             BurgerView,
             PayButton,
             CancelButton

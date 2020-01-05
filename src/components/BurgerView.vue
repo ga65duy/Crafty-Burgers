@@ -2,21 +2,27 @@
 <div class="burgerpre">
 	<!-- Show the top bun -->
 	<div v-if="Boolean(burger.bun)">
-        <img :src="getImgUrl(bunItem.image_path)">
+        <img :src="getImgUrl(bunItem.image_path)"/>
         <input class="remove"
-          type="image"
-          src="https://image.flaticon.com/icons/svg/149/149147.svg"
-          v-if="addBurgerOrCheckPage===false"
-          v-on:click="removeIngredient(bunItem)">
+               type="image"
+               src="https://image.flaticon.com/icons/svg/149/149147.svg"
+               v-if="addBurgerOrCheckPage===false"
+               v-on:click="removeIngredient(bunItem)"
+        />
 	</div>
+
 	<!-- Show the burger ingredients -->
 	<div v-for="item in ingredientItemList">
-        <img :src="getImgUrl(item.image_path)" v-bind:alt="item.image_path" id="image">
+        <img id="image"
+             :src="getImgUrl(item.image_path)"
+             v-bind:alt="item.image_path"
+        />
         <input class="remove"
-          type="image"
-          src="https://image.flaticon.com/icons/svg/149/149147.svg"
-          v-if="addBurgerOrCheckPage===false"
-          v-on:click="removeIngredient(item)">
+               type="image"
+               src="https://image.flaticon.com/icons/svg/149/149147.svg"
+               v-if="addBurgerOrCheckPage===false"
+               v-on:click="removeIngredient(item)"
+        />
 		<br>
 	</div>
 
@@ -24,18 +30,34 @@
 	<div v-if="Boolean(burger.bun)">
 		<img id="bunFlipped" :src="getImgUrl(bunItem.image_path)" v-bind:alt="bunItem.image_path">
 	</div>
+
+    <!-- Show name and price of burger -->
 	<p id="total"> {{name}}:
     <span id="price"> {{burger.price * burger.amount}} kr </span>
     </p>
+
+    <!-- If the burger view is used in the addBurger or checkOrder pages a counter is shown to change the number of burgers -->
 	<div v-if="addBurgerOrCheckPage" id="counter">
+        <!-- Minus button -->
 		<input type="image"
-          src="https://image.flaticon.com/icons/svg/149/149146.svg" class="button-minus" data-field="quantity" v-on:click="decrementBurger()"
-          :disabled="burger.amount === 0">
-		<span id="amount"> {{burger.amount}} </span>
-		<input  type="image"
-          src="https://image.flaticon.com/icons/svg/149/149145.svg"
-          class="button-plus" data-field="quantity"
-          v-on:click="incrementBurger()">
+               src="https://image.flaticon.com/icons/svg/149/149146.svg"
+               class="button-minus"
+               data-field="quantity"
+               v-on:click="decrementBurger()"
+               :disabled="burger.amount === 0"
+        />
+
+		<span id="amount">
+            {{burger.amount}}
+        </span>
+
+        <!-- Plus button -->
+		<input type="image"
+               src="https://image.flaticon.com/icons/svg/149/149145.svg"
+               class="button-plus"
+               data-field="quantity"
+               v-on:click="incrementBurger()"
+        />
 	</div>
 </div>
 </template>

@@ -54,11 +54,13 @@
       </div>
     </div>
  </transition>
+<!-- End of warning message -->
 
 <!--button -->
     <label>
       <button id="newBurgerButton"
       @click="isOpen = !isOpen">
+
 <!-- Insert new Burger picture here       <img id="newBurgerImage" src="@/assets/NewBurger.jpg" width=80%>-->
        <p id="newBurgerText">{{uiLabels.newBurger}}</p>
      </button>

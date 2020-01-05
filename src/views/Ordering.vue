@@ -29,7 +29,7 @@
             </FoodPref>
         </section>
         <div id="ing">
-          
+
           <div class="overview">
             <!--show a list of all created burgers in step 7-->
                 <BurgerView
@@ -47,7 +47,7 @@
                     :key="burger.id"
                 >
                 </BurgerView>
-                
+
                 <!--do not show the component in foodpreferences, drinks, sides-->
                 <BurgerView
                         class="burgerView"
@@ -74,9 +74,9 @@
                      :allIngredients="ingredients"
                      :orderCheck="true"
                 >
-                </OrderOverviewSidesDrinks>  
+                </OrderOverviewSidesDrinks>
         </div>
-        
+
             <!-- Other than step 4 clicking + and - is always enabled -->
             <div v-if="currentStep !== 4" >
               <div class="grid">
@@ -161,12 +161,11 @@
             <PayButton
                 v-if="currentStep===8 && price > 0"
                 v-on:clickedPay="placeOrder"
-                :orderNum="orderNumber"
                 :ui-labels="uiLabels"
                 :lang="lang"
                 >
                 </PayButton>
-      </section>      
+      </section>
     </section>
     </div>
 </template>
@@ -417,8 +416,8 @@
 }
 #tabbar {
      display: inline-block;
-     width: auto; 
-        
+     width: auto;
+
 }
 .burgerView {
     grid-gap: 2em;
@@ -496,7 +495,7 @@
     bottom: 180px;
     font-size: 0.7em;
     overflow: auto;
-    height: 50vh; 
+    height: 50vh;
 }
 #PayButton {
     margin-left: 180px;

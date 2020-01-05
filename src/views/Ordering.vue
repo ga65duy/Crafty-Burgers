@@ -449,12 +449,11 @@
 }
 #TotalBillSides {
     position: absolute;
-    left: 70vw;
+    left: 74vw;
     bottom: 0px;
     font-size: 0.7em;
     overflow: auto;
-    height: 80vh;
-    width: 28vw;   
+    height: 80vh; 
 }
 #PayButton {
     margin-left: 180px;

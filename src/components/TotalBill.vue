@@ -70,17 +70,19 @@ export default {
 
 <style scoped>
 #priceTable {
-    font-size: 1.2em;
+    font-size: 1.1em;
     display: block;
     text-align: center;
     font-family: comfortaa, sans-serif;
+    margin-left: 5px;
 }
 table {
     border-collapse: collapse;
     text-align: center;
+    width: 24vw;
 }
 th {
-    padding: 10px;
+    padding: 5px;
      border-bottom: 2px solid grey;
 }
 td {
@@ -88,11 +90,11 @@ td {
     border-bottom: 1px solid lightgrey;
 }
 #total td {
-    padding: 10px;
+    padding: 5px;
     padding-top: 20px;
     border-top: 3px solid grey;
     border-bottom: none;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
 }
 </style>

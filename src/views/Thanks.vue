@@ -127,7 +127,7 @@ input {
         #againButton{
         display: inline-block;
         text-align:center;
-        margin-bottom: 18vh;
+        margin-bottom: 15vh;
         }
         #langButton {
         text-align: center;

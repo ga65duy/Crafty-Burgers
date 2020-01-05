@@ -120,7 +120,7 @@ export default {
           background: #e7e7e7;
       }
       #image {
-          width: 90%;
+          width: 80%;
           padding: 10px;
       }
       #name {

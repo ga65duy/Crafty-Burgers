@@ -432,4 +432,43 @@
     width: 3vw;
     margin-left: 20px;
 }
+
+@media only screen and (max-width: 850px){
+        #ing {
+                display: grid;
+                grid-gap: 3em;
+                grid-template-columns: 20% 40%;
+            }
+
+            #tabbar {
+                display: inline-block;
+                width: auto; 
+            }
+        .burgerView {
+                grid-gap: 2em;
+                grid-template-columns: 20em 20em;
+                margin-top: 10px;
+                padding: 20px;
+                width: 18vw;
+                height: 55vh;
+                border: 1.5px solid grey;
+                display: block;
+                overflow: auto;
+            }
+        .grid {
+            display: grid;
+            grid-column-gap: 1.6em;
+            grid-row-gap: 1em;
+            grid-template-columns: 20vw 20vw 20vw;
+            margin-left: 5px;
+            margin-top: 10px;
+            height: 75vh;
+            width: 70vw;
+            overflow: auto;
+        }
+        #flag {
+            width: 3vw;
+            margin-left: 20px;
+        }
+}
 </style>

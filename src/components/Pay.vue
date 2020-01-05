@@ -1,7 +1,10 @@
 <template>
     <div v-on:click="clickedPay()">
     <a href="http://localhost:8080/#/thankyou">
-      <button type="submit" v-on:click="clickedPay()">
+      <button type="submit"
+              v-on:click="clickedPay()"
+              :disabled="disabled"
+      >
         {{uiLabels.pay}}
         <img src="https://image.flaticon.com/icons/svg/1411/1411444.svg">
         </button>
@@ -14,7 +17,8 @@
         name: "PayButton",
         props: {
             uiLabels: Object,
-            lang: String
+            lang: String,
+            disabled: Boolean
         },
         data: function () {
             return {
@@ -40,6 +44,13 @@ button {
     padding: 2vh 3vw 2vh 3vw;
     width: 20vw;
 }
+
+button:disabled {
+    background: rgba(0,0,0,0.24);
+    box-shadow: none;
+    pointer-events: none;
+}
+
 button:hover {
     cursor: pointer;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);

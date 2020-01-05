@@ -83,9 +83,6 @@ export default {
 
 <style scoped>
   #cancelButton {
-    position: absolute;
-    bottom: 1px;
-    left: 40%;
     background-color: #F08080;
     border-radius: 10px;
     border: 2px solid grey;
@@ -93,7 +90,7 @@ export default {
     padding-right: 20px;
     width: 200px;
     height: 40px;
-    text-align: center,middle;
+    text-align: center;
 }
 #cancelButton:hover {
     cursor: pointer;

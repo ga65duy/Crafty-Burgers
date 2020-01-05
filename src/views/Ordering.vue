@@ -8,7 +8,6 @@
         <section id="NavButtons">
             <!--shows the buttons to navigate to different food categories-->
             <NavButtons id="tabbar"
-                        ref="navigation"
                         v-for="s in steps"
                         v-bind:step="s"
                         v-on:selected="changeStep"
@@ -56,8 +55,17 @@
                 :ui-labels="uiLabels"
                 :lang="lang"
             />
+    </section>
 
-
+    <section class="footerButtons" >
+        <CancelAndPayButton
+                :currentStep="currentStep"
+                :lang="lang"
+                :ui-labels="uiLabels"
+                v-on:clickedPay="placeOrder"
+                :price="price"
+        />
+    </section>
         <div id="ing">
             <!--do not show the component in foodpreferences, drinks, sides-->
                 <BurgerView
@@ -166,23 +174,8 @@
                 <!--:lang="lang"-->
             <!--&gt;-->
             <!--</TotalBill>-->
-            <cancelButton
-                :ui-labels="uiLabels"
-                :lang="lang"
-            >
-            </cancelButton>
-        </div>
-        <PayButton
-                v-if="currentStep===8 && price > 0"
-                v-on:clickedPay="placeOrder"
-                :orderNum="orderNumber"
-                :ui-labels="uiLabels"
-                :lang="lang"
-        >
-        </PayButton>
-        
 
-    </section>
+        </div>
     </div>
 </template>
 <script>
@@ -199,16 +192,16 @@
     import NavButtons from "../components/NavButtons.vue";
     import OrderOverviewSidesDrinks from "../components/OrderOverviewSidesDrinks.vue";
     import TotalBill from "../components/TotalBill.vue";
-    import PayButton from '@/components/Pay.vue';
-    import CancelButton from '@/components/CancelButton.vue';
     import NewBurgerPage from "../components/NewBurgerPage";
     import SidesAndDrinksPage from "../components/SidesAndDrinksPage";
+    import CancelAndPayButton from "../components/CancelAndPayButton";
 
     /* instead of defining a Vue instance, export default allows the only
     necessary Vue instance (found in main.js) to import your data and methods */
     export default {
         name: 'Ordering',
         components: {
+            CancelAndPayButton,
             TotalBill,
             OrderOverviewSidesDrinks,
             NavButtons,
@@ -218,8 +211,6 @@
             NewBurgerPage,
             SidesAndDrinksPage,
             BurgerView,
-            PayButton,
-            CancelButton
         },
         mixins: [sharedVueStuff], // include stuff that is used in both
                                   // the ordering system and the kitchen
@@ -268,6 +259,7 @@
             currentBurgerNumber: function() {
                 return this.oldBurgers.length + 1
             },
+
             order: function() {
                 // Wrap sides and burgers in order object
                 return {currentBurger: this.burger,

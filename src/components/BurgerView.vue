@@ -128,9 +128,11 @@ export default {
 
 </script>
 <style scoped>
+
 #bunFlipped {
 	transform: scaleY(-1);
 }
+
 .burgerpre {
 	display: block;
     font-family: comfortaa, sans-serif;
@@ -140,6 +142,11 @@ export default {
     border-radius: 3px;
     color: darkslategrey;
     background: #e7e7e7;
+	margin-top: 20px;
+	width: 22vw;
+	height: 68vh;
+	border: 1.5px solid grey;
+	overflow: auto;
 }
 img {
 	width:16vw;

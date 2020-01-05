@@ -29,7 +29,7 @@
                 <td>Total</td>
                 <td></td>
                 <td></td>
-                <td>{{getTotal()}} kr</td>
+                <td>{{getTotal()}}kr</td>
             </tr>
         </table>
 
@@ -78,7 +78,7 @@ export default {
 table {
     border-collapse: collapse;
     text-align: center;
-    width: 200%;
+    width: auto;
 }
 th {
     padding: 10px;

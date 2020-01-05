@@ -18,6 +18,21 @@
         </section>
     
     <section class="content">
+        <NewBurgerPage
+                v-if="currentStep===7"
+                v-on:newBurger="addNewBurger"
+                v-on:removeIngredient="removeOrder"
+                v-on:incrementBurger ="addFinishedBurger"
+                v-on:decrementBurger="removeFinishedBurger"
+                :ui-labels="uiLabels"
+                :lang="lang"
+                :currentBurger="burger"
+                :oldBurgers="oldBurgers"
+                :order="order"
+                :allIngredients="ingredients"
+
+        />
+
         <!--shows possible preferences how the food shall be filtered-->
         <FoodPref
                 v-if="currentStep===0"
@@ -30,7 +45,7 @@
             <!--do not show the component in foodpreferences, drinks, sides-->
                 <BurgerView
                         class="burgerView"
-                        v-if="![0,5,6].includes(currentStep)"
+                        v-if="![0,5,6,7].includes(currentStep)"
                         v-on:removeIngredient="removeOrder"
                         v-on:incrementBurger ="addFinishedBurger"
                         v-on:decrementBurger="removeFinishedBurger"
@@ -44,7 +59,7 @@
             <!--show a list of all created burgers in step 7-->
                 <BurgerView
                     class="burgerView"
-                    v-if="[7,8].includes(currentStep)"
+                    v-if="[7].includes(currentStep)"
                     v-for="burger in oldBurgers"
                     v-on:removeIngredient="removeOrder"
                     v-on:incrementBurger ="addFinishedBurger"
@@ -124,16 +139,13 @@
                 </Ingredient>
               </div>
           </div>
+
             <!-- Create a new burger and add it to the order -->
-            <NewBurger
-                    v-if="currentStep===7 && burgerPrice > 0"
-                    v-on:newBurger="addNewBurger"
-                    :ui-labels="uiLabels"
-                    :lang="lang">
-            </NewBurger>
+
+
             <!--show the bill: with the amount of selected burgers, sides and drinks in step 5,6,7,8-->
             <TotalBill
-                v-if="[5,6,7,8].includes(currentStep)"
+                v-if="[5,6,8].includes(currentStep)"
                 :order="order"
                 :allIngredients="ingredients"
                 :ui-labels="uiLabels"
@@ -167,7 +179,6 @@
     import Ingredient from '@/components/Ingredient.vue'
     import OrderItem from '@/components/OrderItem.vue'
     import FoodPref from '@/components/FoodPref.vue'
-    import NewBurger from '@/components/NewBurger.vue'
     import BurgerView from '@/components/BurgerView.vue'
     //import methods and data that are shared between ordering and kitchen views
     import sharedVueStuff from '@/components/sharedVueStuff.js'
@@ -176,6 +187,7 @@
     import TotalBill from "../components/TotalBill.vue";
     import PayButton from '@/components/Pay.vue';
     import CancelButton from '@/components/CancelButton.vue';
+    import NewBurgerPage from "../components/NewBurgerPage";
 
     /* instead of defining a Vue instance, export default allows the only
     necessary Vue instance (found in main.js) to import your data and methods */
@@ -188,7 +200,7 @@
             Ingredient,
             OrderItem,
             FoodPref,
-            NewBurger,
+            NewBurgerPage,
             BurgerView,
             PayButton,
             CancelButton

@@ -47,8 +47,15 @@ export default {
     font-family: comfortaa, sans-serif; 
     font-size: 2em;
     background-color: #e7e7e7;
+    margin: 10px auto 10px auto;
+    
 }
 input[type="checkbox"]:checked + label {
-    background-color: rgb(64, 165, 0);
+    background-color: #52cc10ff;
+}
+
+.preferences{
+  text-align: center;
+  padding-top: 50px
 }
 </style>

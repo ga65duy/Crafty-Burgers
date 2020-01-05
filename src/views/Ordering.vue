@@ -27,6 +27,20 @@
                 :lang="lang">
         </FoodPref>
 
+        <!-- Select patties, extras, and sauces for the current burger -->
+        <BurgerIngredientsPage
+                v-if="[1,2,3].includes(currentStep)"
+                v-on:removeIngredient="removeOrder"
+                v-on:increment="addToOrder"
+                v-on:decrement="removeOrder"
+                :burger="burger"
+                :allIngredients="ingredients"
+                :relevantIngredients="relevantIngredients"
+                :relevantIngredientDict="chosenIngredientsDict"
+                :ui-labels="uiLabels"
+                :lang="lang"
+            />
+
         <!-- Create a new burger and add it to the order -->
         <NewBurgerPage
                 v-if="currentStep===7"
@@ -72,7 +86,7 @@
         />
     </section>
 
-        <section class="footerButtons" >
+    <section class="footerButtons" >
         <CancelAndPayButton
                 :currentStep="currentStep"
                 :lang="lang"
@@ -112,7 +126,7 @@
                     :key="burger.id"
                 >
                 </BurgerView>
-                
+
 
 
             <!-- Other than step 4 clicking + and - is always enabled -->
@@ -201,12 +215,14 @@
     import SidesAndDrinksPage from "../components/SidesAndDrinksPage";
     import CancelAndPayButton from "../components/CancelAndPayButton";
     import OrderCheckPage from "../components/OrderCheckPage";
+    import BurgerIngredientsPage from "../components/BurgerIngredientsPage";
 
     /* instead of defining a Vue instance, export default allows the only
     necessary Vue instance (found in main.js) to import your data and methods */
     export default {
         name: 'Ordering',
         components: {
+            BurgerIngredientsPage,
             CancelAndPayButton,
             TotalBill,
             OrderOverviewSidesDrinks,

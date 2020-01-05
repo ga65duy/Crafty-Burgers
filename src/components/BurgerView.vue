@@ -171,4 +171,72 @@ input {
     margin-left: 2.5vw;
     font-size: 0.8em;
 }
+
+@media only screen and (max-width: 850px){
+		#bunFlipped {
+			transform: scaleY(-1);
+		}
+		.burgerpre {
+			display: block;
+			font-family: comfortaa, sans-serif;
+			font-size: 1.5em;
+			margin-left: 10px;
+			padding: 20px;
+			border-radius: 3px;
+			color: darkslategrey;
+			background: #e7e7e7;
+		}
+		img {
+			width:14vw;
+		}
+		img, .remove{
+			vertical-align: middle;
+		}
+		.remove {
+			background: lightgrey;
+			border: none;
+			border-radius: 50%;
+			width: 2vw;
+			height: 2vw;
+			vertical-align: middle;
+			font-weight: bold;
+		}
+		input {
+			background:  lightgrey;
+			border: none;
+			border-radius: 50%;
+			width: 2.5vw;
+			height: 2.5vw;
+			vertical-align: middle;
+			font-weight: bold;
+			outline: none;
+		}
+		input:hover {
+			background-color: #bfbfbf;
+		}
+		input:disabled {
+			background: #e7e7e7;
+			box-shadow: none;
+		}
+		#total {
+			padding-top: 20px;
+			font-size: 0.8em;
+			margin-bottom: 30px;
+			text-align: center;
+		}
+		#price {
+			margin-left: 15px;
+			font-weight: bold;
+		}
+		#counter {
+			text-align: center;
+			padding-top: 15px;
+			border-top: 1px solid grey;
+		}
+		#amount {
+			margin-right: 2.5vw;
+			margin-left: 2.5vw;
+			font-size: 0.8em;
+		}
+}
 </style>

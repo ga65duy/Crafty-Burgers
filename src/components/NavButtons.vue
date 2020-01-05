@@ -63,4 +63,34 @@ button {
 #Preferenser {
     width: 190px;
 }
+
+@media only screen and (max-width: 850px){
+            button {
+            margin: 0.1em;
+            margin-right: 5px;
+            width: auto;
+            height: 30px;
+            padding: 5px;
+            text-align: center;
+            vertical-align: middle;
+            border: 1px solid grey;
+            border-radius: 20px;
+            background-color: #e7e7e7;
+            font-family: Comfortaa, sans-serif;
+            font-size: 1.1em;
+            color: darkslategrey;
+        }
+        .buttonSelected {
+            background-color: #52cc10ff;
+            box-shadow: 0 0 8px 0 #52cc10ff;
+            border: 1px solid #5cd65c;
+            outline: none;
+        }
+        #Preferences {
+            width: 130px;
+        }
+        #Preferenser {
+            width: 130px;
+        }
+}
 </style>

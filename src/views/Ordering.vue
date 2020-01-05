@@ -132,12 +132,14 @@
               </div>
           </div>
             <!-- Create a new burger and add it to the order -->
+        <section id="NewBurger">
             <NewBurger
                     v-if="currentStep===7 && burgerPrice > 0"
                     v-on:newBurger="addNewBurger"
                     :ui-labels="uiLabels"
                     :lang="lang">
             </NewBurger>
+        </section>
             <!--show the bill: with the amount of selected burgers, sides and drinks in step 5,6,7,8-->
         <section id="TotalBill">
             <TotalBill
@@ -148,15 +150,12 @@
                 :lang="lang"
             >
             </TotalBill>
-<<<<<<< HEAD
         </section>
-=======
             <cancelButton
                 :ui-labels="uiLabels"
                 :lang="lang"
             >
             </cancelButton>
->>>>>>> master
         </div>
         <section id="PayButton">
             <PayButton
@@ -165,16 +164,9 @@
                 :orderNum="orderNumber"
                 :ui-labels="uiLabels"
                 :lang="lang"
-<<<<<<< HEAD
                 >
                 </PayButton>
-      </section>
-=======
-        >
-        </PayButton>
-        
-
->>>>>>> master
+      </section>      
     </section>
     </div>
 </template>
@@ -434,7 +426,7 @@
     margin-top: 20px;
     padding: 20px;
     width: 22vw;
-    height: 68vh;
+    height: 63vh;
     border: 1.5px solid grey;
     display: block;
     overflow: auto;
@@ -446,13 +438,13 @@
     grid-template-columns: 20vw 20vw 20vw;
     margin-left: 30px;
     margin-top: 20px;
-    height: 75vh;
+    height: 70vh;
     width: 70vw;
     overflow: auto;
 }
 #flag {
     width: 3vw;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 @media only screen and (max-width: 850px){
@@ -500,15 +492,20 @@
 }
 #TotalBill {
     position: absolute;
-    left: 74vw;
-    bottom: 0px;
+    left: 73vw;
+    bottom: 180px;
     font-size: 0.7em;
     overflow: auto;
-    height: 80vh; 
+    height: 52vh; 
 }
 #PayButton {
     margin-left: 180px;
     margin-bottom: 30px;
+}
+#NewBurger {
+    position: absolute;
+    left: 75vw;
+    bottom: 100px;
 }
 
 </style>

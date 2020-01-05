@@ -94,6 +94,7 @@ export default {
     padding-left: 20px;
     padding-right: 20px;
     width: 20vw;
+    height: 20vh;
 }
 #newBurgerButton:hover {
     cursor: pointer;

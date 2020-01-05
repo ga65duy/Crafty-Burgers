@@ -84,7 +84,7 @@ export default {
 <style scoped>
   #cancelButton {
     position: absolute;
-    bottom: 1px;
+    bottom: 5px;
     left: 40%;
     background-color: #F08080;
     border-radius: 10px;

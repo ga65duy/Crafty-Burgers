@@ -45,5 +45,8 @@
   "item": "Item",
   "price": "Price",
   "amount": "Amount",
-  "flag": "https://image.flaticon.com/icons/svg/206/206668.svg"
+  "flag": "https://image.flaticon.com/icons/svg/206/206668.svg",
+  "cancelWarning": "Do you want to cancel your entire order?",
+  "cancelText": "This action cannot be undone.",
+  "cancelButtonText": "Cancel"
 }

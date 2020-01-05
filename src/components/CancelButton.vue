@@ -1,5 +1,5 @@
 <template>
-  <div class="newBurger">
+  <div class="cancelButton">
 
 <!--warning message -->
   <transition name="modal">
@@ -10,7 +10,7 @@
            
            <header class="modal-header">
               <slot name="header">
-                <p class = "text"> {{uiLabels.warningHeader}} </p>
+                <p class = "text"> {{uiLabels.cancelWarning}} </p>
                   <button
                     type="button"
                     class="btn-close"
@@ -23,9 +23,7 @@
            <section class="modal-body">
               <slot name="body">
                 <p class = "text">
-                    <span class="bold"> {{uiLabels.warningBodyBold1}} </span>
-                    {{uiLabels.warningBody}}
-                    <span class="bold"> {{uiLabels.warningBodyBold2}} </span>
+                    {{uiLabels.cancelText}}
                 </p>
               </slot>
             </section>
@@ -37,7 +35,7 @@
                     class="btn-choice"
                     id="btn-yes"
                     @click="isOpen = false"
-                    v-on:click="craftNewBurger()">
+                    v-on:click="cancelButtonFunc()">
                       {{uiLabels.yes}}
                 </button>
                 <button
@@ -57,10 +55,9 @@
 
 <!--button -->
     <label>
-      <button id="newBurgerButton"
+      <button id="cancelButton"
       @click="isOpen = !isOpen">
-      <img id="newBurgerImage" :src="require('../assets/new_burger.png')" width=80%>
-       <p id="newBurgerText">{{uiLabels.newBurger}}</p>
+       <p id="cancelButtonText">{{uiLabels.cancelButtonText}}</p>
      </button>
     </label>
   </div>
@@ -68,14 +65,14 @@
 
 <script>
 export default {
-  name: 'NewBurger',
+  name: 'CancelButton',
   props: {
   uiLabels: Object,
   lang: String
   },
   methods: {
-      craftNewBurger: function () {
-          this.$emit('newBurger');
+      cancelButtonFunc: function () {
+          this.$emit('cancelOrder');
       }
   },
   data: function() {
@@ -87,35 +84,32 @@ export default {
 </script>
 
 <style scoped>
-  #newBurgerButton {
-    background-color: #e7e7e7;
+  #cancelButton {
+    position: absolute;
+    bottom: 0.1vw;
+    left: 40%;
+    background-color: #F08080;
     border-radius: 10px;
     border: 2px solid grey;
     padding-left: 20px;
     padding-right: 20px;
-    width: 20vw;
+    width: 10vw;
+    height: 2.5vw;
 }
-#newBurgerButton:hover {
+#cancelButton:hover {
     cursor: pointer;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    background-color: lightgrey;
+    background-color: rgb(221, 53, 53);
 }
-#newBurgerText {
+#cancelButtonText {
     font-family: 'Comfortaa', cursive;
-    font-size: 18pt;
+    font-size: 14pt;
     color: darkslategrey;
-    
-    padding-top: 30px;
-    border-top: 2px solid grey;
+    text-align: inherit;
 }
-#newBurgerImage {
-    padding-top: 20px;
-}
-
 
 .modal {
     background: #e7e7e7;
-    box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
     display: flex;
     flex-direction: column;

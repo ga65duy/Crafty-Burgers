@@ -415,8 +415,8 @@
     grid-template-columns: 20vw 20vw 20vw;
     margin-left: 30px;
     margin-top: 20px;
-    height: 80vh;
-    width: 80vw;
+    height: 75vh;
+    width: 70vw;
     overflow: auto;
 }
 #flag {

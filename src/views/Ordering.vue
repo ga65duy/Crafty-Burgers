@@ -18,6 +18,7 @@
         </section>
     
     <section class="content">
+      <section id="FoodPref">
         <!--shows possible preferences how the food shall be filtered-->
         <FoodPref
                 v-if="currentStep===0"
@@ -26,6 +27,7 @@
                 :ui-labels="uiLabels"
                 :lang="lang">
         </FoodPref>
+      </section>
         <div id="ing">
             <!--do not show the component in foodpreferences, drinks, sides-->
                 <BurgerView
@@ -387,26 +389,29 @@
 <style scoped>
     /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
     
-    #ing {
-        display: grid;
-        grid-gap: 2em;
-        grid-template-columns: 20em 20em 20em;
-    }
-
-    #tabbar {
-        display: inline-block;
-        width: auto; 
-    }
+#ing {
+     display: grid;
+     grid-gap: 2em;
+     grid-template-columns: 20em 20em 20em;
+}
+#NavButtons {
+    margin-left: 5px;
+}
+#tabbar {
+     display: inline-block;
+     width: auto; 
+        
+}
 .burgerView {
-        grid-gap: 2em;
-        grid-template-columns: 20em 20em;
-        margin-top: 20px;
-        padding: 20px;
-        width: 22vw;
-        height: 68vh;
-        border: 1.5px solid grey;
-        display: block;
-        overflow: auto;
+    grid-gap: 2em;
+    grid-template-columns: 20em 20em;
+    margin-top: 20px;
+    padding: 20px;
+    width: 22vw;
+    height: 68vh;
+    border: 1.5px solid grey;
+    display: block;
+    overflow: auto;
     }
 .grid {
     display: grid;
@@ -421,5 +426,11 @@
 }
 #flag {
     width: 3vw;
+    margin-left: 10px;
+}
+#FoodPref {
+    position: absolute;
+    left: 33vw;
+    top: 200px;
 }
 </style>

@@ -84,7 +84,7 @@ export default {
 <style scoped>
   #cancelButton {
     position: absolute;
-    bottom: 1px;
+    bottom: 20px;
     left: 40%;
     background-color: #F08080;
     border-radius: 10px;
@@ -198,5 +198,11 @@ export default {
 }
 #btn-no {
     background: #F08080;
+}
+
+@media only screen and (max-width: 850px){
+    #cancelButton {
+        display: none;
+    }
 }
 </style>

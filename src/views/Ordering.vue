@@ -30,7 +30,7 @@
         </section>
         <div id="ing">
           
-          <div id="overview">
+          <div class="overview">
             <!--show a list of all created burgers in step 7-->
                 <BurgerView
                     class="burgerView"
@@ -64,6 +64,7 @@
                 
             <!--show selected sides and drinks in order overview-->
                 <OrderOverviewSidesDrinks
+                class="overview"
                      v-if="currentStep===8"
                      v-on:increment="addToOrder"
                      v-on:decrement="removeOrder"
@@ -441,7 +442,7 @@
     left: 33vw;
     top: 200px;
 }
-#TotalBillSides {
+#TotalBill {
     position: absolute;
     left: 74vw;
     bottom: 0px;
@@ -453,9 +454,5 @@
     margin-left: 180px;
     margin-bottom: 30px;
 }
-#overview  {
-    display: grid;
-    grid-template-columns: 25vw 25vw 25vw;
-    grid-column-gap: 5px;
-}
+
 </style>

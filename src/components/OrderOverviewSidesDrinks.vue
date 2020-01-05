@@ -55,19 +55,6 @@
     }
 </script>
 <style scoped>
-    Ingredient {
-        display: block;
-        grid-gap: 2em;
-        grid-template-columns: 20em 20em;
-        margin: 0.3em;
-        padding: 20px;
-        width: auto;
-        border-style: solid;
-        border-color: black;
-        font-size: 2em;
-        text-align: center;
-        font-family:arial;
-    }
     #image {
         width:250px;
     }

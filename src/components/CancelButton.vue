@@ -30,14 +30,17 @@
             
             <footer class="modal-footer">
               <slot name="footer">
+                <router-link id="routerLink" to="/">
                 <button
                     type="button"
                     class="btn-choice"
                     id="btn-yes"
                     @click="isOpen = false"
+                    
                     >
-                    <router-link to="/">{{uiLabels.yes}}</router-link>
+                    {{uiLabels.yes}}
                 </button>
+                </router-link>
                 <button
                   type="button"
                   class="btn-choice"
@@ -81,15 +84,16 @@ export default {
 <style scoped>
   #cancelButton {
     position: absolute;
-    bottom: 0.1vw;
+    bottom: 1px;
     left: 40%;
     background-color: #F08080;
     border-radius: 10px;
     border: 2px solid grey;
     padding-left: 20px;
     padding-right: 20px;
-    width: 10vw;
-    height: 2.5vw;
+    width: 200px;
+    height: 40px;
+    text-align: center,middle;
 }
 #cancelButton:hover {
     cursor: pointer;
@@ -100,9 +104,14 @@ export default {
     font-family: 'Comfortaa', cursive;
     font-size: 14pt;
     color: darkslategrey;
-    text-align: inherit;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
-
+#routerLink {
+  margin: auto;
+}
 .modal {
     background: #e7e7e7;
     overflow-x: auto;
@@ -115,6 +124,7 @@ export default {
     padding: 15px;
     display: flex;
 }
+
 .modal-header {
     padding-left: 30px;
     border-bottom: 1px solid #eeeeee;

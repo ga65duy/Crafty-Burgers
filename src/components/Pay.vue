@@ -34,7 +34,7 @@ button {
     font-size: 2vw;
     font-weight: bold;
     color: darkslategrey;
-    background-color: #e7e7e7;
+    background-color: lightblue;
     border-radius: 10px;
     border: 2px solid grey;
     padding: 2vh 3vw 2vh 3vw;

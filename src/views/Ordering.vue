@@ -496,7 +496,7 @@
     bottom: 180px;
     font-size: 0.7em;
     overflow: auto;
-    height: 52vh; 
+    height: 50vh; 
 }
 #PayButton {
     margin-left: 180px;
@@ -508,7 +508,7 @@
 #NewBurger {
     position: absolute;
     left: 77vw;
-    bottom: 5px;
+    bottom: 10px;
 }
 
 </style>

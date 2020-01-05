@@ -1,6 +1,6 @@
 <template>
   <div id="welcome">
-   
+    <img class="picture" src="@/assets/woodImage.jpg">
     <h1>{{ uiLabels.welcomeText }}</h1>
     <div id="proceedButton">
       <router-link id="routerLink" to="/ordering">{{ uiLabels.startButton }}</router-link>
@@ -29,42 +29,17 @@ export default {
   },
   mixins: [sharedVueStuff], // include stuff that is used in both 
                             // the ordering system and the kitchen
-  data: function() { //Not that data is a function!
-    return {
-    }
-  },
-  computed: {
-    
-  },
-  methods: {
-    /*openFullscreen: function() {
-      var elem = document.documentElement;
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-      } else if (elem.mozRequestFullScreen) { // Firefox 
-        elem.mozRequestFullScreen();
-      } else if (elem.webkitRequestFullscreen) { // Chrome, Safari & Opera 
-        elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) { // IE/Edge 
-        elem.msRequestFullscreen();
-      }
-    }*/
-  }
 }
-
-
-
 
 </script>
 <style scoped>
 /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
 #welcome {
-  background-image: url("../assets/woodImage.jpg");
   width: 100%;
   height: 100%;
-  margin: 0px;
-  border: 0px;
-  padding: 0px;
+  margin: 0;
+  border: 0;
+  padding: 0;
   text-align: center;
   font-family: Comfortaa, sans-serif;
 }
@@ -74,7 +49,7 @@ h1 {
   color: #e6e6e6;
   font-size: 5em;
   margin-top: 150px;
-  margin-bottom: 0vh;
+  margin-bottom: 0;
 }
 a {
     display: block;
@@ -102,15 +77,20 @@ input{
   text-align: center;
   padding-bottom: 20px;
 }
+.picture {
+  position: fixed;
+  left:0;
+  top:0;
+  z-index: -1;
+}
 
 @media only screen and (max-width: 850px){
     #welcome {
-      background-image: url("../assets/woodImage.jpg");
       width: 100vw;
       height: 100vh;
-      margin: 0px;
-      border: 0px;
-      padding: 0px;
+      margin: 0;
+      border: 0;
+      padding: 0;
       text-align: center;
       font-family: Comfortaa, sans-serif;
     }
@@ -120,7 +100,7 @@ input{
       color: #e6e6e6;
       font-size: 4em;
       margin-top: 30px;
-      margin-bottom: 0vh;
+      margin-bottom: 0;
     }
     a {
         display: block;
@@ -148,6 +128,11 @@ input{
       text-align: center;
       padding-bottom: 20px;
     }
-
+    .picture {
+      position: fixed;
+      left:0;
+      top:0;
+      z-index: -1;
+    }
 }
 </style>

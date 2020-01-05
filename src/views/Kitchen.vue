@@ -149,6 +149,7 @@
     .grid-container {
         font-size: 0.8em;
         display: grid;
+        background: #e7e7e7;
     }
     #itemStock {
         grid-column-start: 1;
@@ -171,6 +172,7 @@
         grid-row-end: 2;
 
         border-width: 2px 2px 2px 0;
+        background: white;
     }
     #item2 {
         grid-column-start: 1;

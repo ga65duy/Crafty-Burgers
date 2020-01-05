@@ -1,11 +1,11 @@
 <template>
-  <div>
+  <div id="stock">
     Soon out of stock:
-    <ul>
-      <li v-for="item in ingredients" v-if="item.stock < 5">
+    <dl>
+      <dt v-for="item in ingredients" v-if="item.stock < 5">
         {{item.ingredient_en}} ({{item.stock > 0 ? item.stock : 0}})
-      </li>
-    </ul>
+      </dt>
+    </dl>
   </div>
 </template>
 <script>
@@ -17,5 +17,7 @@ export default {
 }
 </script>
 <style scoped>
- 
+dt {
+    padding: 5px;
+}
 </style>

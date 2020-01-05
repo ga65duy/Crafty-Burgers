@@ -57,7 +57,7 @@ h1 {
   text-align: center;
   display: inline-block;
   color: #e6e6e6;
-  font-size: 5em;
+  font-size: 4em;
   margin-top: 150px;
   margin-bottom: 0;
 }

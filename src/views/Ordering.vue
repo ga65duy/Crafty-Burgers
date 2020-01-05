@@ -149,13 +149,10 @@
         <PayButton
                 v-if="currentStep===8 && price > 0"
                 v-on:clickedPay="placeOrder"
-                :orderNum="orderNumber"
                 :ui-labels="uiLabels"
                 :lang="lang"
         >
         </PayButton>
-        
-
     </section>
     </div>
 </template>

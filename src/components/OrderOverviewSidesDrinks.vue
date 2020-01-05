@@ -71,4 +71,24 @@
     #image {
         width:250px;
     }
+
+    @media only screen and (max-width: 850px){
+        .ingredient {
+            display: block;
+            grid-gap: 2em;
+            grid-template-columns: 20em 20em;
+            margin: 0.5em;
+            padding: 10px;
+            width: 18vw;
+            height: 60vh;
+            border-style: solid;
+            border-color: grey;
+            font-size: 1.4em;
+            text-align: center;
+            font-family:arial;
+        }
+        #image {
+            width:250px;
+        }
+    }
 </style>

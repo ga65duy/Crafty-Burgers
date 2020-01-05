@@ -84,7 +84,7 @@ a {
   padding: 10px;
   text-align: center;
   background-color: #52cc10ff;
-  width: 600px;
+  width: 800px;
   font-size: 3em;
 }
 input {

@@ -150,6 +150,7 @@
         font-size: 0.8em;
         display: grid;
         background: #e7e7e7;
+        height:100vh;
     }
     #itemStock {
         grid-column-start: 1;

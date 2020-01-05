@@ -15,5 +15,7 @@
 </script>
 
 <style scoped>
-
+button {
+    background: green;
+}
 </style>

@@ -45,5 +45,8 @@
   "item": "Sak",
   "price": "Pris",
   "amount": "Mängd",
-  "flag": "https://image.flaticon.com/icons/svg/555/555417.svg"
+  "flag": "https://image.flaticon.com/icons/svg/555/555417.svg",
+  "cancelWarning": "Vill du avbryta hela din beställning?",
+  "cancelText": "Denna handling kan inte ångras.",
+  "cancelButtonText": "Avbryt"
 }

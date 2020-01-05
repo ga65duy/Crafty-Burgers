@@ -102,4 +102,52 @@ input{
   text-align: center;
   padding-bottom: 20px;
 }
+
+@media only screen and (max-width: 850px){
+    #welcome {
+      background-image: url("../assets/woodImage.jpg");
+      width: 100vw;
+      height: 100vh;
+      margin: 0px;
+      border: 0px;
+      padding: 0px;
+      text-align: center;
+      font-family: Comfortaa, sans-serif;
+    }
+    h1 {
+      text-align: center;
+      display: inline-block;
+      color: #e6e6e6;
+      font-size: 4em;
+      margin-top: 30px;
+      margin-bottom: 0vh;
+    }
+    a {
+        display: block;
+        text-decoration: none;
+        color: black;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 0 16px 0 #52cc10ff;
+        margin-top: 30px;
+        padding: 10px;
+        text-align: center;
+        background-color: #52cc10ff;
+        width: 600px;
+        font-size: 2em;
+    }
+    input{
+      width: 5vw;
+    }
+    #proceedButton{
+      display: inline-block;
+      text-align:center;
+      margin-bottom: 15vh;
+    }
+    #langButton {
+      text-align: center;
+      padding-bottom: 20px;
+    }
+
+}
 </style>

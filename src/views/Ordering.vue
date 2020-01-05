@@ -140,6 +140,11 @@
                 :lang="lang"
             >
             </TotalBill>
+            <cancelButton
+                :ui-labels="uiLabels"
+                :lang="lang"
+            >
+            </cancelButton>
         </div>
         <PayButton
                 v-if="currentStep===8 && price > 0"
@@ -149,6 +154,8 @@
                 :lang="lang"
         >
         </PayButton>
+        
+
     </section>
     </div>
 </template>
@@ -168,6 +175,7 @@
     import OrderOverviewSidesDrinks from "../components/OrderOverviewSidesDrinks.vue";
     import TotalBill from "../components/TotalBill.vue";
     import PayButton from '@/components/Pay.vue';
+    import CancelButton from '@/components/CancelButton.vue';
 
     /* instead of defining a Vue instance, export default allows the only
     necessary Vue instance (found in main.js) to import your data and methods */
@@ -182,7 +190,8 @@
             FoodPref,
             NewBurger,
             BurgerView,
-            PayButton
+            PayButton,
+            CancelButton
         },
         mixins: [sharedVueStuff], // include stuff that is used in both
                                   // the ordering system and the kitchen
@@ -380,7 +389,7 @@
                 this.burgerAmount = 1;
                 this.price = 0;
                 this.burgerPrice = 0;
-            }
+            },
         }
     }
 </script>
@@ -421,5 +430,45 @@
 }
 #flag {
     width: 3vw;
+    margin-left: 20px;
+}
+
+@media only screen and (max-width: 850px){
+        #ing {
+                display: grid;
+                grid-gap: 3em;
+                grid-template-columns: 20% 40%;
+            }
+
+            #tabbar {
+                display: inline-block;
+                width: auto; 
+            }
+        .burgerView {
+                grid-gap: 2em;
+                grid-template-columns: 20em 20em;
+                margin-top: 10px;
+                padding: 20px;
+                width: 18vw;
+                height: 55vh;
+                border: 1.5px solid grey;
+                display: block;
+                overflow: auto;
+            }
+        .grid {
+            display: grid;
+            grid-column-gap: 1.6em;
+            grid-row-gap: 1em;
+            grid-template-columns: 20vw 20vw 20vw;
+            margin-left: 5px;
+            margin-top: 10px;
+            height: 75vh;
+            width: 70vw;
+            overflow: auto;
+        }
+        #flag {
+            width: 3vw;
+            margin-left: 20px;
+        }
 }
 </style>

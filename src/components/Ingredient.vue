@@ -119,4 +119,51 @@ export default {
     margin-left: 2vw;
     font-size: 0.8em; 
     }
+
+  @media only screen and (max-width: 850px){
+      .ingredient {
+          padding: 10px;
+          width: 20vw;
+          border: 1.5px solid grey;
+          border-radius: 3px;
+          font-size: 1.4em;
+          display: block;
+          text-align: center;
+          font-family:comfortaa, sans-serif;
+          background: #e7e7e7;
+      }
+      #image {
+          width: 80%;
+          padding: 10px;
+      }
+      #name {
+        font-size: 0.8em;
+        font-weight: bold;
+      }
+      #price {
+        font-size: 0.7em;
+      }
+      input {
+        background:  lightgrey;
+        border: none;
+        border-radius: 50%;
+        width: 2.5vw;
+        height: 2.5vw;
+        vertical-align: middle;
+        font-weight: bold;
+        outline: none;
+        }
+      input:hover {
+        background-color: #bfbfbf;
+        }
+      input:disabled {
+        background: #e7e7e7;
+        box-shadow: none;
+      }
+      #counter {
+        margin-right: 2vw;
+        margin-left: 2vw;
+        font-size: 0.8em; 
+        }
+  }
 </style>

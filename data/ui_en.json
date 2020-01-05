@@ -40,10 +40,13 @@
   "no" : "NO",
   "warningHeader": "Do you want to craft a new burger?",
   "warningBodyBold1" : "Changes",
-  "warningBody": "in your current burger are ",
-  "warningBodyBold2" : "no more possible.",
+  "warningBody": "in your current burger will ",
+  "warningBodyBold2" : "no longer be possible.",
   "item": "Item",
   "price": "Price",
   "amount": "Amount",
-  "flag": "https://image.flaticon.com/icons/svg/206/206668.svg"
+  "flag": "https://image.flaticon.com/icons/svg/206/206668.svg",
+  "cancelWarning": "Do you want to cancel your entire order?",
+  "cancelText": "This action cannot be undone.",
+  "cancelButtonText": "Cancel"
 }

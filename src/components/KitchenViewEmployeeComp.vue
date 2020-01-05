@@ -80,11 +80,20 @@ export default {
 <style scoped>
  .TimeAndEmployee {
      width: 30vw;
-     height: 40vh;
-     border-style: solid;
      padding: 5px;
      font-size: 0.8em;
      font-family: Comfortaa, sans-serif;
      text-align: center;
  }
+ #bbtn, #sbtn {
+    margin-top: 10px;
+    background: lightgrey;
+    border: 2px solid grey;
+    border-radius: 8px;
+    padding: 5px;
+    outline: none;
+}
+#bbtn:active, #sbtn:active {
+    background: grey;
+}
 </style>

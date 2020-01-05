@@ -74,10 +74,10 @@
         display: block;
         padding: 20px;
         width: auto;
-        border-style: solid;
-        border-color: black;
+        height: auto;
         font-size: 2em;
         text-align: center;
         font-family:arial;
+        overflow: auto;
     }
 </style>

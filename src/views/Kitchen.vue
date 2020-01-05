@@ -150,7 +150,7 @@
         font-size: 0.8em;
         display: grid;
         background: #e7e7e7;
-        height:100vh;
+        height:97vh;
     }
     #itemStock {
         grid-column-start: 1;
@@ -161,10 +161,11 @@
         display: block;
         padding: 20px;
         width: auto;
-        border: 2px solid black;
+        border-right: 1px solid lightslategrey;
+        border-bottom: 1px solid lightslategrey;
         font-size: 2em;
         text-align: center;
-        font-family:arial;
+        font-family:arial, sans-serif;
     }
     #item1 {
         grid-column-start: 2;
@@ -172,8 +173,9 @@
         grid-row-start: 1;
         grid-row-end: 2;
 
-        border-width: 2px 2px 2px 0;
         background: white;
+        border: 1px solid lightslategrey;
+        border-top: none;
     }
     #item2 {
         grid-column-start: 1;
@@ -181,7 +183,8 @@
         grid-row-start: 2;
         grid-row-end: 3;
 
-        border-width: 0 2px 2px 2px;
+        border-top: 1px solid lightslategrey;
+        border-right: 1px solid lightslategrey;
     }
     #item3 {
         grid-column-start: 2;
@@ -189,7 +192,8 @@
         grid-row-start: 2;
         grid-row-end: 3;
 
-        border-width: 0 2px 2px 0;
+        border: 1px solid lightslategrey;
+        border-bottom: none;
     }
     #item4 {
         grid-column-start: 3;
@@ -197,7 +201,8 @@
         grid-row-start: 2;
         grid-row-end: 3;
 
-        border-width: 2px 2px 2px 0;
+        border-top: 1px solid lightslategrey;
+        border-left: 1px solid lightslategrey;
     }
     #itemEmployeeNext {
         grid-column-start: 3;
@@ -208,16 +213,15 @@
         display: block;
         padding: 20px;
         width: auto;
-        border-style: solid;
-        border-color: black;
+        height: auto;
         font-size: 2em;
         text-align: center;
         font-family:arial;
 
-        border-width: 2px 2px 0 0;
+        border-left: 1px solid lightslategrey;
+        border-bottom: 1px solid lightslategrey;
     }
 
     .grid-item{
-        overflow: hidden
     }
 </style>

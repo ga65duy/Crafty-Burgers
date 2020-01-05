@@ -79,8 +79,8 @@ export default {
 table {
     border-collapse: collapse;
     text-align: center;
-    width: 24vw;
-    width: auto; //meins
+    /*width: 24vw;*/
+    width: auto;
 }
 th {
     padding: 5px;

@@ -90,6 +90,7 @@ export default {
     padding-right: 20px;
     width: 200px;
     height: 40px;
+    align-self: center;
     text-align: center;
 }
 #cancelButton:hover {

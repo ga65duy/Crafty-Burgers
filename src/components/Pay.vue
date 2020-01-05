@@ -34,7 +34,25 @@
 
 <style scoped>
 button {
-    font-family: comfortaa, sans-serif;
+    font-family: 'Comfortaa', cursive;
+    font-size: 14pt;
+    color: darkslategrey;
+
+    border-radius: 10px;
+    border: 2px solid grey;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 200px;
+    height: 40px;
+    align-self: center;
+    text-align: center;
+
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    /*
     font-size: 2vw;
     font-weight: bold;
     color: darkslategrey;
@@ -43,6 +61,9 @@ button {
     border: 2px solid grey;
     padding: 2vh 3vw 2vh 3vw;
     width: 20vw;
+    position: absolute;
+    top: 0;
+    right: 0;*/
 }
 
 button:disabled {
@@ -57,7 +78,7 @@ button:hover {
     background-color: lightgreen;
 }
 img {
-    width: 3vw;
+    width: 1.8vw;
     padding-left: 1vw;
 }
 </style>

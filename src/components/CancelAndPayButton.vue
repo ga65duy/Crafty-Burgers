@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="footer">
         <CancelButton
                 :ui-labels="uiLabels"
                 :lang="lang"
@@ -11,7 +11,6 @@
                 :lang="lang"
                 :disabled="price===0"
         />
-
     </div>
 </template>
 
@@ -40,5 +39,13 @@
 </script>
 
 <style scoped>
+    .footer {
+        position: relative;
+        padding: 0;
+        margin: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
 
 </style>

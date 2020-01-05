@@ -59,7 +59,7 @@
     <label>
       <button id="newBurgerButton"
       @click="isOpen = !isOpen">
-      <img id="newBurgerImage" :src="require('../assets/new_burger.png')" width=80%>
+      <img id="newBurgerImage" :src="require('../assets/new_burger.png')">
        <p id="newBurgerText">{{uiLabels.newBurger}}</p>
      </button>
     </label>
@@ -93,8 +93,8 @@ export default {
     border: 2px solid grey;
     padding-left: 20px;
     padding-right: 20px;
-    width: 20vw;
-    height: 20vh;
+    width: 18vw;
+    height: 22vh;
 }
 #newBurgerButton:hover {
     cursor: pointer;
@@ -103,14 +103,15 @@ export default {
 }
 #newBurgerText {
     font-family: 'Comfortaa', cursive;
-    font-size: 18pt;
+    font-size: 1.25em;
     color: darkslategrey;
     
-    padding-top: 30px;
+    padding-top: 15px;
     border-top: 2px solid grey;
 }
 #newBurgerImage {
-    padding-top: 20px;
+    padding-top: 15px;
+    width: 28%
 }
 
 

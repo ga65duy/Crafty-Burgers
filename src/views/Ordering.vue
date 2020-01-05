@@ -501,11 +501,14 @@
 #PayButton {
     margin-left: 180px;
     margin-bottom: 30px;
+    position: absolute;
+    left: 63vw;
+    bottom: 20px;
 }
 #NewBurger {
     position: absolute;
-    left: 75vw;
-    bottom: 100px;
+    left: 77vw;
+    bottom: 5px;
 }
 
 </style>

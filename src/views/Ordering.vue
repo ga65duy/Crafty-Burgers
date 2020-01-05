@@ -29,20 +29,8 @@
             </FoodPref>
         </section>
         <div id="ing">
-            <!--do not show the component in foodpreferences, drinks, sides-->
-                <BurgerView
-                        class="burgerView"
-                        v-if="![0,5,6].includes(currentStep)"
-                        v-on:removeIngredient="removeOrder"
-                        v-on:incrementBurger ="addFinishedBurger"
-                        v-on:decrementBurger="removeFinishedBurger"
-                        :burger="burger"
-                        :allIngredients="ingredients"
-                        :addBurgerOrCheckPage="addBurgerOrCheckPage"
-                        :ui-labels="uiLabels"
-                        :lang="lang">
-                </BurgerView>
-
+          
+          <div class="overview" v-if="[7,8].includes(currentStep)">
             <!--show a list of all created burgers in step 7-->
                 <BurgerView
                     class="burgerView"
@@ -60,6 +48,20 @@
                 >
                 </BurgerView>
                 
+                <!--do not show the component in foodpreferences, drinks, sides-->
+                <BurgerView
+                        class="burgerView"
+                        v-if="![0,5,6].includes(currentStep)"
+                        v-on:removeIngredient="removeOrder"
+                        v-on:incrementBurger ="addFinishedBurger"
+                        v-on:decrementBurger="removeFinishedBurger"
+                        :burger="burger"
+                        :allIngredients="ingredients"
+                        :addBurgerOrCheckPage="addBurgerOrCheckPage"
+                        :ui-labels="uiLabels"
+                        :lang="lang">
+                </BurgerView>
+                
             <!--show selected sides and drinks in order overview-->
                 <OrderOverviewSidesDrinks
                      v-if="currentStep===8"
@@ -71,7 +73,9 @@
                      :allIngredients="ingredients"
                      :orderCheck="true"
                 >
-                </OrderOverviewSidesDrinks>
+                </OrderOverviewSidesDrinks>  
+        </div>
+        
             <!-- Other than step 4 clicking + and - is always enabled -->
             <div v-if="currentStep !== 4" >
               <div class="grid">
@@ -137,7 +141,7 @@
         <section id="TotalBill">
           <div id="TotalBillSides">
             <TotalBill
-                v-if="[5,6].includes(currentStep)"
+                v-if="[5,6,7,8].includes(currentStep)"
                 :order="order"
                 :allIngredients="ingredients"
                 :ui-labels="uiLabels"
@@ -145,14 +149,6 @@
             >
             </TotalBill>
           </div>
-            <TotalBill
-                v-if="[7,8].includes(currentStep)"
-                :order="order"
-                :allIngredients="ingredients"
-                :ui-labels="uiLabels"
-                :lang="lang"
-            >
-            </TotalBill>
         </section>
         </div>
         <section id="PayButton">
@@ -458,5 +454,11 @@
 #PayButton {
     margin-left: 180px;
     margin-bottom: 30px;
+}
+.overview  {
+    display: grid;
+    grid-template-columns: 25vw 25vw 25vw;
+    grid-column-gap: 5px;
+    background: black;
 }
 </style>

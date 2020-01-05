@@ -421,5 +421,6 @@
 }
 #flag {
     width: 3vw;
+    margin-left: 20px;
 }
 </style>

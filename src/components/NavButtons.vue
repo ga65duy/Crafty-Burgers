@@ -52,7 +52,7 @@ button {
     color: darkslategrey;
 }
  .buttonSelected {
-    background-color: #70db70;
+    background-color: #52cc10ff;
     box-shadow: 0 0 8px 0 #52cc10ff;
     border: 1px solid #5cd65c;
     outline: none;

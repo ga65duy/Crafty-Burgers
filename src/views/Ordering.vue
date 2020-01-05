@@ -140,6 +140,11 @@
                 :lang="lang"
             >
             </TotalBill>
+            <cancelButton
+                :ui-labels="uiLabels"
+                :lang="lang"
+            >
+            </cancelButton>
         </div>
         <PayButton
                 v-if="currentStep===8 && price > 0"
@@ -149,6 +154,8 @@
                 :lang="lang"
         >
         </PayButton>
+        
+
     </section>
     </div>
 </template>
@@ -168,6 +175,7 @@
     import OrderOverviewSidesDrinks from "../components/OrderOverviewSidesDrinks.vue";
     import TotalBill from "../components/TotalBill.vue";
     import PayButton from '@/components/Pay.vue';
+    import CancelButton from '@/components/CancelButton.vue';
 
     /* instead of defining a Vue instance, export default allows the only
     necessary Vue instance (found in main.js) to import your data and methods */
@@ -182,7 +190,8 @@
             FoodPref,
             NewBurger,
             BurgerView,
-            PayButton
+            PayButton,
+            CancelButton
         },
         mixins: [sharedVueStuff], // include stuff that is used in both
                                   // the ordering system and the kitchen
@@ -380,7 +389,7 @@
                 this.burgerAmount = 1;
                 this.price = 0;
                 this.burgerPrice = 0;
-            }
+            },
         }
     }
 </script>

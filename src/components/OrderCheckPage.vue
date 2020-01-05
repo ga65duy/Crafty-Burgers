@@ -52,7 +52,7 @@
     </div>
 </template>
 <script>
-    import Ingredient from '@/components/Ingredient.vue'
+    import Ingredient from '../components/Ingredient.vue'
     import BurgerView from '../components/BurgerView.vue';
     import TotalBill from "../components/TotalBill.vue";
 

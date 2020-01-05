@@ -31,7 +31,6 @@
         <NewBurgerPage
                 v-if="currentStep===7"
                 v-on:newBurger="addNewBurger"
-                v-on:removeIngredient="removeOrder"
                 v-on:incrementBurger ="addFinishedBurger"
                 v-on:decrementBurger="removeFinishedBurger"
                 :ui-labels="uiLabels"
@@ -61,6 +60,8 @@
                 v-if="currentStep===8"
                 v-on:increment="addToOrder"
                 v-on:decrement="removeOrder"
+                v-on:incrementBurger ="addFinishedBurger"
+                v-on:decrementBurger="removeFinishedBurger"
                 :ui-labels="uiLabels"
                 :lang="lang"
                 :chosenSidesDrinks="chosenSidesDrinks"

@@ -141,7 +141,6 @@
             >
             </TotalBill>
             <cancelButton
-                v-on:cancelOrder="cancelButton2"
                 :ui-labels="uiLabels"
                 :lang="lang"
             >
@@ -391,12 +390,6 @@
                 this.price = 0;
                 this.burgerPrice = 0;
             },
-
-            cancelButton2: function () {
-                <router-link to="/"></router-link>
-                // <a href="http://localhost:8080"></a>
-                
-            }
         }
     }
 </script>

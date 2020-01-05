@@ -35,8 +35,8 @@
                     class="btn-choice"
                     id="btn-yes"
                     @click="isOpen = false"
-                    v-on:click="cancelButtonFunc()">
-                      {{uiLabels.yes}}
+                    >
+                    <router-link to="/">{{uiLabels.yes}}</router-link>
                 </button>
                 <button
                   type="button"
@@ -69,11 +69,6 @@ export default {
   props: {
   uiLabels: Object,
   lang: String
-  },
-  methods: {
-      cancelButtonFunc: function () {
-          this.$emit('cancelOrder');
-      }
   },
   data: function() {
     return {

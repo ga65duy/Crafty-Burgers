@@ -54,6 +54,7 @@
       </div>
     </div>
  </transition>
+<!-- End of warning message -->
 
 <!--button -->
     <label>
@@ -68,10 +69,10 @@
 
 <script>
 export default {
-  name: 'NewBurger',
+  name: 'NewBurgerButton',
   props: {
-  uiLabels: Object,
-  lang: String
+      uiLabels: Object,
+      lang: String
   },
   methods: {
       craftNewBurger: function () {

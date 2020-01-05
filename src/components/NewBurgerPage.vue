@@ -25,8 +25,7 @@
                     :ui-labels="uiLabels"
                     :lang="lang"
                     :key="burger.id"
-                >
-                </BurgerView>
+                />
             </div>
         </div>
         <div id="itemButton">
@@ -87,7 +86,7 @@
             newBurger: function() {
                 this.$emit('newBurger');
             }
-            }
+        }
     }
 </script>
 

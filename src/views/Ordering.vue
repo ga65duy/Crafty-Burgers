@@ -55,9 +55,23 @@
                 :ui-labels="uiLabels"
                 :lang="lang"
             />
+
+        <!--show selected burger, sides, and drinks in order overview step 8-->
+        <OrderCheckPage
+                v-if="currentStep===8"
+                v-on:increment="addToOrder"
+                v-on:decrement="removeOrder"
+                :ui-labels="uiLabels"
+                :lang="lang"
+                :chosenSidesDrinks="chosenSidesDrinks"
+                :allIngredients="ingredients"
+                :currentBurger="burger"
+                :order="order"
+                :oldBurgers="oldBurgers"
+        />
     </section>
 
-    <section class="footerButtons" >
+        <section class="footerButtons" >
         <CancelAndPayButton
                 :currentStep="currentStep"
                 :lang="lang"
@@ -98,18 +112,8 @@
                 >
                 </BurgerView>
                 
-            <!--show selected sides and drinks in order overview-->
-                <OrderOverviewSidesDrinks
-                     v-if="currentStep===8"
-                     v-on:increment="addToOrder"
-                     v-on:decrement="removeOrder"
-                     :ui-labels="uiLabels"
-                     :lang="lang"
-                     :chosenSidesDrinks="chosenSidesDrinks"
-                     :allIngredients="ingredients"
-                     :orderCheck="true"
-                >
-                </OrderOverviewSidesDrinks>
+
+
             <!-- Other than step 4 clicking + and - is always enabled -->
             <div v-if="currentStep !== 4" >
               <div class="grid">
@@ -190,11 +194,12 @@
     //import methods and data that are shared between ordering and kitchen views
     import sharedVueStuff from '@/components/sharedVueStuff.js'
     import NavButtons from "../components/NavButtons.vue";
-    import OrderOverviewSidesDrinks from "../components/OrderOverviewSidesDrinks.vue";
+    import OrderOverviewSidesDrinks from "../components/OrderCheckPage.vue";
     import TotalBill from "../components/TotalBill.vue";
     import NewBurgerPage from "../components/NewBurgerPage";
     import SidesAndDrinksPage from "../components/SidesAndDrinksPage";
     import CancelAndPayButton from "../components/CancelAndPayButton";
+    import OrderCheckPage from "../components/OrderCheckPage";
 
     /* instead of defining a Vue instance, export default allows the only
     necessary Vue instance (found in main.js) to import your data and methods */
@@ -210,6 +215,7 @@
             FoodPref,
             NewBurgerPage,
             SidesAndDrinksPage,
+            OrderCheckPage,
             BurgerView,
         },
         mixins: [sharedVueStuff], // include stuff that is used in both

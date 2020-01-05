@@ -2,7 +2,7 @@
   <div id="thanks">
     <h1>{{uiLabels.checkoutText}} {{orderNumber}}</h1>
     <div id="againButton">
-        <a href="http://localhost:8080/#/">{{uiLabels.startAgainButton}}</a>
+      <router-link id="routerLink" to="/">{{uiLabels.startAgainButton}}</router-link>
     </div>
     <div id="langButton">
     <input type="image"

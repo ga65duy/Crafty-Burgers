@@ -3,7 +3,7 @@
    
     <h1>{{ uiLabels.welcomeText }}</h1>
     <div id="proceedButton">
-      <a href="http://localhost:8080/#/ordering">{{ uiLabels.startButton }}</a>
+      <router-link id="routerLink" to="/ordering">{{ uiLabels.startButton }}</router-link>
     </div>
     <div id="langButton">
       <input type="image"

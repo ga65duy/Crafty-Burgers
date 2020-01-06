@@ -103,8 +103,15 @@
         margin-left: 10px;
         margin-top: 20px;
         height: 75vh;
-        width: 33vw;
+        width: 42vw;
         overflow: auto;
+    }
+    #burgerGrid::-webkit-scrollbar {
+        display: none;
+    }
+
+    #burgerGrid {
+        -ms-overflow-style: none;
     }
 
     #itemButton {

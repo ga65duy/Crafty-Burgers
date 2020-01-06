@@ -26,10 +26,10 @@
             </div>
         <div id="itemButton">
             <NewBurgerButton
-                    v-if="currentBurger.price > 0"
                     v-on:newBurger="newBurger"
                     :ui-labels="uiLabels"
                     :lang="lang"
+                    :disabled="currentBurger.price===0"
             />
         </div>
         <div id="itemBill">

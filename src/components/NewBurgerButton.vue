@@ -59,7 +59,9 @@
         <!--button -->
         <label>
             <button id="newBurgerButton"
-                    @click="isOpen = !isOpen">
+                    @click="isOpen = !isOpen"
+                    :disabled="disabled"
+            >
                 <img id="newBurgerImage" :src="require('../assets/new_burger.png')">
                 <p id="newBurgerText">{{uiLabels.newBurger}}</p>
             </button>
@@ -72,7 +74,9 @@
         name: 'NewBurgerButton',
         props: {
             uiLabels: Object,
-            lang: String
+            lang: String,
+            // Creating a new burger is disabled if no ingredient is choosen for the current burger
+            disabled: Boolean
         },
         methods: {
             craftNewBurger: function () {
@@ -101,11 +105,19 @@
         margin-left: -12em;
         outline: none;
     }
+
     #newBurgerButton:hover {
         cursor: pointer;
         box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
         background-color: lightgrey;
     }
+
+    #newBurgerButton:disabled {
+        background: rgba(0,0,0,0.24);
+        box-shadow: none;
+        pointer-events: none;
+    }
+
     #newBurgerText {
         font-family: 'Comfortaa', cursive;
         font-size: 1.25em;

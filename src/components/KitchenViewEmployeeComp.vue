@@ -1,7 +1,8 @@
 <template>
   <div class="TimeAndEmployee">
   
-  <div id="datetime"> Login to see time </div> <br>
+  <span id="date"> Login to see time </span> <br>
+  <p id="time"> </p>
   <div id="bemp">Burger Maker:<br>
     <div class="text"> No Employee logged in </div> 
   </div>
@@ -40,9 +41,10 @@ export default {
         mo = this.checkTime(mo);
         m = this.checkTime(m);
         s = this.checkTime(s);
-        document.getElementById('datetime').innerHTML =
-        h + ":" + m + ":" + s + 
-        "\n" + d + "/" + mo + "/" + y ;
+        document.getElementById('date').innerHTML =
+        d + "/" + mo + "/" + y;
+        document.getElementById('time').innerHTML =
+        h + ":" + m + ":" + s;
         const t = setTimeout(this.startTime, 500);
    },
     checkTime: function(i) {
@@ -99,8 +101,11 @@ export default {
 #bbtn:active, #sbtn:active {
     background: grey;
 }
-#datetime {
-    font-size: 0.7em;
+#date, #time {
+    font-size: 0.6em;
+}
+#time {
+    margin-top: 0px;
 }
 #bemp, #semp {
     font-size: 0.7em;

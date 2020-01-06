@@ -124,6 +124,7 @@
         display: grid;
         background: #e7e7e7;
         height:97vh;
+        grid-template-rows: 65vh;
     }
     #itemStock {
         grid-column-start: 1;

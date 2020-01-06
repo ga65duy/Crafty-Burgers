@@ -1,9 +1,11 @@
 <template>
     <div>
-        Sides and Drinks
-        <p v-for="(value,ing) in item.sidesAndDrinks" :key="ing">
-            {{value}}x {{getItemForKey(ing)["ingredient_"+lang]}}<br>
-        </p>
+         <span id="header"> Sides and Drinks </span>
+        <dl>
+            <dt v-for="(value,ing) in item.sidesAndDrinks" :key="ing">
+                {{value}}x {{getItemForKey(ing)["ingredient_"+lang]}}
+            </dt>
+        </dl>
     </div>
 </template>
 
@@ -25,4 +27,16 @@
 </script>
 
 <style scoped>
+
+#header {
+    font-size: 0.8em;
+    color: darkslategrey;
+}
+dl {
+    margin-top: 15px;
+}
+dt {
+    padding-bottom: 5px;
+    font-size: 0.9em;
+}
 </style>

@@ -1,11 +1,12 @@
 <template>
     <div id="ordering">
-        <input id="flag" 
-            type="image"
-            v-bind:src="uiLabels.flag"
-            v-on:click="switchLang()">
+
 
         <section id="NavButtons">
+            <input id="flag"
+                   type="image"
+                   v-bind:src="uiLabels.flag"
+                   v-on:click="switchLang()">
             <!--shows the buttons to navigate to different food categories-->
             <NavButtons id="tabbar"
                         v-for="s in steps"
@@ -354,6 +355,7 @@
 }
 #NavButtons {
     margin-left: 5px;
+    width: auto;
 }
 #tabbar {
      display: inline-block;
@@ -383,8 +385,14 @@
     overflow: auto;
 }
 #flag {
-    width: 3vw;
-    margin-left: 10px;
+    margin-bottom: -20px;
+    width: 50px;
+    height: 42px;
+    padding: 1px;
+    border: 1px solid grey;
+    border-radius: 15px;
+    background-color: #e7e7e7;
+    color: darkslategrey;
 }
 
 @media only screen and (max-width: 850px){

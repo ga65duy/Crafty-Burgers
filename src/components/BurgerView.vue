@@ -136,11 +136,12 @@ export default {
 .burgerpre {
 	display: block;
     font-family: comfortaa, sans-serif;
+    font-weight: bold;
 	font-size: 2em;
     margin-left: 10px;
     padding: 20px;
     border-radius: 3px;
-    color: darkslategrey;
+    color: black;
     background: #e7e7e7;
 	margin-top: 20px;
 	width: 22vw;
@@ -182,7 +183,7 @@ input:hover, input:active {
  }
 #total {
     padding-top: 20px;
-    font-size: 0.8em;
+    font-size: 0.9em;
     margin-bottom: 30px;
     text-align: center;
 }
@@ -212,7 +213,7 @@ input:hover, input:active {
 			margin-left: 10px;
 			padding: 20px;
 			border-radius: 3px;
-			color: darkslategrey;
+			color: black;
 			background: #e7e7e7;
 		}
 		img {

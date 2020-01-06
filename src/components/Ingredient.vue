@@ -82,7 +82,6 @@ export default {
       border: 1.5px solid grey;
       border-radius: 3px;
       font-size: 2em;
-      /*display: block;*/
       text-align: center;
       font-family:comfortaa, sans-serif;
       background: #e7e7e7;

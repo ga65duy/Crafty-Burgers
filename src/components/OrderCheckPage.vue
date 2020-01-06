@@ -123,6 +123,12 @@
         height: 400px;
         max-width: 20vw;
         margin: 5px;
+        font-weight: bold;
+        font-family: comfortaa, sans-serif;
+        font-size: 1.5em;
+        color: black;
+        background: #e7e7e7;
+
     }
 
     #itemGrid {
@@ -141,6 +147,5 @@
         margin-top: 20px;
         margin-right: 10px;
     }
-
 
 </style>

@@ -78,6 +78,7 @@ export default {
       width: 18vw;
       height: auto;
       max-height: 400px;
+      max-width: 18vw;
       border: 1.5px solid grey;
       border-radius: 3px;
       font-size: 2em;

@@ -2,7 +2,7 @@
     <div id="mainContainer">
         <div id="itemGrid">
             <BurgerView
-                    class="burgerView"
+                    class="itemCheckPage"
                     v-on:removeIngredient="removeIngredient"
                     v-on:incrementBurger ="incrementBurger"
                     v-on:decrementBurger="decrementBurger"
@@ -13,7 +13,7 @@
                     :lang="lang"/>
 
             <BurgerView
-                    class="burgerView"
+                    class="itemCheckPage"
                     v-for="burger in oldBurgers"
                     v-on:removeIngredient="removeIngredient"
                     v-on:incrementBurger ="incrementBurger"
@@ -27,6 +27,7 @@
             />
 
             <Ingredient
+                    class="itemCheckPage"
                     v-for="(count, key) in chosenSidesDrinks"
                     v-on:increment="incrementCounter(key)"
                     v-on:decrement="decrementCounter(key)"
@@ -39,7 +40,6 @@
                     :orderCheck="true">
             </Ingredient>
         </div>
-        <div>
             <div id="itemBill">
                 <TotalBill
                         :order="order"
@@ -47,7 +47,6 @@
                         :ui-labels="uiLabels"
                         :lang="lang"
                 />
-            </div>
         </div>
     </div>
 </template>
@@ -115,61 +114,33 @@
     #mainContainer {
         display: flex;
         flex-direction: row;
-        flex-wrap: wrap;
+        flex-wrap: nowrap;
         justify-content: space-between;
     }
 
+    /* In the check page the boxes around ingredients and burgers must have the same size */
+    .itemCheckPage {
+        height: 400px;
+        max-width: 20vw;
+        margin: 5px;
+    }
+
     #itemGrid {
-        display: grid;
-        grid-column-gap: 1.6em;
-        grid-row-gap: 1em;
-        grid-template-columns: 20vw 20vw 20vw;
-        margin-left: 5px;
-        margin-top: 10px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-left: 10px;
+        margin-top: 20px;
         height: 75vh;
-        width: 70vw;
+        width: 65vw;
         overflow: auto;
     }
 
     #itemBill {
         align-self: flex-end;
+        margin-top: 20px;
+        margin-right: 10px;
     }
 
-    .ingredient {
-        display: block;
-        grid-gap: 2em;
-        grid-template-columns: 20em 20em;
-        margin: 0.3em;
-        padding: 20px;
-        width: auto;
-        border-style: solid;
-        border-color: black;
-        font-size: 2em;
-        text-align: center;
-        font-family:arial;
-    }
 
-    #image {
-        width:250px;
-    }
-
-    @media only screen and (max-width: 850px){
-        .ingredient {
-            display: block;
-            grid-gap: 2em;
-            grid-template-columns: 20em 20em;
-            margin: 0.5em;
-            padding: 10px;
-            width: 18vw;
-            height: 60vh;
-            border-style: solid;
-            border-color: grey;
-            font-size: 1.4em;
-            text-align: center;
-            font-family:arial;
-        }
-        #image {
-            width:250px;
-        }
-    }
 </style>

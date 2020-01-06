@@ -49,7 +49,7 @@ export default {
     background-color: #e7e7e7;
     margin: 10px auto 10px auto; 
 }
-.btn:hover {
+.btn:hover, .btn:active {
     cursor: pointer;
     background: lightgrey;
 }

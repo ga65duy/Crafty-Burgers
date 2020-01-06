@@ -95,10 +95,7 @@ export default {
     font-weight: bold;
     outline: none;
     }
-  input:hover {
-    background-color: #8c8c8c;
-    }
-    input:active {
+  input:hover, input:active {
     background-color: #8c8c8c;
     }
   input:disabled {
@@ -144,7 +141,7 @@ export default {
         font-weight: bold;
         outline: none;
         }
-      input:hover {
+      input:hover, input:active {
         background-color: #bfbfbf;
         }
       input:disabled {

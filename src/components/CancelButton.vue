@@ -94,11 +94,12 @@ export default {
     width: 200px;
     height: 40px;
     text-align: center,middle;
+    outline: none;
 }
-#cancelButton:hover {
+#cancelButton:hover, cancelButton:active {
     cursor: pointer;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    background-color: rgb(221, 53, 53);
+    background-color: #ea4848;
 }
 #cancelButtonText {
     font-family: 'Comfortaa', cursive;
@@ -192,6 +193,7 @@ export default {
     font-size: 1.1rem;
     cursor: pointer;
     width: 100px;
+    outline: none;
 }
 .btn-choice:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24);
@@ -199,7 +201,13 @@ export default {
 #btn-yes {
     background: #8FBC8F;
 }
+#btn-yes:hover, btn-no:active {
+    background:  #609f60;
+}
 #btn-no {
     background: #F08080;
+}
+#btn-no:hover, btn-no:active {
+    background: #ea4848;
 }
 </style>

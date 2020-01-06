@@ -30,7 +30,6 @@
         </section>
         <div id="ing">
           
-          <div class="overview">
             <!--show a list of all created burgers in step 7-->
                 <BurgerView
                     class="burgerView"
@@ -75,7 +74,6 @@
                      :orderCheck="true"
                 >
                 </OrderOverviewSidesDrinks>  
-        </div>
         
             <!-- Other than step 4 clicking + and - is always enabled -->
             <div v-if="currentStep !== 4" >

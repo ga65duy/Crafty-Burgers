@@ -39,15 +39,12 @@ button {
     border: 2px solid grey;
     padding: 2vh 3vw 2vh 3vw;
     width: 20vw;
+    outline: none;
 }
-button:hover {
+button:hover, button:active {
     cursor: pointer;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    background-color: blue;
-}
-button:active {
-    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    background-color: blue;
+    background-color: #3ca1c3;
 }
 img {
     width: 3vw;

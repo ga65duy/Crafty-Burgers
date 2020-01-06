@@ -147,7 +147,6 @@
 </script>
 <style scoped>
     .grid-container {
-        font-size: 0.8em;
         display: grid;
         background: #e7e7e7;
         height:97vh;
@@ -222,6 +221,4 @@
         border-bottom: 1px solid lightslategrey;
     }
 
-    .grid-item{
-    }
 </style>

@@ -1,6 +1,8 @@
 <template>
     <div>
-        Burger ingredients: make {{burger.amount}} <br>
+        <span id="header"> Burger ingredients: make 
+        <span id="amount"> {{burger.amount}} </span>
+        </span> <br>
         <p v-if="burger.bun">
             1x {{getItemForKey(burger.bun)["ingredient_"+lang]}}<br>
         </p>
@@ -28,4 +30,11 @@
 </script>
 
 <style scoped>
+
+#header {
+    font-size: 0.8em;
+}
+#amount {
+    font-weight: bold;
+}
 </style>

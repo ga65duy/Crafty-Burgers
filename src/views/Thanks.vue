@@ -79,6 +79,7 @@ a {
 }
 input {
   width: 5vw;
+  outline: none;
  }
  #againButton{
   display: inline-block;
@@ -130,6 +131,7 @@ input {
         }
         input {
         width: 5vw;
+        outline: none;
         }
         #againButton{
         display: inline-block;

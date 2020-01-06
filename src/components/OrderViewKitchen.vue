@@ -13,7 +13,7 @@
                 :lang="lang"
         />
         <div v-if="showTimer" id="timer">
-            {{timerMinutes}}:{{timerSeconds}} <br>
+           Time: {{timerMinutes}}:{{timerSeconds}} <br>
         </div>
 
         <div id="step"> 

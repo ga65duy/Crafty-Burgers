@@ -86,7 +86,7 @@ button:active {
             border-radius: 20px;
             background-color: #e7e7e7;
             font-family: Comfortaa, sans-serif;
-            font-size: 1.1em;
+            font-size: 1em;
             color: darkslategrey;
             outline: none;
         }

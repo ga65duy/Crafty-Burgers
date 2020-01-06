@@ -15,6 +15,7 @@
             <!--Choosing a bun, allows only one bun otherwise the + and - is disabled -->
             <!--In first case the bun box which was selected allows only to click -  -->
             <Ingredient
+                    class="burgerIngredient"
                     ref="ingredient"
                     v-for="item in relevantIngredients"
                     v-if="item.ingredient_id === burger.bun"
@@ -32,6 +33,7 @@
                 2) and a bun is selected: clicking + and - is not allowed
             -->
             <Ingredient
+                    class="burgerIngredient"
                     ref="ingredient"
                     v-for="item in relevantIngredients"
                     v-if="item.ingredient_id !== burger.bun"
@@ -110,6 +112,10 @@
         height: 80vh;
         width: 70vw;
         overflow: auto;
-    } 
+    }
+    }
+
+    .burgerIngredient {
+        max-height: 250px;
     }
 </style>

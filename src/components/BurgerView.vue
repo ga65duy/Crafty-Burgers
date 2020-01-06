@@ -33,7 +33,7 @@
 
     <!-- Show name and price of burger -->
 	<p id="total"> {{name}}:
-    <span id="price"> {{burger.price * burger.amount}} kr </span>
+    <span id="price"> {{burger.price}} kr </span>
     </p>
 
     <!-- If the burger view is used in the addBurger or checkOrder pages a counter is shown to change the number of burgers -->

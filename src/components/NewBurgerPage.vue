@@ -26,10 +26,10 @@
             </div>
         <div id="itemButton">
             <NewBurgerButton
-                    v-if="currentBurger.price > 0"
                     v-on:newBurger="newBurger"
                     :ui-labels="uiLabels"
                     :lang="lang"
+                    :disabled="currentBurger.price===0"
             />
         </div>
         <div id="itemBill">
@@ -103,8 +103,15 @@
         margin-left: 10px;
         margin-top: 20px;
         height: 75vh;
-        width: 45vw;
+        width: 42vw;
         overflow: auto;
+    }
+    #burgerGrid::-webkit-scrollbar {
+        display: none;
+    }
+
+    #burgerGrid {
+        -ms-overflow-style: none;
     }
 
     #itemButton {

@@ -1,16 +1,17 @@
 <template>
-    <div v-on:click="clickedPay()">
-    <a href="http://localhost:8080/#/thankyou">
-      <button type="submit"
-              v-on:click="clickedPay()"
-              :disabled="disabled"
-      >
-          <p id="payButtonText">{{uiLabels.pay}}
-              <img src="https://image.flaticon.com/icons/svg/1411/1411444.svg">
-          </p>
-
-        </button>
-    </a>
+    <div id="payDiv">
+        <router-link to="/thankyou"
+           :disabled="disabled"
+        >
+          <button type="submit"
+                  v-on:click="clickedPay()"
+                  :disabled="disabled"
+          >
+              <p id="payButtonText">{{uiLabels.pay}}
+                  <img src="https://image.flaticon.com/icons/svg/1411/1411444.svg">
+              </p>
+            </button>
+        </router-link>
     </div>
 </template>
 
@@ -55,6 +56,14 @@ button {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+#payDiv:disabled {
+    pointer-events: none;
+}
+
+a[disabled] {
+    pointer-events: none;
 }
 
 button:disabled {

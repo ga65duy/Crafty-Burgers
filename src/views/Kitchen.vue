@@ -129,18 +129,13 @@
         },
         methods: {
             next: function () {
-                console.log("Next triggered");
                 let completedItem = this.ordersItemList[0];
                 if (completedItem && completedItem.type === 'burger' ) {
                     this.$store.state.socket.emit("burgerDone", [completedItem.orderId, completedItem.id]);
 
                 } else if (completedItem && completedItem.type === 'sidesAndDrinks') {
                     this.$store.state.socket.emit("sidesDone", completedItem.orderId);
-
-                } else {
-                    //console.log("Next clicked without an order");
                 }
-
             },
         }
     }

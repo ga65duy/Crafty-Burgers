@@ -29,7 +29,7 @@
                 <td>Total</td>
                 <td></td>
                 <td></td>
-                <td>{{getTotal()}}kr</td>
+                <td>{{order.total}}kr</td>
             </tr>
         </table>
 
@@ -52,17 +52,6 @@ export default {
         },
         name: function (id) {
             return this.uiLabels.burger + " #" + id;
-        },
-        getTotal: function (){
-            let res = 0;
-            for (const burger of this.order.otherBurgers){
-                res = res + burger.amount * burger.price;
-            }
-           for(const [key, count] of Object.entries(this.order.sides)) {
-                res = res + count * this.getItemForKey(key).selling_price
-            }
-            res = res + this.order.currentBurger.price * this.order.currentBurger.amount;
-            return res;
         }
         }
     }

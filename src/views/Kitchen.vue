@@ -114,11 +114,7 @@
 
                 } else if (completedItem && completedItem.type === 'sidesAndDrinks') {
                     this.$store.state.socket.emit("sidesDone", completedItem.orderId);
-
-                } else {
-                    //console.log("Next clicked without an order");
                 }
-
             },
         }
     }

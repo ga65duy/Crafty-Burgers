@@ -107,10 +107,9 @@
                 :lang="lang"
                 :ui-labels="uiLabels"
                 v-on:clickedPay="placeOrder"
-                :price="price"
+                :price="order.total"
         />
     </section>
-
     </div>
 </template>
 <script>
@@ -197,7 +196,8 @@
                 return {currentBurger: this.burger,
                         otherBurgers: this.oldBurgers,
                         sides: this.chosenSidesDrinks,
-                        price: this.price}
+                        total: this.totalPrice
+                }
             },
             burger: function() {
                 return {
@@ -216,7 +216,20 @@
                 } else {
                     return this.chosenIngredientsDict;
                 }
-            }
+            },
+
+            totalPrice: function() {
+                // Compute current total price based on ingredients and amount of current and old burgers and sides and drinks
+                let res = 0;
+                for (const burger of this.oldBurgers){
+                    res = res + burger.amount * burger.price;
+                }
+                for(const [key, count] of Object.entries(this.chosenSidesDrinks)) {
+                    res = res + count * this.ingredients[key-1].selling_price
+                }
+                res = res + this.burgerPrice * this.burgerAmount;
+                return res;
+            },
         },
         created: function () {
             this.$store.state.socket.on('orderNumber', function (data) {
@@ -227,6 +240,7 @@
             changeStep: function (nextStep) {
                 this.currentStep = nextStep;
             },
+
 
             changePreferences: function(prefId) {
                 //prefId is the id of the button in the component food preferences
@@ -257,14 +271,12 @@
                     let newCount = (this.currentRelevantIngredientDict[itemKey] || 0) + 1;
                     this.$set(this.currentRelevantIngredientDict, itemKey, newCount);
                 }
-                //if ingredients are sides or drinks then the order price has to be increased
-                //otherwise order price and burger price increases
-                if (this.currentStep === 5 || this.currentStep === 6 || this.currentStep === 8) {
-                    this.price += item.selling_price;
-                } else {
-                    this.price += item.selling_price;
+
+                //if ingredients are burger ingredients or bun the current burger price has to be changed
+                if ([1,2,3,4].includes(this.currentStep)) {
                     this.burgerPrice += item.selling_price;
                 }
+
             },
             removeOrder: function (item) {
                 //remove ingredients from order
@@ -279,12 +291,8 @@
                         delete this.currentRelevantIngredientDict[itemKey];
                     }
                 }
-                //if ingredients are sides or drinks then the order price has to be decreased
-                //otherwise order price and burger price decreases
-                if (this.currentStep === 5 || this.currentStep === 6 || this.currentStep === 8) {
-                    this.price -= item.selling_price;
-                } else {
-                    this.price -= item.selling_price;
+                //if ingredients are burger ingredients or bun the current burger price has to be changed
+                if ([1,2,3,4].includes(this.currentStep)) {
                     this.burgerPrice -= item.selling_price;
                 }
 

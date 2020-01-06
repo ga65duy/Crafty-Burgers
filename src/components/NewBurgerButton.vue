@@ -120,9 +120,8 @@
 
     #newBurgerText {
         font-family: 'Comfortaa', cursive;
-        font-size: 1.25em;
+        font-size: 1.0em;
         color: darkslategrey;
-
         padding-top: 15px;
         border-top: 2px solid grey;
     }

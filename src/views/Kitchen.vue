@@ -1,20 +1,5 @@
 <template>
     <div class="grid-container">
-        <!--  TODO: remove following line: only for understanding-->
-<!--       {{orders}}-->
-
-        <!--  <div class="grid-item">
-          <OrderViewKitchen
-                  v-for="order in orders"
-                  :order="order"
-                  :allIngredients="ingredients"
-                  :lang="lang"
-                  :key="order.orderId"
-          >
-          </OrderViewKitchen>
-          </div>
-          <div class="grid-item">-->
-        <!--TODO: add stock component here-->
         <StockInfo
           class="grid-item"
           id="itemStock"
@@ -71,10 +56,6 @@
     </div>
 </template>
 <script>
-    //import OrderItem from '@/components/OrderingComponents/OrderItem.vue'
-    //import OrderItemToPrepare from '@/components/OrderingComponents/OrderItemToPrepare.vue'
-
-    //import methods and data that are shared between ordering and kitchen views
     import sharedVueStuff from '@/components/sharedVueStuff.js'
     import BurgerViewKitchen from "../components/BurgerViewKitchen";
     import OrderViewKitchen from "../components/OrderViewKitchen";
@@ -88,8 +69,6 @@
             BurgerViewKitchen,
             TimeAndEmp,
             StockInfo
-            //OrderItem,
-            //OrderItemToPrepare
         },
         mixins: [sharedVueStuff], // include stuff that is used in both
                                   //the ordering system and the kitchen
@@ -129,7 +108,6 @@
         },
         methods: {
             next: function () {
-                console.log("Next triggered");
                 let completedItem = this.ordersItemList[0];
                 if (completedItem && completedItem.type === 'burger' ) {
                     this.$store.state.socket.emit("burgerDone", [completedItem.orderId, completedItem.id]);

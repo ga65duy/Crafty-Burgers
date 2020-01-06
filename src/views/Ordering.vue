@@ -382,31 +382,4 @@
             width: 3vw;
             margin-left: 20px;
         }
-
-#FoodPref {
-    position: absolute;
-    left: 33vw;
-    top: 200px;
-}
-#TotalBill {
-    position: absolute;
-    left: 73vw;
-    bottom: 180px;
-    font-size: 0.7em;
-    overflow: auto;
-    height: 50vh;
-}
-#PayButton {
-    margin-left: 180px;
-    margin-bottom: 30px;
-    position: absolute;
-    left: 63vw;
-    bottom: 20px;
-}
-#NewBurger {
-    position: absolute;
-    left: 77vw;
-    bottom: 10px;
-}
-
 </style>

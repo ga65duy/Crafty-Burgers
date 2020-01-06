@@ -14,15 +14,7 @@
 </template>
 <script>
 
-//import the components that are used in the template, the name that you
-//use for importing will be used in the template above and also below in
-//components
-
-//import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
-
-/* instead of defining a Vue instance, export default allows the only 
-necessary Vue instance (found in main.js) to import your data and methods */
 export default {
   name: 'Thanks',
   components: {
@@ -36,8 +28,6 @@ export default {
   },
   created: function () {
     this.$store.state.socket.on('orderNumber', function (data) {
-        console.log("Order Number received");
-        console.log(data);
       this.orderNumber = data;
     }.bind(this));
   },

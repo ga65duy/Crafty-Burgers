@@ -75,4 +75,20 @@
         width: 70vw;
         overflow: auto;
     }
+
+    /* Medium screens */
+    @media all and (max-width: 800px) {
+        .grid {
+            /* When on medium sized screens, we have only two columns*/
+            grid-template-columns: 20vw 20vw;
+        }
+    }
+
+    /* Small screens */
+    @media all and (max-width: 500px) {
+        .grid {
+            /* On small screens, we have only one column */
+            grid-template-columns: 20vw;
+        }
+    }
 </style>

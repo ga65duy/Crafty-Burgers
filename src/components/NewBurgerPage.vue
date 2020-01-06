@@ -1,9 +1,8 @@
 <template>
     <div id="mainContainer">
-        <div id="burgerParent">
-            <div id="burgerContainer">
+            <div id="burgerGrid">
                 <BurgerView
-                        class="burgerView"
+                        class="burgerNewPage"
                         v-on:incrementBurger ="incrementBurger"
                         v-on:decrementBurger="decrementBurger"
                         :burger="currentBurger"
@@ -13,7 +12,7 @@
                         :lang="lang"/>
 
                 <BurgerView
-                    class="burgerView"
+                    class="burgerNewPage"
                     v-for="burger in oldBurgers"
                     v-on:incrementBurger ="incrementBurger"
                     v-on:decrementBurger="decrementBurger"
@@ -25,7 +24,6 @@
                     :key="burger.id"
                 />
             </div>
-        </div>
         <div id="itemButton">
             <NewBurgerButton
                     v-if="currentBurger.price > 0"
@@ -92,10 +90,21 @@
         justify-content: space-between;
     }
 
-    #burgerContainer {
+    .burgerNewPage {
+        height: 400px;
+        max-width: 18.5vw;
+        margin: 5px;
+    }
+
+    #burgerGrid {
         display: flex;
-        flex-direction: column;
-        align-self: flex-start;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-left: 10px;
+        margin-top: 20px;
+        height: 75vh;
+        width: 45vw;
+        overflow: auto;
     }
 
     #itemButton {
@@ -104,5 +113,8 @@
 
     #itemBill {
         align-self: flex-end;
+        margin-top: 20px;
+        margin-right: 10px;
     }
+
 </style>

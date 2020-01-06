@@ -70,23 +70,16 @@
         grid-row-gap: 1em;
         grid-template-columns: 20vw 20vw 20vw;
         margin-left: 5px;
-        margin-top: 10px;
+        margin-top: 20px;
         height: 75vh;
-        width: 70vw;
+        width: 65vw;
         overflow: auto;
     }
-    /*#burgerContainer {*/
-        /*display: flex;*/
-        /*flex-direction: column;*/
-        /*align-self: flex-start;*/
-    /*}*/
-
-    /*#itemButton {*/
-        /*align-self: center;*/
-    /*}*/
 
     #itemBill {
-        flex-grow: 2;
         align-self: flex-end;
+        margin-top: 20px;
+        margin-right: 10px;
     }
+
 </style>

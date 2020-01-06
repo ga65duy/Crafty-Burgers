@@ -91,4 +91,18 @@
             grid-template-columns: 20vw;
         }
     }
+
+    @media only screen and (max-width: 850px){
+       .grid {
+        display: grid;
+        grid-column-gap: 1em;
+        grid-row-gap: 1em;
+        grid-template-columns: 20vw 20vw 20vw;
+        margin-left: 15px;
+        margin-top: 20px;
+        height: 80vh;
+        width: 70vw;
+        overflow: auto;
+    } 
+    }
 </style>

@@ -1,11 +1,17 @@
 <template>
-    <div v-on:click="clickedPay()">
-    <a href="http://localhost:8080/#/thankyou">
-      <button type="submit" v-on:click="clickedPay()">
-        {{uiLabels.pay}}
-        <img src="https://image.flaticon.com/icons/svg/1411/1411444.svg">
-        </button>
-    </a>
+    <div id="payDiv">
+        <router-link to="/thankyou"
+           :disabled="disabled"
+        >
+          <button type="submit"
+                  v-on:click="clickedPay()"
+                  :disabled="disabled"
+          >
+              <p id="payButtonText">{{uiLabels.pay}}
+                  <img src="https://image.flaticon.com/icons/svg/1411/1411444.svg">
+              </p>
+            </button>
+        </router-link>
     </div>
 </template>
 
@@ -14,7 +20,8 @@
         name: "PayButton",
         props: {
             uiLabels: Object,
-            lang: String
+            lang: String,
+            disabled: Boolean
         },
         data: function () {
             return {
@@ -30,23 +37,48 @@
 
 <style scoped>
 button {
-    font-family: comfortaa, sans-serif;
-    font-size: 2vw;
-    font-weight: bold;
-    color: darkslategrey;
-    background-color: #e7e7e7;
+    background-color: lightblue;
     border-radius: 10px;
     border: 2px solid grey;
-    padding: 2vh 3vw 2vh 3vw;
-    width: 20vw;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 200px;
+    height: 40px;
+    align-self: center;
+    text-align: center;
 }
-button:hover {
+
+#payButtonText {
+    font-family: 'Comfortaa', cursive;
+    font-size: 14pt;
+    color: darkslategrey;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#payDiv:disabled {
+    pointer-events: none;
+}
+
+a[disabled] {
+    pointer-events: none;
+}
+
+button:disabled {
+    background: rgba(0,0,0,0.24);
+    box-shadow: none;
+    pointer-events: none;
+}
+
+button:hover, button:active {
     cursor: pointer;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    background-color: lightgreen;
+    background-color: #3ca1c3;
 }
 img {
-    width: 3vw;
+    width: 1.5vw;
     padding-left: 1vw;
 }
 </style>

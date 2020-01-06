@@ -1,20 +1,5 @@
 <template>
     <div class="grid-container">
-        <!--  TODO: remove following line: only for understanding-->
-<!--       {{orders}}-->
-
-        <!--  <div class="grid-item">
-          <OrderViewKitchen
-                  v-for="order in orders"
-                  :order="order"
-                  :allIngredients="ingredients"
-                  :lang="lang"
-                  :key="order.orderId"
-          >
-          </OrderViewKitchen>
-          </div>
-          <div class="grid-item">-->
-        <!--TODO: add stock component here-->
         <StockInfo
           class="grid-item"
           id="itemStock"
@@ -71,10 +56,6 @@
     </div>
 </template>
 <script>
-    //import OrderItem from '@/components/OrderingComponents/OrderItem.vue'
-    //import OrderItemToPrepare from '@/components/OrderingComponents/OrderItemToPrepare.vue'
-
-    //import methods and data that are shared between ordering and kitchen views
     import sharedVueStuff from '@/components/sharedVueStuff.js'
     import BurgerViewKitchen from "../components/BurgerViewKitchen";
     import OrderViewKitchen from "../components/OrderViewKitchen";
@@ -88,8 +69,6 @@
             BurgerViewKitchen,
             TimeAndEmp,
             StockInfo
-            //OrderItem,
-            //OrderItemToPrepare
         },
         mixins: [sharedVueStuff], // include stuff that is used in both
                                   //the ordering system and the kitchen
@@ -129,26 +108,22 @@
         },
         methods: {
             next: function () {
-                console.log("Next triggered");
                 let completedItem = this.ordersItemList[0];
                 if (completedItem && completedItem.type === 'burger' ) {
                     this.$store.state.socket.emit("burgerDone", [completedItem.orderId, completedItem.id]);
 
                 } else if (completedItem && completedItem.type === 'sidesAndDrinks') {
                     this.$store.state.socket.emit("sidesDone", completedItem.orderId);
-
-                } else {
-                    //console.log("Next clicked without an order");
                 }
-
             },
         }
     }
 </script>
 <style scoped>
     .grid-container {
-        font-size: 0.8em;
         display: grid;
+        background: #e7e7e7;
+        height:97vh;
     }
     #itemStock {
         grid-column-start: 1;
@@ -159,10 +134,11 @@
         display: block;
         padding: 20px;
         width: auto;
-        border: 2px solid black;
+        border-right: 1px solid lightslategrey;
+        border-bottom: 1px solid lightslategrey;
         font-size: 2em;
         text-align: center;
-        font-family:arial;
+        font-family:arial, sans-serif;
     }
     #item1 {
         grid-column-start: 2;
@@ -170,7 +146,9 @@
         grid-row-start: 1;
         grid-row-end: 2;
 
-        border-width: 2px 2px 2px 0;
+        background: white;
+        border: 1px solid lightslategrey;
+        border-top: none;
     }
     #item2 {
         grid-column-start: 1;
@@ -178,7 +156,8 @@
         grid-row-start: 2;
         grid-row-end: 3;
 
-        border-width: 0 2px 2px 2px;
+        border-top: 1px solid lightslategrey;
+        border-right: 1px solid lightslategrey;
     }
     #item3 {
         grid-column-start: 2;
@@ -186,7 +165,8 @@
         grid-row-start: 2;
         grid-row-end: 3;
 
-        border-width: 0 2px 2px 0;
+        border: 1px solid lightslategrey;
+        border-bottom: none;
     }
     #item4 {
         grid-column-start: 3;
@@ -194,7 +174,8 @@
         grid-row-start: 2;
         grid-row-end: 3;
 
-        border-width: 2px 2px 2px 0;
+        border-top: 1px solid lightslategrey;
+        border-left: 1px solid lightslategrey;
     }
     #itemEmployeeNext {
         grid-column-start: 3;
@@ -205,16 +186,13 @@
         display: block;
         padding: 20px;
         width: auto;
-        border-style: solid;
-        border-color: black;
+        height: auto;
         font-size: 2em;
         text-align: center;
-        font-family:arial;
+        font-family:arial, sans-serif;;
 
-        border-width: 2px 2px 0 0;
+        border-left: 1px solid lightslategrey;
+        border-bottom: 1px solid lightslategrey;
     }
 
-    .grid-item{
-        overflow: hidden
-    }
 </style>

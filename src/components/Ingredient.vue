@@ -1,29 +1,38 @@
 <template>
-  <div class="ingredient" id="box">
-      <div v-if="!orderCheck">
-          <span id="name"> {{item["ingredient_"+ lang]}} </span> <br>
-          <span id="price"> {{item.selling_price}} kr </span> <br>
-      </div>
-      <img :src="getImgUrl(item.image_path)" v-bind:alt="item.image_path" id="image"> <br>
-      <div v-if="orderCheck">
-          {{item["ingredient_"+ lang]}} {{item.selling_price}}kr <br>
-      </div>
-      <input type="image" 
-       src="https://image.flaticon.com/icons/svg/149/149146.svg" 
-       :disabled="validatedCounter === 0"
-       value="-" 
-       class="button-minus" 
-       data-field="quantity" 
-       v-on:click="decrementCounter()">
-<!--  stock is just there for testing TODO: remove before hand in (stock:{{item.stock}})-->
-     <span id="counter"> {{validatedCounter}}  </span>
-      <input type="image"
-       src="https://image.flaticon.com/icons/svg/149/149145.svg"
-       :disabled="disabled || plusDisabled" 
-       value="+" class="button-plus" 
-       data-field="quantity" 
-       v-on:click="incrementCounter()">
-  </div>
+          <div class="ingredient">
+                  <div v-if="!orderCheck">
+                      <span id="name"> {{item["ingredient_"+ lang]}} </span> <br>
+                      <span id="price"> {{item.selling_price}} kr </span> <br>
+                  </div>
+                  <img :src="getImgUrl(item.image_path)" v-bind:alt="item.image_path" id="image"> <br>
+                  <div v-if="orderCheck">
+                      {{item["ingredient_"+ lang]}} {{item.selling_price}}kr <br>
+                  </div>
+
+                  <!-- Minus button -->
+                  <input
+                       type="image"
+                       src="https://image.flaticon.com/icons/svg/149/149146.svg"
+                       :disabled="validatedCounter === 0"
+                       value="-"
+                       class="button-minus"
+                       data-field="quantity"
+                       v-on:click="decrementCounter()"
+                  />
+
+                 <span id="counter">
+                     {{validatedCounter}}
+                 </span>
+
+                  <!-- Plus button -->
+                  <input type="image"
+                   src="https://image.flaticon.com/icons/svg/149/149145.svg"
+                   :disabled="disabled || plusDisabled"
+                   value="+" class="button-plus"
+                   data-field="quantity"
+                   v-on:click="incrementCounter()"
+                  />
+          </div>
 </template>
 <script>
 export default {
@@ -48,6 +57,7 @@ export default {
       // can catch it with v-on:increment in the component declaration
       this.$emit('increment');
     },
+
     decrementCounter: function () {
       if(this.counter > 0){
         this.$emit('decrement');
@@ -62,17 +72,21 @@ export default {
 }
 </script>
 <style scoped>
+
   .ingredient {
       padding: 20px;
       width: 18vw;
+      height: auto;
+      max-height: 400px;
+      max-width: 18vw;
       border: 1.5px solid grey;
       border-radius: 3px;
       font-size: 2em;
-      display: block;
       text-align: center;
       font-family:comfortaa, sans-serif;
       background: #e7e7e7;
   }
+
   #image {
       width: 90%;
       padding: 10px;
@@ -94,7 +108,7 @@ export default {
     font-weight: bold;
     outline: none;
     }
-  input:hover {
+  input:hover, input:active  {
     background-color: #bfbfbf;
     }
   input:disabled {
@@ -140,7 +154,7 @@ export default {
         font-weight: bold;
         outline: none;
         }
-      input:hover {
+      input:hover, input:active {
         background-color: #bfbfbf;
         }
       input:disabled {

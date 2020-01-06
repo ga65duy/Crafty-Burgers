@@ -29,7 +29,7 @@
                 <td>Total</td>
                 <td></td>
                 <td></td>
-                <td>{{getTotal()}} kr</td>
+                <td>{{order.total}}kr</td>
             </tr>
         </table>
 
@@ -52,17 +52,6 @@ export default {
         },
         name: function (id) {
             return this.uiLabels.burger + " #" + id;
-        },
-        getTotal: function (){
-            let res = 0;
-            for (const burger of this.order.otherBurgers){
-                res = res + burger.amount * burger.price;
-            }
-           for(const [key, count] of Object.entries(this.order.sides)) {
-                res = res + count * this.getItemForKey(key).selling_price
-            }
-            res = res + this.order.currentBurger.price * this.order.currentBurger.amount;
-            return res;
         }
         }
     }
@@ -70,18 +59,20 @@ export default {
 
 <style scoped>
 #priceTable {
-    font-size: 1.5em;
+    font-size: 1.1em;
     display: block;
     text-align: center;
     font-family: comfortaa, sans-serif;
+    margin-left: 5px;
 }
 table {
     border-collapse: collapse;
     text-align: center;
-    width: 200%;
+    /*width: 24vw;*/
+    width: auto;
 }
 th {
-    padding: 10px;
+    padding: 5px;
      border-bottom: 2px solid grey;
 }
 td {
@@ -89,11 +80,11 @@ td {
     border-bottom: 1px solid lightgrey;
 }
 #total td {
-    padding: 10px;
+    padding: 5px;
     padding-top: 20px;
     border-top: 3px solid grey;
     border-bottom: none;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: bold;
 }
 </style>

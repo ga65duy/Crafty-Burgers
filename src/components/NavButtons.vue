@@ -38,7 +38,6 @@
 <style scoped>
 button {
     margin: 0.1em;
-    margin-right: 5px;
     width: 130px;
     height: 50px;
     padding: 5px;
@@ -50,12 +49,22 @@ button {
     font-family: Comfortaa, sans-serif;
     font-size: 1.5em;
     color: darkslategrey;
+    outline: none;
+}
+button:hover {
+    cursor: pointer;
+    background:lightgrey;
+}
+button:active {
+    background:lightgrey;
 }
  .buttonSelected {
     background-color: #52cc10ff;
     box-shadow: 0 0 8px 0 #52cc10ff;
     border: 1px solid #5cd65c;
-    outline: none;
+}
+ .buttonSelected:hover {
+    background: #52cc10ff;
 }
 #Preferences {
     width: 190px;
@@ -79,6 +88,7 @@ button {
             font-family: Comfortaa, sans-serif;
             font-size: 1.1em;
             color: darkslategrey;
+            outline: none;
         }
         .buttonSelected {
             background-color: #52cc10ff;

@@ -12,14 +12,16 @@
                 :allIngredients="allIngredients"
                 :lang="lang"
         />
-        <div v-if="showTimer">
+        <div v-if="showTimer" id="timer">
             Timer: {{timerMinutes}}:{{timerSeconds}} <br>
         </div>
 
-        #{{item.orderId}} ({{item.step}}/{{item.totalSteps}})
+        <div id="step"> 
+            #{{item.orderId}} ({{item.step}}/{{item.totalSteps}})
+        </div>
     </div>
     <div v-else class="orderItem">
-        No order available
+        <span class="text"> No order available </span>
     </div>
 
 </template>
@@ -74,10 +76,21 @@
         display: block;
         padding: 20px;
         width: auto;
-        border-style: solid;
-        border-color: black;
+        height: auto;
         font-size: 2em;
         text-align: center;
-        font-family:arial;
+        font-family:arial, sans-serif;;
+        overflow: auto;
     }
+#timer {
+    font-size: 0.8em;
+}
+#step {
+    font-size: 0.8em;
+}
+.text {
+    padding-top: 5px;
+    font-size: 0.8em;
+    color: grey;
+}
 </style>

@@ -1,13 +1,14 @@
 <template>
     <div id="ordering">
-        <input id="flag" 
-            type="image"
-            v-bind:src="uiLabels.flag"
-            v-on:click="switchLang()">
+
+
         <section id="NavButtons">
+            <input id="flag"
+                   type="image"
+                   v-bind:src="uiLabels.flag"
+                   v-on:click="switchLang()">
             <!--shows the buttons to navigate to different food categories-->
             <NavButtons id="tabbar"
-                        ref="navigation"
                         v-for="s in steps"
                         v-bind:step="s"
                         v-on:selected="changeStep"
@@ -26,169 +27,121 @@
                 :ui-labels="uiLabels"
                 :lang="lang">
         </FoodPref>
-        <div id="ing">
-            <!--do not show the component in foodpreferences, drinks, sides-->
-                <BurgerView
-                        class="burgerView"
-                        v-if="![0,5,6].includes(currentStep)"
-                        v-on:removeIngredient="removeOrder"
-                        v-on:incrementBurger ="addFinishedBurger"
-                        v-on:decrementBurger="removeFinishedBurger"
-                        :burger="burger"
-                        :allIngredients="ingredients"
-                        :addBurgerOrCheckPage="addBurgerOrCheckPage"
-                        :ui-labels="uiLabels"
-                        :lang="lang">
-                </BurgerView>
 
-            <!--show a list of all created burgers in step 7-->
-                <BurgerView
-                    class="burgerView"
-                    v-if="[7,8].includes(currentStep)"
-                    v-for="burger in oldBurgers"
-                    v-on:removeIngredient="removeOrder"
-                    v-on:incrementBurger ="addFinishedBurger"
-                    v-on:decrementBurger="removeFinishedBurger"
-                    :burger="burger"
-                    :allIngredients="ingredients"
-                    :addBurgerOrCheckPage="addBurgerOrCheckPage"
-                    :ui-labels="uiLabels"
-                    :lang="lang"
-                    :key="burger.id"
-                >
-                </BurgerView>
-                
-            <!--show selected sides and drinks in order overview-->
-                <OrderOverviewSidesDrinks
-                     v-if="currentStep===8"
-                     v-on:increment="addToOrder"
-                     v-on:decrement="removeOrder"
-                     :ui-labels="uiLabels"
-                     :lang="lang"
-                     :chosenSidesDrinks="chosenSidesDrinks"
-                     :allIngredients="ingredients"
-                     :orderCheck="true"
-                >
-                </OrderOverviewSidesDrinks>
-            <!-- Other than step 4 clicking + and - is always enabled -->
-            <div v-if="currentStep !== 4" >
-              <div class="grid">
-                <Ingredient
-                        ref="ingredient"
-                        v-for="item in relevantIngredients"
-                        v-on:increment="addToOrder(item)"
-                        v-on:decrement="removeOrder(item)"
-                        :item="item"
-                        :lang="lang"
-                        :key="item.ingredient_id"
-                        :disabled="false"
-                        :plusDisabled="false"
-                        :counter="currentRelevantIngredientDict[item.ingredient_id]"
-                >
-                </Ingredient>
-              </div>
-            </div>
-            <div v-if="currentStep === 4" >
-              <div class="grid">
-                <!--Choosing a bun, allows only one bun otherwise the + and - is disabled -->
-                <!--In first case the bun box which was selected allows only to click -  -->
-                <Ingredient
-                        ref="ingredient"
-                        v-for="item in relevantIngredients"
-                        v-if="item.ingredient_id === burgerBun"
-                        v-on:increment="addToOrder(item)"
-                        v-on:decrement="removeOrder(item)"
-                        :item="item"
-                        :lang="lang"
-                        :key="item.ingredient_id"
-                        :disabled="false"
-                        :plusDisabled="true"
-                        :counter="1">
-                </Ingredient>
-                <!--In second case the bun boxes, which are NOT selected,
-                    1) and no bun is selected at all: then clicking + and - is allowed
-                    2) and a bun is selected: clicking + and - is not allowed
-                -->
-                <Ingredient
-                        ref="ingredient"
-                        v-for="item in relevantIngredients"
-                        v-if="item.ingredient_id !== burgerBun"
-                        v-on:increment="addToOrder(item)"
-                        v-on:decrement="removeOrder(item)"
-                        :item="item"
-                        :lang="lang"
-                        :key="item.ingredient_id"
-                        :disabled="Boolean(burgerBun)"
-                        :plusDisabled="Boolean(burgerBun)"
-                        :counter="0">
-                </Ingredient>
-              </div>
-          </div>
-            <!-- Create a new burger and add it to the order -->
-            <NewBurger
-                    v-if="currentStep===7 && burgerPrice > 0"
-                    v-on:newBurger="addNewBurger"
-                    :ui-labels="uiLabels"
-                    :lang="lang">
-            </NewBurger>
-            <!--show the bill: with the amount of selected burgers, sides and drinks in step 5,6,7,8-->
-            <TotalBill
-                v-if="[5,6,7,8].includes(currentStep)"
+        <!-- Select the patty for a burger -->
+        <BurgerBunPage
+                v-if="currentStep===4"
+                v-on:removeIngredient="removeOrder"
+                v-on:increment="addToOrder"
+                v-on:decrement="removeOrder"
+                :burger="burger"
+                :allIngredients="ingredients"
+                :relevantIngredients="relevantIngredients"
+                :relevantIngredientDict="chosenIngredientsDict"
+                :ui-labels="uiLabels"
+                :lang="lang"
+        />
+
+        <!-- Select patties, extras, and sauces for the current burger -->
+        <BurgerIngredientsPage
+                v-if="[1,2,3].includes(currentStep)"
+                v-on:removeIngredient="removeOrder"
+                v-on:increment="addToOrder"
+                v-on:decrement="removeOrder"
+                :burger="burger"
+                :allIngredients="ingredients"
+                :relevantIngredients="relevantIngredients"
+                :relevantIngredientDict="chosenIngredientsDict"
+                :ui-labels="uiLabels"
+                :lang="lang"
+            />
+
+        <!-- Create a new burger and add it to the order -->
+        <NewBurgerPage
+                v-if="currentStep===7"
+                v-on:newBurger="addNewBurger"
+                v-on:incrementBurger ="addFinishedBurger"
+                v-on:decrementBurger="removeFinishedBurger"
+                :ui-labels="uiLabels"
+                :lang="lang"
+                :currentBurger="burger"
+                :oldBurgers="oldBurgers"
                 :order="order"
                 :allIngredients="ingredients"
+
+        />
+
+        <!-- Add sides and drinks to an order -->
+        <SidesAndDrinksPage
+                v-if="currentStep===5 || currentStep===6"
+                :order="order"
+                :allIngredients="ingredients"
+                :relevantIngredients="relevantIngredients"
+                :relevantIngredientDict="chosenSidesDrinks"
+                v-on:increment="addToOrder"
+                v-on:decrement="removeOrder"
                 :ui-labels="uiLabels"
                 :lang="lang"
-            >
-            </TotalBill>
-            <cancelButton
+            />
+
+        <!--show selected burger, sides, and drinks in order overview step 8-->
+        <OrderCheckPage
+                v-if="currentStep===8"
+                v-on:increment="addToOrder"
+                v-on:decrement="removeOrder"
+                v-on:incrementBurger ="addFinishedBurger"
+                v-on:decrementBurger="removeFinishedBurger"
                 :ui-labels="uiLabels"
                 :lang="lang"
-            >
-            </cancelButton>
-        </div>
-        <PayButton
-                v-if="currentStep===8 && price > 0"
+                :chosenSidesDrinks="chosenSidesDrinks"
+                :allIngredients="ingredients"
+                :currentBurger="burger"
+                :order="order"
+                :oldBurgers="oldBurgers"
+        />
+    </section>
+
+    <section class="footerButtons" >
+        <CancelAndPayButton
+                :currentStep="currentStep"
+                :lang="lang"
+                :ui-labels="uiLabels"
                 v-on:clickedPay="placeOrder"
-                :ui-labels="uiLabels"
-                :lang="lang"
-        >
-        </PayButton>
+                :price="order.total"
+        />
     </section>
     </div>
 </template>
 <script>
 
+    //import methods and data that are shared between ordering and kitchen views
+    import sharedVueStuff from '@/components/sharedVueStuff.js'
+
     //import the components that are used in the template, the name that you
     //use for importing will be used in the template above and also below in
     //components
-    import Ingredient from '@/components/Ingredient.vue'
-    import OrderItem from '@/components/OrderItem.vue'
     import FoodPref from '@/components/FoodPref.vue'
-    import NewBurger from '@/components/NewBurger.vue'
-    import BurgerView from '@/components/BurgerView.vue'
-    //import methods and data that are shared between ordering and kitchen views
-    import sharedVueStuff from '@/components/sharedVueStuff.js'
     import NavButtons from "../components/NavButtons.vue";
-    import OrderOverviewSidesDrinks from "../components/OrderOverviewSidesDrinks.vue";
-    import TotalBill from "../components/TotalBill.vue";
-    import PayButton from '@/components/Pay.vue';
-    import CancelButton from '@/components/CancelButton.vue';
+    import NewBurgerPage from "../components/NewBurgerPage";
+    import SidesAndDrinksPage from "../components/SidesAndDrinksPage";
+    import CancelAndPayButton from "../components/CancelAndPayButton";
+    import OrderCheckPage from "../components/OrderCheckPage";
+    import BurgerIngredientsPage from "../components/BurgerIngredientsPage";
+    import BurgerBunPage from "../components/BurgerBunPage";
 
     /* instead of defining a Vue instance, export default allows the only
     necessary Vue instance (found in main.js) to import your data and methods */
     export default {
         name: 'Ordering',
         components: {
-            TotalBill,
-            OrderOverviewSidesDrinks,
+            BurgerBunPage,
+            BurgerIngredientsPage,
+            CancelAndPayButton,
             NavButtons,
-            Ingredient,
-            OrderItem,
             FoodPref,
-            NewBurger,
-            BurgerView,
-            PayButton,
-            CancelButton
+            NewBurgerPage,
+            SidesAndDrinksPage,
+            OrderCheckPage,
         },
         mixins: [sharedVueStuff], // include stuff that is used in both
                                   // the ordering system and the kitchen
@@ -237,12 +190,14 @@
             currentBurgerNumber: function() {
                 return this.oldBurgers.length + 1
             },
+
             order: function() {
                 // Wrap sides and burgers in order object
                 return {currentBurger: this.burger,
                         otherBurgers: this.oldBurgers,
                         sides: this.chosenSidesDrinks,
-                        price: this.price}
+                        total: this.totalPrice
+                }
             },
             burger: function() {
                 return {
@@ -261,7 +216,20 @@
                 } else {
                     return this.chosenIngredientsDict;
                 }
-            }
+            },
+
+            totalPrice: function() {
+                // Compute current total price based on ingredients and amount of current and old burgers and sides and drinks
+                let res = 0;
+                for (const burger of this.oldBurgers){
+                    res = res + burger.amount * burger.price;
+                }
+                for(const [key, count] of Object.entries(this.chosenSidesDrinks)) {
+                    res = res + count * this.ingredients[key-1].selling_price
+                }
+                res = res + this.burgerPrice * this.burgerAmount;
+                return res;
+            },
         },
         created: function () {
             this.$store.state.socket.on('orderNumber', function (data) {
@@ -272,6 +240,7 @@
             changeStep: function (nextStep) {
                 this.currentStep = nextStep;
             },
+
 
             changePreferences: function(prefId) {
                 //prefId is the id of the button in the component food preferences
@@ -302,14 +271,12 @@
                     let newCount = (this.currentRelevantIngredientDict[itemKey] || 0) + 1;
                     this.$set(this.currentRelevantIngredientDict, itemKey, newCount);
                 }
-                //if ingredients are sides or drinks then the order price has to be increased
-                //otherwise order price and burger price increases
-                if (this.currentStep === 5 || this.currentStep === 6 || this.currentStep === 8) {
-                    this.price += item.selling_price;
-                } else {
-                    this.price += item.selling_price;
+
+                //if ingredients are burger ingredients or bun the current burger price has to be changed
+                if ([1,2,3,4].includes(this.currentStep)) {
                     this.burgerPrice += item.selling_price;
                 }
+
             },
             removeOrder: function (item) {
                 //remove ingredients from order
@@ -324,12 +291,8 @@
                         delete this.currentRelevantIngredientDict[itemKey];
                     }
                 }
-                //if ingredients are sides or drinks then the order price has to be decreased
-                //otherwise order price and burger price decreases
-                if (this.currentStep === 5 || this.currentStep === 6 || this.currentStep === 8) {
-                    this.price -= item.selling_price;
-                } else {
-                    this.price -= item.selling_price;
+                //if ingredients are burger ingredients or bun the current burger price has to be changed
+                if ([1,2,3,4].includes(this.currentStep)) {
                     this.burgerPrice -= item.selling_price;
                 }
 
@@ -393,79 +356,38 @@
 <style scoped>
     /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
     
-    #ing {
-        display: grid;
-        grid-gap: 2em;
-        grid-template-columns: 20em 20em 20em;
-    }
 
-    #tabbar {
-        display: inline-block;
-        width: auto; 
-    }
-.burgerView {
-        grid-gap: 2em;
-        grid-template-columns: 20em 20em;
-        margin-top: 20px;
-        padding: 20px;
-        width: 22vw;
-        height: 68vh;
-        border: 1.5px solid grey;
-        display: block;
-        overflow: auto;
-    }
-.grid {
-    display: grid;
-    grid-column-gap: 2em;
-    grid-row-gap: 1em;
-    grid-template-columns: 20vw 20vw 20vw;
-    margin-left: 30px;
-    margin-top: 20px;
-    height: 75vh;
-    width: 70vw;
-    overflow: auto;
+#NavButtons {
+    margin-left: 5px;
+    width: auto;
 }
+#tabbar {
+     display: inline-block;
+     width: auto;
+
+}
+
 #flag {
-    width: 3vw;
-    margin-left: 20px;
+    margin-bottom: -20px;
+    width: 50px;
+    height: 42px;
+    padding: 1px;
+    border: 1px solid grey;
+    border-radius: 15px;
+    background-color: #e7e7e7;
+    color: darkslategrey;
 }
 
 @media only screen and (max-width: 850px){
-        #ing {
-                display: grid;
-                grid-gap: 3em;
-                grid-template-columns: 20% 40%;
-            }
 
-            #tabbar {
-                display: inline-block;
-                width: auto; 
-            }
-        .burgerView {
-                grid-gap: 2em;
-                grid-template-columns: 20em 20em;
-                margin-top: 10px;
-                padding: 20px;
-                width: 18vw;
-                height: 55vh;
-                border: 1.5px solid grey;
-                display: block;
-                overflow: auto;
-            }
-        .grid {
-            display: grid;
-            grid-column-gap: 1.6em;
-            grid-row-gap: 1em;
-            grid-template-columns: 20vw 20vw 20vw;
-            margin-left: 5px;
-            margin-top: 10px;
-            height: 75vh;
-            width: 70vw;
-            overflow: auto;
+        #tabbar {
+            display: inline-block;
+            width: auto;
+        }
+
         }
         #flag {
             width: 3vw;
             margin-left: 20px;
         }
-}
 </style>

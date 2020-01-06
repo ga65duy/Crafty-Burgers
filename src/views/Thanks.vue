@@ -14,15 +14,7 @@
 </template>
 <script>
 
-//import the components that are used in the template, the name that you
-//use for importing will be used in the template above and also below in
-//components
-
-//import methods and data that are shared between ordering and kitchen views
 import sharedVueStuff from '@/components/sharedVueStuff.js'
-
-/* instead of defining a Vue instance, export default allows the only 
-necessary Vue instance (found in main.js) to import your data and methods */
 export default {
   name: 'Thanks',
   components: {
@@ -74,21 +66,10 @@ a {
   background-color: #52cc10ff;
   width: 800px;
   font-size: 3em;
-  display: block;
-  text-decoration: none;
-  color: black;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 0 16px 0 #52cc10ff;
-  margin-top: 130px;
-  padding: 10px;
-  text-align: center;
-  background-color: #52cc10ff;
-  width: 800px;
-  font-size: 3em;
 }
 input {
   width: 5vw;
+  outline: none;
  }
  #againButton{
   display: inline-block;
@@ -140,6 +121,7 @@ input {
         }
         input {
         width: 5vw;
+        outline: none;
         }
         #againButton{
         display: inline-block;

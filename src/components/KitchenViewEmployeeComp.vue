@@ -2,9 +2,13 @@
   <div class="TimeAndEmployee">
   
   <div id="datetime"> Login to see time </div> <br>
-  <div id="bemp">Burger Maker:<br> No Employee logged in</div>
+  <div id="bemp">Burger Maker:<br>
+    <div class="text"> No Employee logged in </div> 
+  </div>
   <button id="bbtn" v-on:click="bpromptFunction(); startTime()">Employee Login</button><br><br>
-  <div id="semp">Stock refiller:<br> No Employee logged in</div>
+  <div id="semp">Stock refiller:<br> 
+    <div class="text"> No Employee logged in</div>
+  </div>
   <button id="sbtn" v-on:click="spromptFunction(); startTime()">Employee Login</button>
   <br>
   <NextButtonKitchen v-on:next="next"/>
@@ -38,7 +42,7 @@ export default {
         s = this.checkTime(s);
         document.getElementById('datetime').innerHTML =
         h + ":" + m + ":" + s + 
-        "\n" + "<br>Date: " + d + "/" + mo + "/" + y ;
+        "\n" + d + "/" + mo + "/" + y ;
         const t = setTimeout(this.startTime, 500);
    },
     checkTime: function(i) {
@@ -80,11 +84,30 @@ export default {
 <style scoped>
  .TimeAndEmployee {
      width: 30vw;
-     height: 40vh;
-     border-style: solid;
      padding: 5px;
-     font-size: 0.8em;
      font-family: Comfortaa, sans-serif;
      text-align: center;
  }
+ #bbtn, #sbtn {
+    margin-top: 10px;
+    background: lightgrey;
+    border: 2px solid grey;
+    border-radius: 8px;
+    padding: 5px;
+    outline: none;
+}
+#bbtn:active, #sbtn:active {
+    background: grey;
+}
+#datetime {
+    font-size: 0.7em;
+}
+#bemp, #semp {
+    font-size: 0.7em;
+}
+.text {
+    padding-top: 5px;
+    font-size: 0.8em;
+    color: grey;
+}
 </style>

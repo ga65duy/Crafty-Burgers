@@ -15,10 +15,20 @@
 </script>
 
 <style scoped>
-button{
-    width: 100px;
-    background-color: #52cc10ff;
-    font-size: 1.2em;
-    margin-top: 0.6em;
+button {
+    background: rgb(64, 165, 0);
+    width: 280px;
+    margin-top: 30px;
+    padding: 5px;
+    height: 60px;
+    font-size: 1.5em;
+    box-shadow: 0 0 8px 0 rgb(64, 165, 0);
+    border: none;
+    border-radius: 12px;
+    outline: none;
 }
+button:active {
+    background: green;
+}
+
 </style>

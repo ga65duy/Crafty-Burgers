@@ -54,6 +54,7 @@ input[type="checkbox"]:checked + label {
     background-color: #52cc10ff;
 }
 
+
 .preferences{
   text-align: center;
   padding-top: 50px

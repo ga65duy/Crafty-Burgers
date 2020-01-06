@@ -5,8 +5,10 @@
               v-on:click="clickedPay()"
               :disabled="disabled"
       >
-        {{uiLabels.pay}}
-        <img src="https://image.flaticon.com/icons/svg/1411/1411444.svg">
+          <p id="payButtonText">{{uiLabels.pay}}
+              <img src="https://image.flaticon.com/icons/svg/1411/1411444.svg">
+          </p>
+
         </button>
     </a>
     </div>
@@ -34,18 +36,21 @@
 
 <style scoped>
 button {
-    font-family: 'Comfortaa', cursive;
-    font-size: 14pt;
-    color: darkslategrey;
+    background-color: lightblue;
     border-radius: 10px;
     border: 2px solid grey;
     padding-left: 20px;
     padding-right: 20px;
-    margin-right: 40px;
     width: 200px;
     height: 40px;
     align-self: center;
     text-align: center;
+}
+
+#payButtonText {
+    font-family: 'Comfortaa', cursive;
+    font-size: 14pt;
+    color: darkslategrey;
     position: relative;
     top: 50%;
     left: 50%;
@@ -58,13 +63,13 @@ button:disabled {
     pointer-events: none;
 }
 
-button:hover {
+button:hover, button:active {
     cursor: pointer;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-    background-color: lightgreen;
+    background-color: #3ca1c3;
 }
 img {
-    width: 1.8vw;
+    width: 1.5vw;
     padding-left: 1vw;
 }
 </style>

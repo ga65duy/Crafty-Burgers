@@ -78,6 +78,7 @@ button {
             font-family: Comfortaa, sans-serif;
             font-size: 1.1em;
             color: darkslategrey;
+            outline: none;
         }
         .buttonSelected {
             background-color: #52cc10ff;

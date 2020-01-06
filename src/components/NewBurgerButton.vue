@@ -89,13 +89,17 @@ export default {
 
 <style scoped>
   #newBurgerButton {
-    background-color: #e7e7e7;
-    border-radius: 10px;
-    border: 2px solid grey;
-    padding-left: 20px;
-    padding-right: 20px;
-    width: 18vw;
-    height: 22vh;
+      font-family: comfortaa, sans-serif;
+      font-size: 1.5em;
+      padding: 20px;
+      border-radius: 10px;
+      background: #e7e7e7;
+      margin-top: 20px;
+      width: 22vw;
+      height: 40vh;
+      border: 1.5px solid grey;
+      margin-left: -3em;
+      outline: none;
 }
 #newBurgerButton:hover {
     cursor: pointer;
@@ -112,13 +116,11 @@ export default {
 }
 #newBurgerImage {
     padding-top: 15px;
-    width: 28%
+    width: 45%
 }
-
 
 .modal {
     background: #e7e7e7;
-    box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
     display: flex;
     flex-direction: column;
@@ -196,11 +198,25 @@ export default {
     font-size: 1.1rem;
     cursor: pointer;
     width: 100px;
+    outline: none;
+}
+#btn-yes:hover, btn-no:active {
+      background:  #609f60;
+}
+
+#btn-no:hover, btn-no:active {
+  background: #ea4848;
 }
 #btn-yes {
     background: #8FBC8F;
 }
+#btn-yes:hover, btn-no:active {
+  background:  #609f60;
+}
 #btn-no {
     background: #F08080;
+}
+#btn-no:hover, btn-no:active {
+  background: #ea4848;
 }
 </style>

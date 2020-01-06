@@ -103,7 +103,7 @@
         margin-left: 10px;
         margin-top: 20px;
         height: 75vh;
-        width: 45vw;
+        width: 33vw;
         overflow: auto;
     }
 

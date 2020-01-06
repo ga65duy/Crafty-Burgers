@@ -1,5 +1,5 @@
 <template>
-    <div v-on:click="clickedPay()">
+    <div>
     <a href="http://localhost:8080/#/thankyou">
       <button type="submit"
               v-on:click="clickedPay()"

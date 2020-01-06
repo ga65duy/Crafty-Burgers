@@ -348,11 +348,7 @@
 <style scoped>
     /* scoped in the style tag means that these rules will only apply to elements, classes and ids in this template and no other templates. */
     
-#ing {
-     display: grid;
-     grid-gap: 2em;
-     grid-template-columns: 20em 20em 20em;
-}
+
 #NavButtons {
     margin-left: 5px;
     width: auto;
@@ -362,28 +358,7 @@
      width: auto;
 
 }
-.burgerView {
-    grid-gap: 2em;
-    grid-template-columns: 20em 20em;
-    margin-top: 20px;
-    padding: 20px;
-    width: 22vw;
-    height: 63vh;
-    border: 1.5px solid grey;
-    display: block;
-    overflow: auto;
-    }
-.grid {
-    display: grid;
-    grid-column-gap: 2em;
-    grid-row-gap: 1em;
-    grid-template-columns: 20vw 20vw 20vw;
-    margin-left: 30px;
-    margin-top: 20px;
-    height: 70vh;
-    width: 70vw;
-    overflow: auto;
-}
+
 #flag {
     margin-bottom: -20px;
     width: 50px;
@@ -396,43 +371,18 @@
 }
 
 @media only screen and (max-width: 850px){
-        #ing {
-                display: grid;
-                grid-gap: 3em;
-                grid-template-columns: 20% 40%;
-            }
 
-            #tabbar {
-                display: inline-block;
-                width: auto; 
-            }
-        .burgerView {
-                grid-gap: 2em;
-                grid-template-columns: 20em 20em;
-                margin-top: 10px;
-                padding: 20px;
-                width: 18vw;
-                height: 55vh;
-                border: 1.5px solid grey;
-                display: block;
-                overflow: auto;
-            }
-        .grid {
-            display: grid;
-            grid-column-gap: 1.6em;
-            grid-row-gap: 1em;
-            grid-template-columns: 20vw 20vw 20vw;
-            margin-left: 5px;
-            margin-top: 10px;
-            height: 75vh;
-            width: 70vw;
-            overflow: auto;
+        #tabbar {
+            display: inline-block;
+            width: auto;
+        }
+
         }
         #flag {
             width: 3vw;
             margin-left: 20px;
         }
-}
+
 #FoodPref {
     position: absolute;
     left: 33vw;

@@ -36,6 +36,8 @@ export default {
   },
   created: function () {
     this.$store.state.socket.on('orderNumber', function (data) {
+        console.log("Order Number received");
+        console.log(data);
       this.orderNumber = data;
     }.bind(this));
   },
@@ -62,18 +64,6 @@ h1 {
   margin-bottom: 0;
 }
 a {
-  display: block;
-  text-decoration: none;
-  color: black;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 0 16px 0 #52cc10ff;
-  margin-top: 130px;
-  padding: 10px;
-  text-align: center;
-  background-color: #52cc10ff;
-  width: 800px;
-  font-size: 3em;
   display: block;
   text-decoration: none;
   color: black;

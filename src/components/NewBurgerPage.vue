@@ -87,7 +87,7 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: space-between;
+        justify-content: space-evenly;
     }
 
     .burgerNewPage {
@@ -122,6 +122,14 @@
         align-self: flex-end;
         margin-top: 20px;
         margin-right: 10px;
+    }
+
+    /* Medium screens */
+    @media all and (max-width: 1200px) {
+        #mainContainer {
+            /* When on medium sized screens, we have only two columns*/
+            flex-direction: column;
+        }
     }
 
 </style>

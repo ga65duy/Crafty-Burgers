@@ -12,6 +12,7 @@
         </div>
         <div class="grid">
             <Ingredient
+                class="burgerIngredient"
                 ref="ingredient"
                 v-for="item in relevantIngredients"
                 v-on:increment="addToOrder(item)"
@@ -74,6 +75,10 @@
         height: 75vh;
         width: 70vw;
         overflow: auto;
+    }
+
+    .burgerIngredient {
+        max-height: 250px;
     }
 
     /* Medium screens */

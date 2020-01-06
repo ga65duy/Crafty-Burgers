@@ -1,14 +1,16 @@
 <template>
     <div>
         <span id="header"> Burger ingredients: make 
-        <span id="amount"> {{burger.amount}} </span>
+            <span id="amount"> {{burger.amount}} </span>
         </span> <br>
-        <p v-if="burger.bun">
-            1x {{getItemForKey(burger.bun)["ingredient_"+lang]}}<br>
-        </p>
-        <p v-for="(amount,ing) in burger.chosenIngredients" :key="ing">
-            {{amount}}x {{getItemForKey(ing)["ingredient_"+lang]}}<br>
-        </p>
+        <dl>
+            <dt v-if="burger.bun">
+                1x {{getItemForKey(burger.bun)["ingredient_"+lang]}}<br>
+            </dt>
+            <dt v-for="(amount,ing) in burger.chosenIngredients" :key="ing">
+                {{amount}}x {{getItemForKey(ing)["ingredient_"+lang]}}<br>
+            </dt>
+        </dl>
     </div>
 </template>
 
@@ -33,6 +35,14 @@
 
 #header {
     font-size: 0.8em;
+    color: darkslategrey;
+}
+dl {
+    margin-top: 15px;
+}
+dt {
+    padding-bottom: 5px;
+    font-size: 0.9em;
 }
 #amount {
     font-weight: bold;

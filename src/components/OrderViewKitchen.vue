@@ -63,9 +63,19 @@
             updateTimer: function() {
                 let now = new Date();
                 let delta = Math.floor((now - this.showingTime) / 1000);
-                this.timerMinutes = Math.floor(delta / 60) % 60;
+                if(Math.floor(delta / 60) % 60>9){
+                    this.timerMinutes = Math.floor(delta / 60) % 60;
+                }
+                else{
+                   this.timerMinutes = "0" + Math.floor(delta / 60) % 60; 
+                }
                 delta -= this.timerMinutes * 60;
-                this.timerSeconds = Math.floor(delta % 60);
+                if(Math.floor(delta % 60)>9){
+                    this.timerSeconds = Math.floor(delta % 60);
+                }
+                else{
+                   this.timerSeconds = "0" + Math.floor(delta % 60); 
+                }
             }
         }
     }

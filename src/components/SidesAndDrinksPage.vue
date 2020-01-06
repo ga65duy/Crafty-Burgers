@@ -82,4 +82,17 @@
         margin-right: 10px;
     }
 
+@media only screen and (max-width: 850px){
+       #ingredientGrid {
+        display: grid;
+        grid-column-gap: 0.7em;
+        grid-row-gap: 0.7em;
+        grid-template-columns: 20vw 20vw;
+        margin-left: 15px;
+        margin-top: 20px;
+        height: 80vh;
+        width: 45vw;
+        overflow: auto;
+    } 
+    }
 </style>

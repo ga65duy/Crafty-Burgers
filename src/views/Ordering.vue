@@ -389,5 +389,6 @@
         #flag {
             width: 3vw;
             margin-left: 20px;
+            margin-right: 5px;
         }
 </style>

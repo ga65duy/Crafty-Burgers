@@ -1,12 +1,15 @@
 <template>
           <div class="ingredient">
                   <div v-if="!orderCheck">
-                      <span id="name"> {{item["ingredient_"+ lang]}} </span> <br>
-                      <span id="price"> {{item.selling_price}} kr </span> <br>
+                      <span class="name"> {{item["ingredient_"+ lang]}} </span> <br>
+                      <span class="price"> {{item.selling_price}} kr </span> <br>
                   </div>
+
                   <img :src="getImgUrl(item.image_path)" v-bind:alt="item.image_path" id="image"> <br>
+
                   <div v-if="orderCheck">
-                      {{item["ingredient_"+ lang]}} {{item.selling_price}}kr <br>
+                      <span class="nameOrderCheck"> {{item["ingredient_"+ lang]}} </span>:
+                      <span class="priceOrderCheck"> {{item.selling_price}} kr </span> <br>
                   </div>
 
                   <!-- Minus button -->
@@ -91,12 +94,29 @@ export default {
       width: 90%;
       padding: 10px;
   }
-  #name {
+  .name {
     font-size: 0.8em;
     font-weight: bold;
   }
-  #price {
+  .price {
     font-size: 0.7em;
+  }
+
+  #counter {
+      text-align: center;
+      margin-right: 2vw;
+      margin-left: 2vw;
+      font-size: 0.8em;
+  }
+
+  .nameOrderCheck {
+      font-weight: bold;
+      font-size: 0.9em;
+  }
+  .priceOrderCheck {
+      font-size: 0.9em;
+      margin-left: 15px;
+      font-weight: bold;
   }
   input {
     background:  lightgrey;
@@ -115,11 +135,7 @@ export default {
     background: #e7e7e7;
     box-shadow: none;
   }
-  #counter {
-    margin-right: 2vw;
-    margin-left: 2vw;
-    font-size: 0.8em; 
-    }
+
 
   @media only screen and (max-width: 850px){
       .ingredient {

@@ -105,7 +105,6 @@ export default {
     font-size: 14pt;
     color: darkslategrey;
     position: relative;
-
     left: 50%;
     transform: translate(-50%, -50%);
 }

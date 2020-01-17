@@ -8,9 +8,10 @@
                    v-bind:src="uiLabels.flag"
                    v-on:click="switchLang()">
             <!--shows the buttons to navigate to different food categories-->
-            
- 
- //HTML
+         
+         
+ //Ordering View
+   //HTML
  
             <NavButtons id="tabbar"
                         v-for="s in steps"
@@ -166,7 +167,8 @@
             }
         },
         
-//JavaScript
+//Ordering View
+  //JavaScript
 
         computed: {
             steps: function () {

@@ -159,7 +159,25 @@
                 prefs: [false, false, false],
             }
         },
+        
+//JavaScript
+
         computed: {
+            steps: function () {
+                    return [
+                        {step: 0, label: this.uiLabels.preferences},
+                        {step: 4, label: this.uiLabels.bun},
+                        {step: 1, label: this.uiLabels.patty},
+                        {step: 2, label: this.uiLabels.extras},
+                        {step: 3, label: this.uiLabels.sauces},
+                        {step: 7, label: this.uiLabels.addBurger},
+                        {step: 5, label: this.uiLabels.sides},
+                        {step: 6, label: this.uiLabels.drinks},
+                        {step: 8, label: String.fromCharCode(10004)}
+                        ]
+                }
+            
+            
             relevantIngredients: function() {
                 // Return the relevant ingredients to show based on the current step and selected preferences
                 return Array.from(this.ingredients).filter( item => {
@@ -173,19 +191,6 @@
             },
             addBurgerOrCheckPage: function (){
                 return this.currentStep === 7 || this.currentStep === 8;
-            },
-            steps: function () {
-                return [
-                    {step: 0, label: this.uiLabels.preferences},
-                    {step: 4, label: this.uiLabels.bun},
-                    {step: 1, label: this.uiLabels.patty},
-                    {step: 2, label: this.uiLabels.extras},
-                    {step: 3, label: this.uiLabels.sauces},
-                    {step: 7, label: this.uiLabels.addBurger},
-                    {step: 5, label: this.uiLabels.sides},
-                    {step: 6, label: this.uiLabels.drinks},
-                    {step: 8, label: String.fromCharCode(10004)}
-                    ]
             },
             currentBurgerNumber: function() {
                 return this.oldBurgers.length + 1

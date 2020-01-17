@@ -1,6 +1,9 @@
 <template>
 
-//HTML
+
+
+//Button Component
+  //HTML
 
     <div>
         <button
@@ -31,7 +34,8 @@
             }
         },
         
-//JavaScript
+//Button Component       
+  //JavaScript
 
         methods: {
             selectedButton: function () {

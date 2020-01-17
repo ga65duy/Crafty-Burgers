@@ -8,6 +8,10 @@
                    v-bind:src="uiLabels.flag"
                    v-on:click="switchLang()">
             <!--shows the buttons to navigate to different food categories-->
+            
+ 
+ //HTML
+ 
             <NavButtons id="tabbar"
                         v-for="s in steps"
                         v-bind:step="s"
@@ -16,6 +20,8 @@
                         :key="s.step"
             >
             </NavButtons>
+            
+            
         </section>
     
     <section class="content">

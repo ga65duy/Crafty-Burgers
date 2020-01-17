@@ -249,6 +249,11 @@
                 this.orderNumber = data;
             }.bind(this));
         },
+        
+        
+ //Ordering View
+   //JavaScript
+   
         methods: {
             changeStep: function (nextStep) {
                 this.currentStep = nextStep;

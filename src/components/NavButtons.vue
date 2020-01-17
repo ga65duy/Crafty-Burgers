@@ -23,27 +23,23 @@
 </template>
 
 <script>
+
+//Button Component       
+  //JavaScript
+  
     export default {
         name: "NavButtons",
         props: {
             step: Object,
             currentStep: Number
         },
-        data: function () {
-            return {
-            }
-        },
-        
-//Button Component       
-  //JavaScript
-
         methods: {
             selectedButton: function () {
                 this.$emit('selected',this.step.step);
             },
         },
-        
     }
+    
 </script>
 
 <style scoped>

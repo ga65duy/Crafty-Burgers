@@ -175,7 +175,7 @@
                         {step: 6, label: this.uiLabels.drinks},
                         {step: 8, label: String.fromCharCode(10004)}
                         ]
-                }
+                },
             
             
             relevantIngredients: function() {

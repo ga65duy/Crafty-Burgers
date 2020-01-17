@@ -1,4 +1,7 @@
 <template>
+
+//HTML
+
     <div>
         <button
         class="buttonSelected"
@@ -27,11 +30,15 @@
             return {
             }
         },
+        
+//JavaScript
+
         methods: {
             selectedButton: function () {
                 this.$emit('selected',this.step.step);
             },
         },
+        
     }
 </script>
 
